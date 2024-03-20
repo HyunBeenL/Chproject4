@@ -82,7 +82,7 @@
 	            <a href="/find.jsp">비밀번호 찾기  </a>
 	        </div>
 	            <input type="submit" id="loginbtn" name="loginbtn" value="로그인">
-	            <button id="joinbtn"><a href="join.html">회원가입</a></button>
+	            <button id="joinbtn"><a href="/Project4/member/joinchoice.jsp">회원가입</a></button>
 	        </div>
     	</form>
 	</main>
