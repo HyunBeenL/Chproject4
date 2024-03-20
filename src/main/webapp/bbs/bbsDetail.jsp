@@ -174,14 +174,10 @@
 </div>
 
 <script>
-    document.querySelector("#btn_submit").addEventListener("click",()=>{
+	
+    document.querySelector("#cmt_btn_submit").addEventListener("click",()=>{
         let a = document.getElementById("user_id");
-        let b = document.getElementById("title");
         let c = document.getElementById("content");
-        if(b.value ==""){
-            alert("제목이 비어있습니다.");
-            event.preventDefault();
-        }
         if(c.value == ""){
             alert("내용이 비어있습니다.");
             event.preventDefault();
