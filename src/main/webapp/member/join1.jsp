@@ -7,10 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="../css/header.css">
     <style>
-        *{
-            margin:0px;
+    	*{
+           margin:0px;
             padding:0px;
         }
         .main{
@@ -87,9 +87,9 @@
     </style>
 </head>
 <body>
-    <header id="header">
-        <jsp:include page="/header/header.jsp" />
-    </header>
+    
+        <jsp:include page="../header/header.jsp" />
+    
     <main>
         <div class="main">
             <h1 style="text-align: center; margin-bottom:50px;"> 회원가입</h1>

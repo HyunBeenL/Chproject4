@@ -8,10 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
-            margin:0px;
-            padding:0px;
-        }
+
         .main{
             margin: 0px auto;
             margin-top:200px;
@@ -36,7 +33,17 @@
         }
         
         td a{
-        	
+        	color:blue;
+        	font-size:22px;
+        	text-decoration:none;
+        }
+        td div{
+        	margin:10px;
+        }
+        td p{
+        	margin:10px;
+        	color:gray;
+        	font-size:12px;
         }
     </style>
 </head>
@@ -44,19 +51,21 @@
     <jsp:include page="/header/header.jsp" />
     <main>
     	<div class="main">
-	        <h1 style="text-align: center; margin-bottom:50px;"> 회원가입</h1>
-            <h2 style="text-align: center; margin:50px 0px;"> K-MOOC에 오신것을 환영합니다.</h2>
+	        <h1 style="text-align: center; margin-bottom:50px; font-size:48px;"> 회원가입</h1>
+            <h2 style="text-align: center; margin:50px 0px; font-size:32px;"> K-MOOC에 오신것을 환영합니다.</h2>
         </div>
         <div class="border" style="text-align: center;">
             <table class ="choice">
                 <tr>
                     <td>
-                    <div style="background-image: url('/Project4/img/adult.png');background-size:100% 100%; height:50%"></div>
-                    <a href="join1.jsp">일반 회원 이미지</a>
+                    <div style="background: url('/Project4/img/adult.png') no-repeat center;height:100px;"></div>
+                    <a href="termsagree.jsp">일반 회원 ></a>
+                    <p>만 14세 이상 회원가입</p>
                     </td>
                     <td>
-                    <div style="background-image: url('/Project4/img/child.png');background-size:100% 100%; height:50%"></div>
-                    <a href="agreement.jsp">어린이 회원 이미지</a>
+                    <div style="background: url('/Project4/img/child.png') no-repeat center;height:100px;"></div>
+                    <a href="agreement.jsp">어린이 회원 ></a>
+                    <p>만 14세 미만 회원가입</p>
                     </td>
                 </tr>
             </table>

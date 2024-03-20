@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans+KR:wght@100..900&family=Poor+Story&display=swap" rel="stylesheet">
 		
 	<link type="text/css" rel="stylesheet" href="./css/main.css"/>
-	<link type="text/css" rel="stylesheet" href="./css/header.css"/>
+	
 	
 	<title>메인페이지 | K-MOOC</title>
 	<script 
