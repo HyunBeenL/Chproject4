@@ -20,7 +20,7 @@
         margin-right: 10px;
         line-height: 50px;
     }
-    #user_id, #title{
+    #category, #title{
         font-size: 18px;
         margin-right: 10px;
         width: 1080px;
@@ -64,7 +64,11 @@
 <div class="main">
     <h2>게시판 등록 페이지</h2>
     <form name="frm_regist" id="frm_regist" action="" enctype="multipart/form-data" method="post">
-        <div class="f1"><div><span>작성자</span></div><input type="text" name="user_id" id="user_id" value="${UserId}" readonly></div><br>
+        <div class="f1"><div><span>구분</span></div>
+        <select name="category" id="category">
+        	<option>자유게시판</option>
+        	<option>공지사항</option>
+        </select></div><br>
         <div class="f2"><div><span>제목</span></div><input type="text" name="title" id="title" value="" maxlength="100"></div><br>
         <textarea name="content" id="content"></textarea><br>
         <input type="image" src="/Project4/img/upload.png" id="btn_fileupload"><span id="filename"></span>

@@ -24,18 +24,20 @@
         .choice{
             border:1px solid white;
             padding:60px 100px;
-            background-color: skyblue;
+            background-color: #e3f0fc;
             margin:0px auto;
             border-spacing: 20px;
         }
         .choice td{
             border:1px solid black;
-            width:240px;
+            width:300px;
             height:300px;
             background-color: white;
         }
         
-        
+        td a{
+        	
+        }
     </style>
 </head>
 <body>
@@ -48,14 +50,17 @@
         <div class="border" style="text-align: center;">
             <table class ="choice">
                 <tr>
-                    <td><a href="join1.jsp">일반 회원 이미지</a></td>
-                    <td><a href="join2.jsp">회원 이미지</a></td>
+                    <td>
+                    <div style="background-image: url('/Project4/img/adult.png');background-size:100% 100%; height:50%"></div>
+                    <a href="join1.jsp">일반 회원 이미지</a>
+                    </td>
+                    <td>
+                    <div style="background-image: url('/Project4/img/child.png');background-size:100% 100%; height:50%"></div>
+                    <a href="agreement.jsp">어린이 회원 이미지</a>
+                    </td>
                 </tr>
             </table>
-            <div>
-                <p>회원구분에 따라 가입절차에 차이가 있으니 반드시 본인에 해당하는 경우를 선택해 주시기 바랍니다.</p>
-            </div>
-        </div>
+		</div>
     </main>
     <footer>
         
