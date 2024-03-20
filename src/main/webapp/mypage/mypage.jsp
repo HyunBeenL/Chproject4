@@ -124,6 +124,9 @@
     </style>
 </head>
 <body>
+	<header>
+	<jsp:include page="/header/header.jsp" />
+	</header>
 <main>
 <div class="container">
     <div id="id1">
