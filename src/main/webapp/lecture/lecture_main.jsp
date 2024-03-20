@@ -9,9 +9,6 @@
             width: 1100px;
             margin: auto;
         }
-        #id0 {
-            height: 100px;
-        }
         #id1 a{
             text-decoration: none;
             color: black;
@@ -28,10 +25,10 @@
             display: block;
         }
         #id4_1 {
-            display: block;
+    		display: flex;
+    		justify-content: space-between;
         }
         #id4_1 span {
-            float: left;
         }
         #id4_2 {
             display: grid;
@@ -57,7 +54,6 @@
         }
         #frm3 {
             display: flex;
-            float: right;
         }
     </style>
 </head>
@@ -68,7 +64,6 @@
 	<jsp:include page="/header/header.jsp" />
 	</header>
 	<main>
-	<div id="id0"></div>
     <div id="id1" class="container">
         <a href="main.html">Home</a>
         >
@@ -178,6 +173,13 @@
     <div id="id5" class="container">
         << <  12345678910 > >>
     </div>
+    
+        <a id="topBtn" href="#">TOP</a>
+    <script>
+    	document.querySelector("#topBtn").addEventListener("click", (e) => {
+    		main_bg.scrollIntoView({ behavior: 'smooth' , block: 'nearest' })
+    	})
+    </script>
     </main>
 </body>
 </html>
