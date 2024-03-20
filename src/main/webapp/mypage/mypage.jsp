@@ -3,11 +3,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MyPage</title>
+    <title>MyPage</title>
     <style>
         .container {
             width: 1100px;
             margin: auto;
+        }
+        #id0 {
+            height: 76px;
         }
         .content {
             display: flex;
@@ -19,6 +22,7 @@
             margin: 15px 20px;
             width: 150px;
             height: 120px;
+            box-sizing: border-box;
             background-color: grey;
         }
         .content_card {
@@ -96,16 +100,11 @@
             text-decoration: none;
             color: black;
         }
-        a:hover {
-            text-decoration: none;
-            color: black;
-        }
-
         #id2_2_1 a{
             padding: 0px 20px ;
             color: grey;
         }
-        #id2_2_1 a:active, a:target, a:hover{
+        #id2_2_1 a:active, #id2_2_1 a:target, #id2_2_1 a:hover{
             padding: 0px 20px ;
             color: black;
             font-weight: 700;
@@ -121,22 +120,25 @@
     </style>
 </head>
 <body>
+	<jsp:include page="/header/header.jsp" />
 <main>
+	<div id="id0"></div>
+	
 <div class="container">
     <div id="id1">
         <div>
             <h2>마이페이지</h2>
         </div>
         <div>
-            <img src="img/my_menu_01.png"/><a href="">내 강의실</a>
+            <img src="/Project4/img/my_menu_01.png"/><a href="/Project4/mypage/mypage.jsp">내 강의실</a>
             <br>
-            <img src="img/my_menu_02.png"/><a href="">개인정보관리</a>
+            <img src="/Project4/img/my_menu_02.png"/><a href="/Project4/mypage/mypage_info.jsp">개인정보관리</a>
         </div>
     </div>
 
     <div id="id2">
         <div id="id2_1">
-                <img id="img1" src="img/user_image.png">
+                <img id="img1" src="/Project4/img/user_image.png">
                 <span id="sp_user_name">{user_name}</span>님 안녕하세요. <br>
                 <p><span id="sp_user_email">이메일 주소</span>&nbsp;{user_email}</p>
         </div>
@@ -146,7 +148,7 @@
                 <a href="">수강중인 강좌</a>
                 <a href="">관심 강좌</a>
             </div>
-            <div class="content">
+            <a href="../lecture/lecture_detail.jsp"><div class="content">
                 <div class="content_img">
                     <img src="" style="background-color: grey;"/>
                 </div>
@@ -161,10 +163,7 @@
                         <input type="button" id="cancel_lecture" value="수강취소"/>
                     </form>
                 </div>
-            </div>
-            
-            <div class="content"></div>
-            <div class="content"></div>
+            </div></a>
         </div>
     </div>
 </div>
@@ -172,7 +171,11 @@
 <script>
     let cnl_lecture = document.querySelector("#cancel_lecture");
     cnl_lecture.addEventListener("click", function(e) {
+    	event.preventDefault();	//강의 상세페이지 이동 해제
         let chk_cnl = confirm("취소하시겠습니까?");
+        if (chk_cnl) {
+        	location.href="/Project4/mypage/mypage.jsp";
+        }
     });
     
 </script>

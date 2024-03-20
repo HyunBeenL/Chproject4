@@ -13,8 +13,8 @@
             background-color: navy;
             color: white;
         }
-        #id1 {
-            
+        #id0 {
+            height: 76px;
         }
         #id1 a{
             text-decoration: none;
@@ -46,20 +46,20 @@
 
 </head>
 <body>
-	<header>
 	<jsp:include page="/header/header.jsp" />
-	</header>
-	<main>
+<main>
+	<div id="id0"></div>
     <div id="back1">
     <div id="id1" class="container">
-        <a href="main.html">Home</a>
+        <a href="/Project4/main.jsp">Home</a>
         >
-        <a href="lecture_main.jsp">강좌</a>
+        <a href="/Project4/lecture/lecture_main.jsp">강좌</a>
         >
-        <a href="">카테고리</a>
+        <a href="/Project4/lecture/lecture_main.jsp">카테고리</a>
         >
-        <a href="">카테고리_detail</a>
+        <a href="/Project4/lecture/lecture_main.jsp">카테고리_detail</a>
     </div>
+    
     <div id="id2" class="container">
         <div id="id2_1">
             <img src="" style="background-color: grey; height: 300px; width: 500px;">

@@ -10,7 +10,9 @@
             width: 1100px;
             margin: auto;
         }
-        
+        #id0 {
+            height: 76px;
+        }
         table, tr, th, td{
             border: 1px solid transparent;
             border-collapse: collapse;
@@ -81,7 +83,9 @@
     </style>
 </head>
 <body>
+	<jsp:include page="/header/header.jsp" />
 <main>
+	<div id="id0"></div>
 <div class="container">
         <table id="id2_1">
         <form id="frm2">
@@ -111,6 +115,22 @@
     </form>
 </div>
 </main>
+
+<script>
+let info_save = document.querySelector("#info_save");
+let info_cancel = document.querySelector("#info_cancel");
+
+info_save.addEventListener("click", function(e) {
+    let chk_save = confirm("저장하시겠습니까?");
+})
+
+info_cancel.addEventListener("click", function(e) {
+    let chk_cancel = confirm("취소하시겠습니까?");
+    if (chk_cancel) {
+        location.href = "/Project4/mypage/mypage_info.jsp";
+    }
+})
+</script>
 
 </body>
 </html>
