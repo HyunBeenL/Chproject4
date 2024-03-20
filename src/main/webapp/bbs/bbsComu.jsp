@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>title</title>
+    <title>게시판</title>
 
     <style>
         .main{
