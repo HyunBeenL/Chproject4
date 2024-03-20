@@ -17,8 +17,8 @@ public class JDBConnect {
 	public JDBConnect() {
 		try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			String url = "jdbc:mariadb://localhost:3306/maria";
-			String dbId = "root";
+			String url = "jdbc:mariadb://10.41.2.90:3306/kmooc";
+			String dbId = "kmooc";
 			String dbPwd = "1234";
 			conn = DriverManager.getConnection(url, dbId, dbPwd);
 			System.out.println("DB 연결 성공 : 기본 생성자");
