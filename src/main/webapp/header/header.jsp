@@ -15,7 +15,7 @@
             </div>
             <nav id="top_menu">
                 <ul>
-                    <li><button>강좌</button></li>
+                    <li><button style="margin-left: 50px ;">강좌</button></li>
                     <li><a href="#">커뮤니티</a></li>
                 </ul>
             </nav>
