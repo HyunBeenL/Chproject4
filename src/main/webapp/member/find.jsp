@@ -8,16 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-        *{
-            margin:0px;
-            padding:0px;
-        }
+        
         .main{
             margin:200px auto;
-            width: 622px;
+            width: 744px;
         }
         .border{
-            width: 500px;
+            width: 622px;
             border:1px solid white;
             padding:30px 60px;
             background-color: #e3f0fc;

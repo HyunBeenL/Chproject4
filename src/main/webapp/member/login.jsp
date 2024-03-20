@@ -8,11 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	*{
-            margin:0px;
-            padding:0px;
-            box-sizing: border-box;
-        }
         main{
             width: 1100px;
             height: auto;
@@ -68,9 +63,9 @@
 </style>
 </head>
 <body>
-	<header>
+	
 		<jsp:include page="/header/header.jsp" />
-	</header>
+	
 	<main>
 		<h1>로그인</h1>
 		<form action="">
