@@ -122,7 +122,7 @@
 
 <div class="wrap">
 <div class=header>
-<%@ include file="header/header.jsp" %>
+<%@ include file="../header/header.jsp" %>
 </div>
 <div class=main>
     <div class="mainhead">
