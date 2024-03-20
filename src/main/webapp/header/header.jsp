@@ -92,8 +92,8 @@
             </nav>
             <nav id="top_menu_1">
                 <ul>
-                    <li><a href="practice.html">로그인</a></li>
-                    <li><a href="join.html">회원가입</a></li>
+                    <li><a href="/Project4/member/login.jsp">로그인</a></li>
+                    <li><a href="/member/join.jsp">회원가입</a></li>
                 </ul>
             </nav>
         </div>
