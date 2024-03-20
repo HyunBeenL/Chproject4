@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>게시판</title>
+    <title>title</title>
 
     <style>
         .main{
@@ -17,44 +16,16 @@
 
         }
         .searchWrap{
-            padding-top:20px;
+            padding:20px;
             width: 900px;
-        }
-        .search{
-            padding-left: 50px;
-            display:flex;
-            flex-wrap:wrap;
-        }
-        #select{
-            width: 160px;
-            height: 55px;
-            font-size: 16px;
-            line-height: 48px;
-            position: relative;
-            padding: 0 68px 0 20px;
-            box-sizing: border-box;
-        }
-        #searchText{
-            font-size: 16px;
-            line-height: 48px;
-            margin-left:10px;
-            width: 500px;
-        }
-        #btnSearch{
-            width: 50px;
-            height: 55px;
-            background-color: #00A85D;
-        }
-        .btnImg{
-            width: 10px;
-            height: 10px;
+            color: white;
         }
         .listHead{
             width: 1100px;
             font-size: 18px;
             border-bottom: 1px solid black;
             display:grid;
-            grid-template-columns: 1fr 6fr 1fr;
+            grid-template-columns: 1fr;
         }
         .count{
             padding-left: 20px;
@@ -72,7 +43,7 @@
         }
         .categoryDiv>a{
             padding: 10px 0;
-            width: 33%;
+            width: 33.33%;
             text-align: center;
             text-decoration: none;
             color: black;
@@ -80,6 +51,9 @@
         .categoryDiv a:hover{
             background-color:#002475;
             color: white;
+        }
+        #categoryDiv2>a{
+            width: 12.5%;
         }
         
         ul{padding: 0px;}
@@ -89,83 +63,89 @@
             width: 100%;
             border-top-color: 1px solid black;
         }
-        .num, .type, .user, .title, .date{
+        .QNA, .type, .title, .flag, .content{
             text-align:center;
             padding: 10px 0px;
             height: 60px;
             box-sizing:border-box;
             display: table-cell;
+            line-height: 50px;
         }
-        .num{
+        .QNA{
             width: 100px;
         }
         .type{
             width: 80px;
         }
-        .user{
+        .title{
             width: 130px;
         }
         .title{
             width: 800px;
         }
-        .date{
+        .flag{
             width: 170px;
+        }
+        .content{
+            width: 1100px;
+            text-align: center;
         }
         .mainfoot{
             width: 1100px;
             text-align: center;
         }
+        .thead, .tbody{
+            border: 1px solid black;
+        }
+        img{
+        	vertical-align: middle;
+        }
 
     </style>
 </head>
 <body>
-
 <div class="wrap">
 <div class=header>
 <%@ include file="../header/header.jsp" %>
 </div>
+
 <div class=main>
     <div class="mainhead">
     <div class="searchWrap">
-        <form>
-        <div class="search">
-        <select name="category" id="select">
-            <option value="">전체</option>
-            <option value="title">제목만</option>
-            <option value="content">내용만</option>
-            <option value="titleContent">제목+내용</option>
-            <option value="userID">작성자</option>
-        </select>
-        <input id="searchText" type="text" placeholder="검색어를 입력하세요." maxlength="100">
-        <button type="button" id="btnSearch"><img class="btnImg" src="" alt="img"></img></button>
-        </form>
-        </div>
+       <h2>자주묻는질문</h2>
     </div>
     </div>
     <div class="mainhead2">
         <div class ="listHead"> 
-            <div class="countDiv"><span class="count">총{?}건</span></div>
             <div class="categoryDiv">
                 <a href="">자유게시판</a>
                 <a href="">공지사항</a>
                 <a href="">자주묻는질문</a>
             </div>
-            <div class="registDiv"><img src="" alt="img"></img></div>
         </div>
+        <div class ="listHead2"> 
+            <div class="categoryDiv" id="categoryDiv2">
+                <a href="">전체</a>
+                <a href="">회원가입</a>
+                <a href="">로그인/계정</a>
+                <a href="">수강신청/취소</a>
+                <a href="">강좌 수강</a>
+                <a href="">성적/이수증</a>
+                <a href="">기술적문제</a>
+                <a href="">기타</a>
+            </div>
+        </div>
+        <div class="countDiv"><span class="count">총{?}건</span></div>
     <ul>
         <li class="thead">
-            <span class="num">번호</span>
-            <span class="type">구분</span>
-            <span class="user">작성자</span>
+            <span class="QNA"><img src="../img/Q.png" alt="Q"></span>
+            <span class="type">{카테고리}</span>
             <span class="title">제목</span>
-            <span class="date">등록일</span>
+            <span class="flag">▼</span>
         </li>
         <li class="tbody">
-            <span class="num">{번호}</span>
-            <span class="type">{구분}</span>
-            <span class="user">{작성자}</span>
-            <span class="title">{제목}</span>
-            <span class="date">{등록일}</span>
+            <span class="QNA"><img src="../img/A.png" alt="A"></span>
+            <span class="content">{내용}</span>
         </li>
     </ul>
     <div class="mainfoot">

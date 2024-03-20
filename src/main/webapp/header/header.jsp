@@ -9,7 +9,7 @@
     <title>Document</title>
     <style>
 
-		header{
+		.header{
 			height:100px;
 		}
 		#header {
