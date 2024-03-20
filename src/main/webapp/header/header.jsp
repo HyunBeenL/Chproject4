@@ -9,6 +9,9 @@
     <title>Document</title>
     <style>
 
+		header{
+			height:100px;
+		}
 		#header {
 		    background-color: white;
 		    width: 100%;
