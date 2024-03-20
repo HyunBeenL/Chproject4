@@ -9,8 +9,12 @@
             width: 1100px;
             margin: auto;
         }
-        #id1 {
-
+        #id0 {
+            height: 100px;
+        }
+        #id1 a{
+            text-decoration: none;
+            color: black;
         }
         #id2 {
             background-color: navy;
@@ -60,6 +64,11 @@
 
 
 <body>
+	<header>
+	<jsp:include page="/header/header.jsp" />
+	</header>
+	<main>
+	<div id="id0"></div>
     <div id="id1" class="container">
         <a href="main.html">Home</a>
         >
@@ -169,5 +178,6 @@
     <div id="id5" class="container">
         << <  12345678910 > >>
     </div>
+    </main>
 </body>
 </html>

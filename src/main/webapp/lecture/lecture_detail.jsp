@@ -13,6 +13,9 @@
             background-color: navy;
             color: white;
         }
+        #id0 {
+            height: 100px;
+        }
         #id1 {
             
         }
@@ -46,11 +49,16 @@
 
 </head>
 <body>
+	<header>
+	<jsp:include page="/header/header.jsp" />
+	</header>
+	<main>
+	<div id="id0"></div>
     <div id="back1">
     <div id="id1" class="container">
         <a href="main.html">Home</a>
         >
-        <a href="lecture_main.html">강좌</a>
+        <a href="lecture_main.jsp">강좌</a>
         >
         <a href="">카테고리</a>
         >
@@ -96,5 +104,9 @@
         <h4>자주 묻는 질문</h4>
         <p>lecture_question</p>
     </div>
+    </main>
+    <footer>
+    
+    </footer>
 </body>
 </html>
