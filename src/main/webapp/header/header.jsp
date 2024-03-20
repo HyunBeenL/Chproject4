@@ -1,91 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-
-		.header{
-			height:100px;
-		}
-		#header {
-		    background-color: white;
-		    width: 100%;
-		    height: 100px;
-		    box-sizing: border-box;
-		    text-align: center;
-		    position: fixed;
-		    top: 0;
-		    z-index: 1;
-		    border-bottom: 1px solid black;
-		}
-		#headcontainer {
-		    width:1100px;
-		    margin:0px auto;
-		    position: relative;
-		}
-		#logo {
-		    display: inline-block;
-		    position: absolute;
-		    left: 0;
-		    height: 100%;
-		}
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans+KR:wght@100..900&family=Poor+Story&display=swap" rel="stylesheet">
 		
-		#header #top_menu {
-		    position: absolute;
-		    left: 100px;
-		    display: inline-block;
-		    height: 100%;
-		}
-		#top_menu li {
-		    display: inline-block;
-		    height: 100%;
-		}
-		#top_menu a {
-		    display: inline-block;
-		    padding: 12px 20px;
-		    font-weight: 900;
-		    color: black;
-		    font-size: 18px;
-		    text-decoration: none;
-		}
-		
-		#top_menu_1 {
-		    position: absolute;
-		    right: 0;
-		    display: inline-block;
-		    height: 100%;
-		}
-		#top_menu_1 li {
-		    display: inline-block;
-		    height: 100%;
-		}
-		#top_menu_1 a {
-		    display: inline-block;
-		    padding: 12px 20px;
-		    font-weight: 900;
-		    color: black;
-		    font-size: 18px;
-		    text-decoration: none;
-		}
-		
-		#header #top_menu li a:hover,
-		#header #top_menu li a:active,
-		#header #top_menu li a:focus {
-		    color: #2BA7F0;
-		}
-    </style>
-    
-</head>
-<body>
+	<link type="text/css" rel="stylesheet" href="/css/main.css"/>
+	<link type="text/css" rel="stylesheet" href="/css/header.css"/>
+	
+	<title>메인페이지 | K-MOOC</title>
+	<script 
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+	crossorigin="anonymous">
+	$('.carousel-inner').carousel({ interval:1000 });
+</script>
     <header id="header">
         <div id="headcontainer">
             <div id="logo">
-                <a href="/home.html"><h1>로고</h1></a>
+                <a href="/home.html"><img src="./mainImg/header_logo.png" alt=""></a>
             </div>
             <nav id="top_menu">
                 <ul>
@@ -96,10 +31,8 @@
             <nav id="top_menu_1">
                 <ul>
                     <li><a href="/Project4/member/login.jsp">로그인</a></li>
-                    <li><a href="/Project4/member/joinchoice.jsp">회원가입</a></li>
+                    <li><a href="/member/join.jsp">회원가입</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-</body>
-</html>
