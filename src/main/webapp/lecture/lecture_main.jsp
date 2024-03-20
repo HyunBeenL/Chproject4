@@ -9,6 +9,9 @@
             width: 1100px;
             margin: auto;
         }
+        #id0 {
+            height: 76px;
+        }
         #id1 a{
             text-decoration: none;
             color: black;
@@ -60,18 +63,17 @@
 
 
 <body>
-	<header>
 	<jsp:include page="/header/header.jsp" />
-	</header>
-	<main>
+<main>
+	<div id="id0"></div>
     <div id="id1" class="container">
-        <a href="main.html">Home</a>
+        <a href="/Project4/main.jsp">Home</a>
         >
-        <a href="lecture_main.html">강좌</a>
+        <a href="/Project4/lecture/lecture_main.jsp">강좌</a>
         >
-        <a href="">카테고리</a>
+        <a href="/Project4/lecture/lecture_main.jsp">카테고리</a>
         >
-        <a href="">카테고리_detail</a>
+        <a href="/Project4/lecture/lecture_main.jsp">카테고리_detail</a>
     </div>
     
     <div id="id2">

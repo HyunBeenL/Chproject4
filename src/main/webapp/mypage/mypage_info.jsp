@@ -9,6 +9,9 @@
             width: 1100px;
             margin: auto;
         }
+        #id0 {
+            height: 76px;
+        }
         #id1 {
             float: left;
             box-sizing: border-box;
@@ -29,6 +32,10 @@
         #frm1 input[type=button]:hover{
             border-bottom: 1px solid black;
             background-color: transparent;
+        }
+        a {
+        	text-decoration: none;
+        	color: black;
         }
         table, tr, th, td{
             border: 1px solid transparent;
@@ -103,11 +110,9 @@
             <h2>마이페이지</h2>
         </div>
         <div>
-            <form id="frm1">
-                <img src="img/my_menu_01.png"/><input type="button" value="내 강의실">
-                <br>
-                <img src="img/my_menu_02.png"/><input type="button" value="개인정보관리">
-            </form>
+            <img src="/Project4/img/my_menu_01.png"/><a href="/Project4/mypage/mypage.jsp">내 강의실</a>
+            <br>
+            <img src="/Project4/img/my_menu_02.png"/><a href="/Project4/mypage/mypage_info.jsp">개인정보관리</a>
         </div>
     </div>
 
@@ -149,6 +154,14 @@
     </div>
 </div>
 </main>
+
+<script>
+    let info_save = document.querySelector("#info_save");
+
+    info_save.addEventListener("click", function(e) {
+        let chk_save = confirm("저장하시겠습니까?");
+    })
+</script>
 
 </body>
 </html>
