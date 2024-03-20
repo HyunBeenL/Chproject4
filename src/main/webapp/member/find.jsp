@@ -20,7 +20,7 @@
             width: 500px;
             border:1px solid white;
             padding:30px 60px;
-            background-color: skyblue;
+            background-color: #e3f0fc;
         }
         #idrange,#passwordrange{
             border:1px solid black;
@@ -59,7 +59,7 @@
             list-style-type: none;
             display:inline-block;
             width:48%;
-            height:50px;
+            height:100%;
             text-align: center;
         }
         .changebtn tr td a{
@@ -71,6 +71,19 @@
         .changebtn{
             margin:20px auto;
         }
+        #button input{
+        	width: 120px;
+            height: 50px;
+            background-color:#0036ce;
+            color:white;
+        	font-size:16px;
+        	border:1px solid white;
+        	border-radius:3px;
+        }
+        #button{
+        	text-align:center;
+        }
+        
 </style>
 </head>
 <body>
@@ -82,8 +95,8 @@
 	        <h1 style="text-align: center; margin-bottom:50px;"> 아이디 / 비밀번호 찾기</h1>
             <table class="changebtn">
                 <tr>
-                    <td><a href ="#" id="findid" onclick = "">아이디 찾기</a></td>
-                    <td><a href ="#" id="findpwd" onclick= "">비밀번호 찾기</a></td>
+                    <td id="findid"><a href ="#" onclick = "" style="color:white;">아이디 찾기</a></td>
+                    <td id="findpwd"><a href ="#" onclick= "">비밀번호 찾기</a></td>
                 </tr>
             </table>
             <h2 style="text-align: center; margin:50px 0px;"> 회원가입시 기입한 정보를 입력해주세요.</h2>
@@ -102,5 +115,10 @@
     <footer>
     
     </footer>
+    <script>
+    	let findid = document.querySelector("#findid");
+    	findid.style.backgroundColor="blue";
+    	findid.style.Color="white";
+    </script>
 </body>
 </html>

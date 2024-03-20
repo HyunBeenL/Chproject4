@@ -20,7 +20,7 @@
         .border{
             width:1100px;
             margin: 100px auto;
-            background-color: skyblue;
+            background-color: #e3f0fc;
             padding: 80px 30px;
         }
         
@@ -31,7 +31,7 @@
             border-top:3px solid black;
         }
         .contact input:not([type=submit],[type=radio]){
-            width: 700px;
+            width: 600px;
             height:50px;
             border:1px solid white;
         }
@@ -40,6 +40,8 @@
             height: 72px;
             float: left;
             background-color: gray;
+            line-height:70px;
+            text-align:center;
         }
         .contents{
             margin:10px;
@@ -47,12 +49,29 @@
         .contact li{
             list-style-type: none;
         }
-        .submitbtn input,.submitbtn button{
+        .submitbtn input,.submitbtn button, .confirmbtn{
             width: 100px;
-            height: 50px;
+            height: 40px;
+            background-color:#0036ce;
+            color:white;
+        	font-size:16px;
+        	border:1px solid white;
+        	border-radius:3px;
             margin :-30px 10px;
         }
-        
+        .submitbtn input,.submitbtn button{
+        	width: 120px;
+            height: 50px;
+            background-color:#0036ce;
+            color:white;
+        	font-size:16px;
+        	border:1px solid white;
+        	border-radius:3px;
+        }
+        .submitbtn button{
+        	background-color:#ebebeb; 
+        	color:black; 
+        }
         .submitbtn input:hover,.submitbtn button:hover{
             background-color: black;
             color:white;
@@ -62,6 +81,8 @@
         .submitbtn{
             text-align: center;
         }
+        
+        
         
     </style>
 </head>
@@ -75,13 +96,13 @@
             <h2 style="text-align: center; margin:50px 0px;"> K-MOOC에 오신것을 환영합니다.</h2>
                 <form action="">
                     <div class="border">
-                        <p style="width:1000px; display:block; margin:0px auto;">기본 정보</p>
+                        <p style="width:1000px; display:block; margin:0px auto; font-size:20px;">기본 정보</p>
                         <fieldset class="contact">
                             <ul>
                                 <li>
                                     <label for="name">아이디</label>
                                     <input type="text" id ="name" name="name" maxlength="20" class="contents"  placeholder="아이디 입력" autofocus required/>
-                                    <button id="idconfirm">중복 확인</button>
+                                    <button id="idconfirm" class="confirmbtn">중복 확인</button>
                                     <p id ="iderr"></p>
                                 </li>
                                 <hr>
@@ -104,7 +125,7 @@
                                 <li>
                                     <label for="email" >이메일</label>
                                     <input type="email" id ="email" name="email" maxlength="30" class="contents" placeholder="Email Address" required>
-                                    <button id="emailconfirm">중복 확인</button>
+                                    <button id="emailconfirm" class="confirmbtn">중복 확인</button>
                                     <p id ="emailerr"></p>
                                 </li>
                                 <hr>
@@ -112,7 +133,7 @@
                                     <label for="">회원 구분</label>
                                     
                                     <div>
-                                        <table style="width:400px; height: 72px; text-align: center;">
+                                        <table style="width:800px; height: 72px; text-align: center;">
                                             <tr>
                                                 <td><input type="radio" name="memtype" id="memtype" value="강사" style="margin:10px;" >강사</td>
                                                 <td><input type="radio" name="memtype" id="memtype" value="학생" style="margin:10px;">학생</td>
@@ -123,7 +144,7 @@
                                 <li>
                                     <label for="compnum" >사업자등록번호</label>
                                     <input type="text" id ="compnum" name="compnum" maxlength="20" class="contents" placeholder="사업자 등록번호" autofocus required/>
-                                    <button id="idconfirm">중복 확인</button>
+                                    <button id="idconfirm" class="confirmbtn">중복 확인</button>
                                     <p id ="iderr"></p>
                                 </li>
                                 <li>
@@ -136,7 +157,7 @@
                         </fieldset>
                     </div>
                     <div class="submitbtn">
-                        <button onclick="window.location.href='practice.html'">취소</button>
+                        <button onclick="window.location.href='login.jsp'">취소</button>
                         <input type="submit" value="다음">
                     </div>
                 </form>

@@ -41,7 +41,7 @@
             width:600px;
             height: auto;
             margin:20px auto;
-            background-color: skyblue;
+            background-color: #e3f0fc;
             padding:50px 80px;
         }
 
@@ -53,6 +53,8 @@
             font-weight: bold;
             color:white;
             border: 1px solid blue;
+            font-weight:bold;
+            font-size:20px;
         }
         input[type="submit"]{
             background-color: blue;
@@ -60,7 +62,8 @@
         #joinbtn>a{
             text-decoration: none;
             color:blue;
-            
+            font-weight:bold;
+            font-size:20px;
         }
 </style>
 </head>
@@ -69,6 +72,7 @@
 		<jsp:include page="/header/header.jsp" />
 	</header>
 	<main>
+		<h1>로그인</h1>
 		<form action="">
 	        <div class="loginarea">
 	            <div>
@@ -78,8 +82,8 @@
 	                <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요.">
 	            </div>
 	        <div class="viewimport">
-	            <a href="/find.jsp">아이디 찾기  |</a>
-	            <a href="/find.jsp">비밀번호 찾기  </a>
+	            <a href="find.jsp">아이디 찾기  |</a>
+	            <a href="find.jsp">비밀번호 찾기  </a>
 	        </div>
 	            <input type="submit" id="loginbtn" name="loginbtn" value="로그인">
 	            <button id="joinbtn"><a href="/Project4/member/joinchoice.jsp">회원가입</a></button>
