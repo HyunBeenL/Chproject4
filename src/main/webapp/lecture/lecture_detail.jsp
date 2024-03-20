@@ -13,9 +13,6 @@
             background-color: navy;
             color: white;
         }
-        #id0 {
-            height: 100px;
-        }
         #id1 {
             
         }
@@ -53,7 +50,6 @@
 	<jsp:include page="/header/header.jsp" />
 	</header>
 	<main>
-	<div id="id0"></div>
     <div id="back1">
     <div id="id1" class="container">
         <a href="main.html">Home</a>
@@ -104,6 +100,7 @@
         <h4>자주 묻는 질문</h4>
         <p>lecture_question</p>
     </div>
+    
     </main>
     <footer>
     
