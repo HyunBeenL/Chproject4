@@ -92,25 +92,22 @@
             background-color: grey;
             margin: 0 20px 0 0;
         }
-        #frm1 input[type=button]{
-            border: 1px solid transparent;
-            background-color: transparent;
+        a {
+            text-decoration: none;
+            color: black;
         }
-        #frm1 input[type=button]:hover{
-            border-bottom: 1px solid black;
-            background-color: transparent;
+        a:hover {
+            text-decoration: none;
+            color: black;
         }
-        #frm2 input[type=button]{
-            border: 1px solid transparent;
-            background-color: transparent;
+
+        #id2_2_1 a{
+            padding: 0px 20px ;
+            color: grey;
         }
-        #frm2 input[type=button]:hover{
-            border-bottom: 1px solid black;
-            background-color: transparent;
-        }
-        #frm2 input[type=button]:active{
-            border-bottom: 1px solid black;
-            background-color: transparent;
+        #id2_2_1 a:active, a:target, a:hover{
+            padding: 0px 20px ;
+            color: black;
             font-weight: 700;
         }
         #sp_user_name {
@@ -124,9 +121,6 @@
     </style>
 </head>
 <body>
-	<header>
-	<jsp:include page="/header/header.jsp" />
-	</header>
 <main>
 <div class="container">
     <div id="id1">
@@ -134,28 +128,23 @@
             <h2>마이페이지</h2>
         </div>
         <div>
-            <form id="frm1">
-                <img src="/Project4/img/my_menu_01.png"/><input type="button" value="내 강의실">
-                <br>
-                <img src="/Project4/img/my_menu_02.png"/><input type="button" value="개인정보관리">
-            </form>
+            <img src="img/my_menu_01.png"/><a href="">내 강의실</a>
+            <br>
+            <img src="img/my_menu_02.png"/><a href="">개인정보관리</a>
         </div>
     </div>
 
     <div id="id2">
         <div id="id2_1">
-                <img id="img1" src="/Project4/img/user_image.png">
+                <img id="img1" src="img/user_image.png">
                 <span id="sp_user_name">{user_name}</span>님 안녕하세요. <br>
                 <p><span id="sp_user_email">이메일 주소</span>&nbsp;{user_email}</p>
         </div>
         <div id="id2_2">
             <hr>
             <div id="id2_2_1">
-                <form id="frm2">
-                    <input type="button" value="수강중인 강좌"/>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="button" value="관심 강좌"/>
-                </form>
+                <a href="">수강중인 강좌</a>
+                <a href="">관심 강좌</a>
             </div>
             <div class="content">
                 <div class="content_img">
