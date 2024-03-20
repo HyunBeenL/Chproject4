@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
-
     <style>
         .main{
             width: 1100px;
@@ -14,7 +15,6 @@
             width: 1100px;
             background-color:#002475;
             padding-bottom:40px;
-
         }
         .searchWrap{
             padding-top:20px;
@@ -46,8 +46,8 @@
             background-color: #00A85D;
         }
         .btnImg{
-            width: 10px;
-            height: 10px;
+            width: 20px;
+            height: 20px;
         }
         .listHead{
             width: 1100px;
@@ -137,7 +137,7 @@
             <option value="userID">작성자</option>
         </select>
         <input id="searchText" type="text" placeholder="검색어를 입력하세요." maxlength="100">
-        <button type="button" id="btnSearch"><img class="btnImg" src="" alt="img"></img></button>
+        <button type="button" id="btnSearch"><img class="btnImg" src="/Project4/img/search.png" alt="img"></img></button>
         </form>
         </div>
     </div>
@@ -150,7 +150,7 @@
                 <a href="">공지사항</a>
                 <a href="">자주묻는질문</a>
             </div>
-            <div class="registDiv"><img src="" alt="img"></img></div>
+            <div class="registDiv"><img src="/Project4/img/write.png" alt="img"></img></div>
         </div>
     <ul>
         <li class="thead">

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>title</title>
-
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QnA게시판</title>
     <style>
         .main{
             width: 1100px;
@@ -138,13 +139,13 @@
         <div class="countDiv"><span class="count">총{?}건</span></div>
     <ul>
         <li class="thead">
-            <span class="QNA"><img src="../img/Q.png" alt="Q"></span>
+            <span class="QNA"><img src="/Project4/img/Q.png" alt="Q"></span>
             <span class="type">{카테고리}</span>
             <span class="title">제목</span>
             <span class="flag">▼</span>
         </li>
         <li class="tbody">
-            <span class="QNA"><img src="../img/A.png" alt="A"></span>
+            <span class="QNA"><img src="/Project4/img/A.png" alt="A"></span>
             <span class="content">{내용}</span>
         </li>
     </ul>
