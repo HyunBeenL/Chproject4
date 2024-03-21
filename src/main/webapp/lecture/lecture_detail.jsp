@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +49,7 @@
 <body>
 	<jsp:include page="/header/header.jsp" />
 <main>
+
 	<div id="id0"></div>
     <div id="back1">
     <div id="id1" class="container">
@@ -62,17 +64,17 @@
     
     <div id="id2" class="container">
         <div id="id2_1">
-            <img src="" style="background-color: grey; height: 300px; width: 500px;">
+            <img src=".${lectureDetail[0].lecture_img}"style="background-color: grey; height: 300px; width: 500px;">
         </div>
         <div id="id2_2">
-        <h3>강좌 제목 lecture_title</h3>
+        <h3>${lectureDetail[0].lecture_title}</h3>
         <ul>
-            <li><span>분야</span>category(category_detail)</li>
-            <li><span>주관기관</span>lecture_company</li>
-            <li><span>학습기간</span>lecture_start_date ~ lecture_end_date</li>
-            <li><span>전화번호</span>lecture_tel</li>
-            <li><span>강좌 언어</span>language</li>
-            <li><span>별점</span>star</li>
+            <li><span>분야</span>${lectureDetail[0].lecture_category_detail}</li>
+            <li><span>주관기관</span>${lectureDetail[0].member_company}</li>
+            <li><span>학습기간</span>${lectureDetail[0].lecture_start_date}  ~ ${lectureDetail[0].lecture_end_date}</li>
+            <li><span>전화번호</span>${lectureDetail[0].member_company}</li>
+            <!-- <li><span>강좌 언어</span>language</li> -->
+            <li><span>별점</span>${lectureDetail[0].lecture_star}</li>
         </ul>
         <form id="frm1">
             <input type="button" value="♡">
@@ -83,27 +85,29 @@
 
     </div>
 
+	<c:set var="lecture" value="}"></c:set>
+
     <div id="id3" class="container">
     <h3>강좌소개</h3>
         <h4>수업내용/목표</h4>
-        <p>lecture_content</p>
+        <p>${lectureDetail[0].lecture_content}</p>
     
         <h4>홍보/예시 영상</h4>
-        <p>lecture_youtube_url</p>
-
+        <p><iframe width="560" height="315" src="${lectureDetail[0].lecture_youtube_url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </p>
         <h4>강좌 운영 계획</h4>
-        <p>~계획~</p>
+        <p>${lectureDetail[0].lecture_plan}</p>
 
         <h4>강좌 수강 정보</h4>
-        <p>lecture_detail</p>
+        <p>${lectureDetail[0].lecture_content_detail}</p>
 
         <h4>자주 묻는 질문</h4>
-        <p>lecture_question</p>
+        <p>${lectureDetail[0].lecture_question}</p>
     </div>
     
     </main>
     <footer>
     
-    </footer>
+    </footer> 
 </body>
 </html>

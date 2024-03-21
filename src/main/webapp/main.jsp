@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,53 +53,29 @@
 		</div>
 
 
+
 		<div id="recommend_box" class="recommend_box">
 			<div id="recommend_box_text" class="recommend_box_text"><p>K-MOOC</p>에서 추천하는 강좌 리스트</div>
 			<div id="recommend_box_lecture" class="recommend_box_lecture">
-				<div id="recommend_box_All" class="recommend_box_All">
-					<div id="recommend_box_img" class="recommend_box_img">
-						<a href="#"><img src="./mainImg/enlicasTest.jpg" alt=""></a>
+
+				
+				<c:forEach var="recommendList" items="${recommendLectureList}">
+					<div id="recommend_box_All" class="recommend_box_All">
+						<div id="recommend_box_img" class="recommend_box_img">
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${recommendList.lecture_idx}"><img src="./${recommendList.lecture_img}" alt=""></a>
+						</div>
+						<div  id="recommend_box_content" class="recommend_box_content">
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${recommendList.lecture_idx}"><p>${recommendList.lecture_title}</p></a>
+							<p>$recommendList.lecture_title}</p>
+							<p>${recommendList.member_name}</p>
+							<p>${recommendList.member_company}</p>
+							<p>${recommendList.lecture_start_date}</p>
+							<p>${recommendList.lecture_end_date}</p>
+						</div>
 					</div>
-					<div id="recommend_box_content" class="recommend_box_content">
-						<a href="#"><p>(MOOC) 위대한 수업3(GREAT MINDS) : 초근접 미래를 위한 안내서</p></a>
-						<p>후안 엔리케스</p>
-						<p>EBS</p>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="recommend_box_All" class="recommend_box_All">
-					<div id="recommend_box_img" class="recommend_box_img">
-						<a href="#"><img src="./mainImg/enlicasTest.jpg" alt=""></a>
-					</div>
-					<div  id="recommend_box_content" class="recommend_box_content">
-						<a href="#"><p>(MOOC) 위대한 수업3(GREAT MINDS) : 초근접 미래를 위한 안내서</p></a>
-						<p>후안 엔리케스</p>
-						<p>EBS</p>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="recommend_box_All" class="recommend_box_All">
-					<div id="recommend_box_img" class="recommend_box_img">
-						<a href="#"><img src="./mainImg/enlicasTest.jpg" alt=""></a>
-					</div>
-					<div  id="recommend_box_content" class="recommend_box_content">
-						<a href="#"><p>(MOOC) 위대한 수업3(GREAT MINDS) : 초근접 미래를 위한 안내서</p></a>
-						<p>후안 엔리케스</p>
-						<p>EBS</p>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="recommend_box_All" class="recommend_box_All">
-					<div id="recommend_box_img" class="recommend_box_img">
-						<a href="#"><img src="./mainImg/enlicasTest.jpg" alt=""></a>
-					</div>
-					<div  id="recommend_box_content" class="recommend_box_content">
-						<a href="#"><p>(MOOC) 위대한 수업3(GREAT MINDS) : 초근접 미래를 위한 안내서</p></a>
-						<p>후안 엔리케스</p>
-						<p>EBS</p>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
+				</c:forEach>
+				
+			
 			</div>
 		</div>
 
@@ -117,93 +94,31 @@
 			</div>
 		</div>
 
+
 		<div id="best_box" class="best_box">
 			<div id="best_box_text" class="best_box_text">서두르세요! 인기 강좌가 곧 시작합니다.</div>
 			<div id="best_box_lecture" class="best_box_lecture">
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
+		
+				<c:forEach var="bestList" items="${bestLectureList}">
+					<div id="best_box_All" class="best_box_All">
+						<div id="best_box_img" class="best_box_img">
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${bestList.lecture_idx}"><img src="./${bestList.lecture_img}" alt=""></a>
+						</div>
+						<div id="best_box_content" class="best_box_content">
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${bestList.lecture_idx}"><p>${bestList.lecture_title}</p></a>
+							<p>${bestList.lecture_start_date} ~ ${bestList.lecture_end_date}</p> 
+						</div>
 					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
-				<div id="best_box_All" class="best_box_All">
-					<div id="best_box_img" class="best_box_img">
-						<a href="#"><img src="summmm.png" alt=""></a>
-					</div>
-					<div id="best_box_content" class="best_box_content">
-						<a href=""><p>외국인을 위한 다문화 한국 가정</p></a>
-						<p>2023.12.01 ~ 2034.12.03</p>
-					</div>
-				</div>
+				</c:forEach>
+
 			</div>
 		</div>
     </main>
+    
 	<jsp:include page="/footer/footer.jsp"></jsp:include>
+	
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>
