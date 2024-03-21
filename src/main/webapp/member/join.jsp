@@ -1,3 +1,6 @@
+<%@page import="jakarta.security.auth.message.callback.PrivateKeyCallback.Request"%>
+<%@page import="member.MemberDTO"%>
+<%@page import="java.util.List"%>
 <%@page import="common.JDBConnect"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -93,6 +96,8 @@
         <jsp:include page="../header/header.jsp" />
     
     <main>
+    	<input type="hidden" value="false" id="check" name="check">
+    	<input type="hidden" value="false" id="emailcheck" name="check">
         <div class="main">
             <h1 style="text-align: center; margin-bottom:50px;"> 회원가입</h1>
             <h2 style="text-align: center; margin:50px 0px;"> K-MOOC에 오신것을 환영합니다.</h2>
@@ -101,9 +106,13 @@
                         <p style="width:1000px; display:block; margin:0px auto; font-size:20px;">기본 정보</p>
                         <fieldset class="contact">
                             <ul>
-                                <li>
-                                    <label for="name">아이디</label>
+                            	<li>
+                                    <label for="name">이름</label>
                                     <input type="text" id ="name" name="name" maxlength="20" class="contents"  placeholder="아이디 입력" autofocus required/>
+                                </li>
+                                <li>
+                                    <label for="id">아이디</label>
+                                    <input type="text" id ="id" name="id" maxlength="20" class="contents"  placeholder="아이디 입력" autofocus required/>
                                     <button type="button" id="idconfirm" class="confirmbtn">중복 확인</button>
                                     <p id ="iderr"></p>
                                 </li>
@@ -182,7 +191,7 @@
 	    let emailerr = document.querySelector('#emailerr');
 	    
 	    /////////////////INPUT태그 영역///////////////////
-	    let id = document.querySelector('#name');
+	    let id = document.querySelector('#id');
 	    let pwd = document.querySelector('#password');
 	    let pwd2 = document.querySelector('#password2');
 	    let email = document.querySelector('#email');
@@ -202,7 +211,7 @@
 	    let emailconfirmbtn = document.querySelector("#emailconfirm");
 	    
 	    ///////////////양식확인////////////////////////////
-	    let idconfirm = false;
+	    let idconfirm = document.querySelector("#check").value;
 	    let emailconfirm = false;
 	    let pwdconfirm = false;
 	    let pwdequal = false;
@@ -236,7 +245,7 @@
     	///////////////중복 및 확인//////////////////////
     	submit.addEventListener('click',() =>{
     		event.preventDefault();
-            if(idconfirm == false){
+            if(idconfirm == false || document.querySelector("#check").value=="false"){
                 alert("아이디 중복확인");
             	return false;
             }
@@ -380,31 +389,20 @@
                 pwdequal = true;
             }
         });
-       	
+        
+        
         idconfirmbtn.addEventListener('click',()=>{
         	
-        	for(let i=0; i<${list.size()}; i++){
-        		console.log("${list.get(i).getMember_user_id()}");
-            	if(id.value === "${list.get(i).getMember_user_id()}"){
-            		
-            	}
-            	else{
-            		idconfirm =true;
-            	} 
-            }
+        	idconfirm = document.querySelector("#check").value
+        	window.open("idcheck.do?id="+id.value, "PopupWin", "width=500,height=600");
         });
         emailconfirmbtn.addEventListener('click',()=>{
-            if(email.value !== "email" && email.value != ""){
-                alert("사용할 수 있는 이메일입니다.");
-                emailconfirm = true;
-            }
-            else{
-                alert("사용할 수 없는 이메일입니다.");
-                emailconfirm = false;
-            }
+        	
+        	emailconfirm = document.querySelector("#emailcheck").value
+        	window.open("emailcheck.do?email="+email.value, "PopupWin", "width=500,height=600");
         });
 
-
+		
     </script>
 </body>
 </html>

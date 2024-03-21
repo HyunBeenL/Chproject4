@@ -101,16 +101,16 @@
                     <fieldset class="contact">
                         <ul>
                             <li>
-                                <input type="checkbox">이용약관 동의<button type="button" onclick="openPop()">자세히 보기</button>
+                                <input class="check" id="check1" type="checkbox">이용약관 동의<button type="button" onclick="openPop()">자세히 보기</button>
                             </li>
                             <li>
-                                <input type="checkbox">개인정보 필수항목 수집 이용 및 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input class="check" id="check2" type="checkbox">개인정보 필수항목 수집 이용 및 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
                             <li>
-                                <input type="checkbox">개인정보 선택항목 수집 및 이용 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input class="check" id="check3" type="checkbox">개인정보 선택항목 수집 및 이용 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
                             <li>
-                                <input type="checkbox">홍보 설문 관련 정보 수신 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input class="check" id="check4" type="checkbox">홍보 설문 관련 정보 수신 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
                         </ul>
                         
@@ -142,8 +142,11 @@
     <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
 	    let findid = document.querySelector("#findid");
-		findid.style.backgroundColor="blue";
-		findid.style.Color="white";
+	    if(!document.querySelector("#check1").value && !document.querySelector("#check2").value){
+	    	document.querySelector("#btn").disabled;
+	    }
+		
+		
 		function openPop() {
 	        document.getElementById("popup_layer").style.display = "block";
 
