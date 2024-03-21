@@ -153,7 +153,7 @@
                                 <li>
                                     <label for="compnum" >사업자등록번호</label>
                                     <input type="text" id ="compnum" name="compnum" maxlength="20" class="contents" placeholder="사업자 등록번호"/>
-                                    <button type="button" id="idconfirm" class="confirmbtn">중복 확인</button>
+                                    <button type="button" id="compnumconfirm" class="confirmbtn">중복 확인</button>
                                 </li>
                                 <li>
                                     <label for="compname" >기관명</label>
@@ -197,10 +197,9 @@
 	    let submit = document.querySelector(".submitbtn");
 	
 		
-	    ///////////////중복확인////////////////////////////
+	    ///////////////중복확인 버튼////////////////////////////
 	    let idconfirmbtn = document.querySelector("#idconfirm");
 	    let emailconfirmbtn = document.querySelector("#emailconfirm");
-	    
 	    
 	    ///////////////양식확인////////////////////////////
 	    let idconfirm = false;
@@ -381,16 +380,17 @@
                 pwdequal = true;
             }
         });
-
-        
+       	
         idconfirmbtn.addEventListener('click',()=>{
-            if(id.value !== ""){
-                alert("사용할 수 있는 아이디입니다.");
-                idconfirm = true;
-            }
-            else{
-                alert("사용할 수 없는 아이디입니다.");
-                idconfirm = false;
+        	
+        	for(let i=0; i<${list.size()}; i++){
+        		console.log("${list.get(i).getMember_user_id()}");
+            	if(id.value === "${list.get(i).getMember_user_id()}"){
+            		
+            	}
+            	else{
+            		idconfirm =true;
+            	} 
             }
         });
         emailconfirmbtn.addEventListener('click',()=>{
