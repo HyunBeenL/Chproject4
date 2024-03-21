@@ -66,7 +66,7 @@
                 <tr>
                     <td>
                     <div style="background: url('/Project4/img/adult.png') no-repeat center;height:100px;"></div>
-                    <a href="termsagree.jsp">일반 회원 ></a>
+                    <a href="termsagree.do">일반 회원 ></a>
                     <p>만 14세 이상 회원가입</p>
                     </td>
                     <td>

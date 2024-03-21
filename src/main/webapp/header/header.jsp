@@ -25,7 +25,7 @@
                 <ul>
                 	<% if(!login){ %>
                     <li><a href="/Project4/member/login.do">로그인</a></li>
-                    <li><a href="/Project4/member/joinchoice.jsp">회원가입</a></li>
+                    <li><a href="/Project4/member/joinchoice.do">회원가입</a></li>
                     <%}else{ %>
                     <li><a href="/Project4/member/logout.do">로그아웃</a></li>
                     <li><a href="/Project4/member/joinchoice.jsp">마이페이지</a></li>
