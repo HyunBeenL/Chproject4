@@ -15,7 +15,7 @@ public class MemberDTO {
 	private String member_lecture_now;
 	private String member_lecture_upload;
 	private Date member_info_upload;
-	private Date member_birth;
+	private String member_birth;
 	
 	public MemberDTO() {
 		
@@ -117,11 +117,11 @@ public class MemberDTO {
 		this.member_info_upload = member_info_upload;
 	}
 
-	public Date getMember_birth() {
+	public String getMember_birth() {
 		return member_birth;
 	}
 
-	public void setMember_birth(Date member_birth) {
+	public void setMember_birth(String member_birth) {
 		this.member_birth = member_birth;
 	}
 }
