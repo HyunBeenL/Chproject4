@@ -102,10 +102,10 @@
 				<c:forEach var="bestList" items="${bestLectureList}">
 					<div id="best_box_All" class="best_box_All">
 						<div id="best_box_img" class="best_box_img">
-							<a href="#"><img src="./${bestList.lecture_img}" alt=""></a>
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${bestList.lecture_idx}"><img src="./${bestList.lecture_img}" alt=""></a>
 						</div>
 						<div id="best_box_content" class="best_box_content">
-							<a href=""><p>${bestList.lecture_title}</p></a>
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${bestList.lecture_idx}"><p>${bestList.lecture_title}</p></a>
 							<p>${bestList.lecture_start_date} ~ ${bestList.lecture_end_date}</p> 
 						</div>
 					</div>
