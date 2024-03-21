@@ -62,7 +62,7 @@
 <%@ include file="../header/header.jsp" %>
 </div>
 <div class="main">
-    <h2>게시판 등록 페이지</h2>
+    <h2>게시판 등록</h2>
     <form name="frm_regist" id="frm_regist" action="" enctype="multipart/form-data" method="post">
         <div class="f1"><div><span>구분</span></div>
         <select name="category" id="category">
@@ -80,7 +80,7 @@
 
 
 <div class=footer>
-
+<%@ include file="../footer/footer.jsp" %>
 </div>
 
 </div>

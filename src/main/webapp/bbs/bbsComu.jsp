@@ -83,7 +83,7 @@
         }
         
         ul{padding: 0px;}
-        li{
+        .thead .tbody{
             list-style-type: none;
             display: table;
             width: 100%;
@@ -150,7 +150,7 @@
                 <a href="">공지사항</a>
                 <a href="">자주묻는질문</a>
             </div>
-            <div class="registDiv"><img src="/Project4/img/write.png" alt="img"></img></div>
+            <div class="registDiv"><img src="/Project4/img/write.png" alt="img"></div>
         </div>
     <ul>
         <li class="thead">
@@ -175,7 +175,7 @@
 </div>
 
 <div class=footer>
-
+<%@ include file="../footer/footer.jsp" %>
 </div>
 
 </div>
