@@ -1,3 +1,4 @@
+<%@page import="common.CommonUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
@@ -10,6 +11,7 @@
 	
     <header id="header">
         <div id="headcontainer">
+        	<% boolean login = CommonUtil.loginCheck(session); %>
             <div id="logo">
                 <a href="/Project4/main.jsp"><img src="/Project4/mainImg/header_logo.png" alt=""></a>
             </div>
@@ -21,8 +23,13 @@
             </nav>
             <nav id="top_menu_1">
                 <ul>
-                    <li><a href="/Project4/member/login.jsp">로그인</a></li>
-                    <li><a href="/Project4/member/joinchoice.jsp">회원가입</a></li>
+                	<% if(!login){ %>
+                    <li><a href="/Project4/member/login.do">로그인</a></li>
+                    <li><a href="/Project4/member/joinchoice.do">회원가입</a></li>
+                    <%}else{ %>
+                    <li><a href="/Project4/member/logout.do">로그아웃</a></li>
+                    <li><a href="/Project4/member/joinchoice.jsp">마이페이지</a></li>
+                    <%} %>
                 </ul>
             </nav>
         </div>

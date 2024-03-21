@@ -93,7 +93,7 @@
         <div class="main">
             <h1 style="text-align: center; margin-bottom:50px;"> 약관동의</h1>
             <h2 style="text-align: center; margin:50px 0px;"> </h2>
-            <form action="join1.jsp">
+            <form action="join.do" method="post">
                 <div class="border">
                     <div style="width:680px; display:block; margin:0px auto; font-size:20px; height:30px;">
                         <input type="checkbox">전체 약관에 동의합니다.
@@ -117,7 +117,7 @@
                     </fieldset>
                 </div>
                 <div class="submitbtn">
-                    <button type="button" class="btn" onclick="window.location.href='login.jsp'">취소</button>
+                    <button type="button" class="btn" onclick="window.location.href='login.do'">취소</button>
                     <input class="btn" id="nextbtn" type="submit" value="다음">
                 </div>
             </form>
