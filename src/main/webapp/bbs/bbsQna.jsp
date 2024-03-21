@@ -141,13 +141,13 @@
         <div class ="listHead2"> 
             <div class="categoryDiv" id="categoryDiv2">
                 <a href="./qna.do?">전체</a>
-                <a href="./qna.do?qna_category=0">회원가입</a>
-                <a href="./qna.do?qna_category=1">로그인/계정</a>
-                <a href="./qna.do?qna_category=2">수강신청/취소</a>
-                <a href="./qna.do?qna_category=3">강좌수강</a>
-                <a href="./qna.do?qna_category=4">성적/이수증</a>
-                <a href="./qna.do?qna_category=5">기술적문제</a>
-                <a href="./qna.do?qna_category=6">기타</a>
+                <a href="./qna.do?category=0">회원가입</a>
+                <a href="./qna.do?category=1">로그인/계정</a>
+                <a href="./qna.do?category=2">수강신청/취소</a>
+                <a href="./qna.do?category=3">강좌수강</a>
+                <a href="./qna.do?category=4">성적/이수증</a>
+                <a href="./qna.do?category=5">기술적문제</a>
+                <a href="./qna.do?category=6">기타</a>
             </div>
         </div>
         <div class="countDiv"><span class="count">총${params.total_count}건</span></div>
