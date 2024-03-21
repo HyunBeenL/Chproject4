@@ -48,6 +48,7 @@
             text-align: center;
             text-decoration: none;
             color: black;
+            border-top: 1px solid black;
         }
         .categoryDiv a:hover{
             background-color:#002475;
@@ -76,20 +77,18 @@
             width: 100px;
         }
         .type{
-            width: 80px;
-        }
-        .title{
-            width: 130px;
+            width: 150px;
         }
         .title{
             width: 800px;
+            text-align: left;
         }
         .flag{
             width: 170px;
         }
         .content{
             width: 1100px;
-            text-align: center;
+            text-align: left;
         }
         .mainfoot{
             width: 1100px;
@@ -100,6 +99,21 @@
         }
         img{
         	vertical-align: middle;
+        }
+        .pagehover{
+        	text-decoration: none;
+        	color: black;
+        }
+        .pagehover:hover{
+        	background-color:#002475;
+        	color: white;
+        }
+        .qnaA{
+        background-color:#002475;
+        color: white;
+        }
+        .tbody{
+        	display:none;
         }
 
     </style>
@@ -119,38 +133,48 @@
     <div class="mainhead2">
         <div class ="listHead"> 
             <div class="categoryDiv">
-                <a href="">자유게시판</a>
-                <a href="">공지사항</a>
-                <a href="">자주묻는질문</a>
+                <a href="./comu.do?bbsCate=0">자유게시판</a>
+                <a href="./comu.do?bbsCate=1">공지사항</a>
+                <a class="qnaA" href="./qna.do" style="color: white;">자주묻는질문</a>
             </div>
         </div>
         <div class ="listHead2"> 
             <div class="categoryDiv" id="categoryDiv2">
-                <a href="">전체</a>
-                <a href="">회원가입</a>
-                <a href="">로그인/계정</a>
-                <a href="">수강신청/취소</a>
-                <a href="">강좌 수강</a>
-                <a href="">성적/이수증</a>
-                <a href="">기술적문제</a>
-                <a href="">기타</a>
+                <a href="./qna.do?">전체</a>
+                <a href="./qna.do?category=0">회원가입</a>
+                <a href="./qna.do?category=1">로그인/계정</a>
+                <a href="./qna.do?category=2">수강신청/취소</a>
+                <a href="./qna.do?category=3">강좌수강</a>
+                <a href="./qna.do?category=4">성적/이수증</a>
+                <a href="./qna.do?category=5">기술적문제</a>
+                <a href="./qna.do?category=6">기타</a>
             </div>
         </div>
-        <div class="countDiv"><span class="count">총{?}건</span></div>
-    <ul>
+        <div class="countDiv"><span class="count">총${params.total_count}건</span></div>
+    <c:set var="row" value="${params.total_count - (params.page_no-1)*params.page_size }" />
+	<c:choose>
+	<c:when test="${not empty bbsList }">
+		<c:forEach var="list" items="${bbsList }" varStatus="loop">
+		<ul>
         <li class="thead">
             <span class="QNA"><img src="/Project4/img/Q.png" alt="Q"></span>
-            <span class="type">{카테고리}</span>
-            <span class="title">제목</span>
+            <span class="type">${list.qna_category}</span>
+            <span class="title">${list.qna_title }</span>
             <span class="flag">▼</span>
         </li>
         <li class="tbody">
             <span class="QNA"><img src="/Project4/img/A.png" alt="A"></span>
-            <span class="content">{내용}</span>
+            <span class="content">${list.qna_answer}</span>
         </li>
-    </ul>
+    	</ul>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<span class="QNA" style="width: 1100px;"><img src="/Project4/img/Q.png" alt="Q">등록된 Q&A글이 없습니다.</span>
+	</c:otherwise>
+</c:choose>
     <div class="mainfoot">
-        <p>{"paging"}</p>
+        <p>${params.paging }</p>
     </div>
     </div>
 </div>
@@ -160,5 +184,11 @@
 </div>
 
 </div>
+<script>
+let a = document.querySelector(".tbody");
+document.querySelector(".flag").addEventListener("click",()=>{
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+</script>
 </body>
 </html>

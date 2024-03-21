@@ -83,6 +83,9 @@
         }
         
         ul{padding: 0px;}
+        li{
+        	list-style-type: none;
+        }
         .thead .tbody{
             list-style-type: none;
             display: table;
@@ -148,9 +151,9 @@
             <div class="categoryDiv">
                 <a href="">자유게시판</a>
                 <a href="">공지사항</a>
-                <a href="">자주묻는질문</a>
+                <a href="./qna.do">자주묻는질문</a>
             </div>
-            <div class="registDiv"><img src="/Project4/img/write.png" alt="img"></div>
+            <div class="registDiv"><img id="registBtn" src="/Project4/img/write.png" alt="img"></div>
         </div>
     <ul>
         <li class="thead">
@@ -177,7 +180,12 @@
 <div class=footer>
 <%@ include file="../footer/footer.jsp" %>
 </div>
-
 </div>
+
+<script>
+document.querySelector("#registBtn").addEventListener("click",()=>{
+   window.location.href="regist.do";
+})
+</script>
 </body>
 </html>
