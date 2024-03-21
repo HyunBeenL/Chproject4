@@ -63,18 +63,21 @@
 </div>
 <div class="main">
     <h2>게시판 등록</h2>
-    <form name="frm_regist" id="frm_regist" action="" enctype="multipart/form-data" method="post">
+    <form name="frm_regist" id="frm_regist" action="./regist.do" method="post" enctype="multipart/form-data">
         <div class="f1"><div><span>구분</span></div>
         <select name="category" id="category">
-        	<option>자유게시판</option>
-        	<option>공지사항</option>
-        </select></div><br>
-        <div class="f2"><div><span>제목</span></div><input type="text" name="title" id="title" value="" maxlength="100"></div><br>
+        	<option value="자유게시판" selected>자유게시판</option>
+        	<option value="공지사항">공지사항</option>
+        </select>
+        </div><br>
+        <div class="f2"><div><span>제목</span></div>
+        <input type="text" name="title" id="title" value="" maxlength="100"></div><br>
         <textarea name="content" id="content"></textarea><br>
         <input type="image" src="/Project4/img/upload.png" id="btn_fileupload"><span id="filename"></span>
         <input type="file" name="file" id="file" multiple ><br>
         <input type="submit" name="btn_submit" id="btn_submit" value="글등록">
         <input type="button" name="btn_cancel" id="btn_cancel" value="취소">
+        <input type="hidden" name="user_id" id="user_id" value="${userId}">
     </form>
 </div>
 
@@ -108,14 +111,22 @@
             alert("제목이 비어있습니다.");
             event.preventDefault();
         }
-        if(c.value == ""){
+        else if(c.value == ""){
             alert("내용이 비어있습니다.");
             event.preventDefault();
+        }
+        else{
+        	if(confirm("등록하시겠습니까?")==true){
+        	document.querySelector("#frm_regist").submit();
+        	}
+        	else{
+        		event.preventDefault();
+        	}
         }
     })
     document.querySelector("#btn_cancel").addEventListener("click",()=>{
         if(confirm("이전페이지로 돌아가시겠습니까?")){
-            window.location.href="list";
+            window.location.href="../comu.do";
         }
     })
     </script>

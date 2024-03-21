@@ -18,7 +18,7 @@
             <nav id="top_menu">
                 <ul>
                     <li><button style="margin-left: 50px ;" onclick="location.href='/Project4/lecture/lecture_main.do'">강좌</button></li>
-                    <li><a href="#">커뮤니티</a></li>
+                    <li><a href="/Project4/comu.do">커뮤니티</a></li>
                 </ul>
             </nav>
             <nav id="top_menu_1">

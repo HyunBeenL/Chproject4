@@ -32,12 +32,15 @@ public class LectureMainController extends HttpServlet {
 		
 		//JSP 페이지에 전달할 앱 객체 설정
 		Map<String, Object> params = new HashMap<String, Object>();
-		
+		//검색 옵션
 		String search_option = req.getParameter("search_option");
 		String search_word = req.getParameter("search_word");
-		
+		//선택 옵션
+		String search_state = req.getParameter("search_state");
 		String search_category = req.getParameter("search_category");
 		String search_category_detail = req.getParameter("search_category_detail");
+		String search_period = req.getParameter("search_period");
+		//페이징 옵션
 		page_no = (req.getParameter("page_no")!=null ? Integer.parseInt(req.getParameter("page_no")) : 1);
 		page_skip_cnt = (page_no-1)*page_size;
 		
