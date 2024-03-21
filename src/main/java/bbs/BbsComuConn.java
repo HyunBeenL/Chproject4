@@ -41,29 +41,31 @@ public class BbsComuConn extends HttpServlet {
 		String category2 = null;
 		String search_category = request.getParameter("search_category");
 		String search_word = request.getParameter("search_word");
+		page_no = (request.getParameter("page_no")!=null ? Integer.parseInt(request.getParameter("page_no")) : 1);
+		page_skip_cnt = (page_no-1)*page_size;
 		List<BbsComuDTO> bbsList = new ArrayList<BbsComuDTO>();
 		Map<String,Object> params = new HashMap<String, Object>();
 		Map<Object,String> cateList = new HashMap<Object,String>();
+		params.put("category",category);
+		
+		params.put("page_skip_cnt", page_skip_cnt);
+		params.put("page_size", page_size);
+		params.put("page_no", page_no);
+		
 		cateList.put("1","자유게시판");cateList.put("2","공지사항");
 		if(request.getParameter("category") != null){
 			category2 = request.getParameter("category");
 			category = cateList.get(request.getParameter("category").trim());
-			total_count = dao.bbsTotalCount(category);
-			bbsList = dao.bbsList(category,page_skip_cnt,page_size );
+
 		}
+		total_count = dao.bbsTotalCount(category);
+		bbsList = dao.bbsList(category,page_skip_cnt,page_size );
 		if((search_category !=null && !search_category.isEmpty() && search_word != null && !search_word.isEmpty())){
 			params.put("search_category",search_category.trim());
 			params.put("search_word",search_word.trim());
 			total_count = dao.bbsTotalCount2(search_category,search_word);
 			bbsList = dao.bbsList2(search_category,search_word, page_skip_cnt,page_size );
 		}
-		params.put("category",category);
-		page_no = (request.getParameter("page_no")!=null ? Integer.parseInt(request.getParameter("page_no")) : 1);
-		page_skip_cnt = (page_no-1)*page_size;
-		
-		params.put("page_skip_cnt", page_skip_cnt);
-		params.put("page_size", page_size);
-		params.put("page_no", page_no);
 		dao.close();
 		
 		total_page = (int)Math.ceil(total_count/(double)page_size);

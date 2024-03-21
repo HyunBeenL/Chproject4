@@ -65,7 +65,7 @@ public class BbsComuDAO extends JDBConnect{
 		}
 		sb.append(" ORDER BY comu_idx DESC");
 		sb.append(" limit "+ page_skip_cnt+", "+page_size);
-	
+		System.out.print(sb);
 		try {
 			String sql = sb.toString();
 			psmt = conn.prepareStatement(sql);
@@ -161,7 +161,7 @@ public class BbsComuDAO extends JDBConnect{
 			psmt.setString(1, dto.getComu_category());
 			psmt.setString(2, dto.getComu_title());
 			psmt.setString(3, dto.getComu_content());
-			psmt.setString(3, dto.getMember_user_id());
+			psmt.setString(4, dto.getMember_user_id());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -171,16 +171,16 @@ public class BbsComuDAO extends JDBConnect{
 		
 	}
 	
-	public void bbsModify(BbsQnaDTO dto) {
+	public void bbsModify(BbsComuDTO dto) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("update kmc_community set comu_category =?, comu_title =?, comu_content = ? comu_modify_date = ? where comu_idx = ?");
 		try {
 			psmt = conn.prepareStatement(sb.toString());
-			psmt.setString(1, dto.getQna_category());
-			psmt.setString(2, dto.getQna_title());
-			psmt.setString(3, dto.getQna_answer());
+			psmt.setString(1, dto.getComu_category());
+			psmt.setString(2, dto.getComu_title());
+			psmt.setString(3, dto.getComu_content());
 			psmt.setString(4, "now()");
-			psmt.setInt(5, dto.getQna_idx());
+			psmt.setInt(5, dto.getComu_idx());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

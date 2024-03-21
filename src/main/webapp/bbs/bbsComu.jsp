@@ -127,7 +127,18 @@
            vertical-align:middle;
            
         }
-
+		 .pagehover{
+        	text-decoration: none;
+        	color: black;
+        }
+        .pagehover:hover{
+        	background-color:#002475;
+        	color: white;
+        }
+        .qnaA{
+        background-color:#002475;
+        color: white;
+        }
     </style>
 </head>
 <body>
@@ -156,7 +167,7 @@
     </div>
     <div class="mainhead2">
         <div class ="listHead"> 
-            <div class="countDiv"><span class="count">총${params.total_count}건</span></div>
+            <div class="countDiv"><span class="count"><a href="comu.do">총${params.total_count}건</a></span></div>
             <div class="categoryDiv">
                 <a href="comu.do?category=1">자유게시판</a>
                 <a href="comu.do?category=2">공지사항</a>
@@ -176,12 +187,12 @@
     <c:set var="row" value="${params.total_count - (params.page_no-1)*params.page_size }" />
 	<c:choose>
 	<c:when test="${not empty bbsList }">
-		<c:forEach var="list" items="${bbsList }" varStatus="loop">
+		<c:forEach var="list" items="${bbsList}" varStatus="loop">
 		<li>
             <span class="num">${row }</span>
             <span class="type">${list.comu_category}</span>
             <span class="user">${list.member_user_id}</span>
-            <span class="title">${list.comu_title}</span>
+            <span class="title"><a href="bbsdetail.do?idx=${list.comu_idx}">${list.comu_title}</a></span>
             <span class="date">${list.comu_reg_date}</span>
     	</li>
     	${row= row-1;'' }
@@ -206,7 +217,7 @@
 
 <script>
 document.querySelector("#registBtn").addEventListener("click",()=>{
-   window.location.href="regist.do";
+   window.location.href="./registConn.do";
 })
 </script>
 </body>
