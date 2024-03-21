@@ -19,7 +19,7 @@ public class BbsQnaDAO extends JDBConnect{
 		StringBuilder sb = new StringBuilder();
 		sb.append("Select count(*) from kmc_qna");
 		if(qna_category != null ) {
-			sb.append(" where qna_category="+ qna_category);
+			sb.append(" where qna_category="+ "'"+qna_category+"'");
 		}
 		try {
 			String sql = sb.toString();
@@ -40,7 +40,7 @@ public class BbsQnaDAO extends JDBConnect{
 		StringBuilder sb = new StringBuilder();
 		sb.append("select qna_idx, qna_category, qna_title, qna_answer, qna_reg_date from kmc_qna ");
 		if(qna_category !=null) {
-			sb.append(" where qna_category=" + qna_category);
+			sb.append(" where qna_category=" + "'"+qna_category+"'");
 		}
 		sb.append(" ORDER BY qna_idx DESC");
 		sb.append(" limit "+ page_skip_cnt+", "+page_size);

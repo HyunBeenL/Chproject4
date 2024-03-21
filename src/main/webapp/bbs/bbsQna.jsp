@@ -48,6 +48,7 @@
             text-align: center;
             text-decoration: none;
             color: black;
+            border-top: 1px solid black;
         }
         .categoryDiv a:hover{
             background-color:#002475;
@@ -76,20 +77,18 @@
             width: 100px;
         }
         .type{
-            width: 80px;
-        }
-        .title{
-            width: 130px;
+            width: 150px;
         }
         .title{
             width: 800px;
+            text-align: left;
         }
         .flag{
             width: 170px;
         }
         .content{
             width: 1100px;
-            text-align: center;
+            text-align: left;
         }
         .mainfoot{
             width: 1100px;
@@ -100,6 +99,21 @@
         }
         img{
         	vertical-align: middle;
+        }
+        .pagehover{
+        	text-decoration: none;
+        	color: black;
+        }
+        .pagehover:hover{
+        	background-color:#002475;
+        	color: white;
+        }
+        .qnaA{
+        background-color:#002475;
+        color: white;
+        }
+        .tbody{
+        	display:none;
         }
 
     </style>
@@ -121,7 +135,7 @@
             <div class="categoryDiv">
                 <a href="./comu.do?bbsCate=0">자유게시판</a>
                 <a href="./comu.do?bbsCate=1">공지사항</a>
-                <a href="./qna.do">자주묻는질문</a>
+                <a class="qnaA" href="./qna.do" style="color: white;">자주묻는질문</a>
             </div>
         </div>
         <div class ="listHead2"> 
@@ -170,5 +184,11 @@
 </div>
 
 </div>
+<script>
+let a = document.querySelector(".tbody");
+document.querySelector(".flag").addEventListener("click",()=>{
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+</script>
 </body>
 </html>
