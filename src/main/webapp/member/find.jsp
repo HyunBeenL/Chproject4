@@ -8,7 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-        
+        *{
+           margin:0px;
+            padding:0px;
+        }
         .main{
             margin:200px auto;
             width: 744px;
@@ -109,9 +112,7 @@
 	        </div>
         </div>
     </main>
-    <footer>
-    
-    </footer>
+    <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
     	let findid = document.querySelector("#findid");
     	findid.style.backgroundColor="blue";
