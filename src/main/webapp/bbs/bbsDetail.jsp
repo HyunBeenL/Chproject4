@@ -109,7 +109,7 @@
 <body>
 <div class="wrap">
 <div class=header>
-
+<%@ include file="../header/header.jsp" %>
 </div>
 <div class="main">
     <div class="article">
@@ -168,7 +168,7 @@
 
 
 <div class=footer>
-
+<%@ include file="../footer/footer.jsp" %>
 </div>
 
 </div>

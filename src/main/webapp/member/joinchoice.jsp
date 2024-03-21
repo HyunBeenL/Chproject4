@@ -9,6 +9,13 @@
     <title>Document</title>
     <style>
 
+		*{
+           margin:0px;
+            padding:0px;
+        }
+        main{
+        	margin-bottom:100px;
+        }
         .main{
             margin: 0px auto;
             margin-top:200px;
@@ -71,9 +78,7 @@
             </table>
 		</div>
     </main>
-    <footer>
-        
-    </footer>
+    <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
     </script>
 </body>

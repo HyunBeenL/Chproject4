@@ -58,7 +58,7 @@
         }
         
         ul{padding: 0px;}
-        li{
+        .thead, .tbody{
             list-style-type: none;
             display: table;
             width: 100%;
@@ -156,7 +156,7 @@
 </div>
 
 <div class=footer>
-
+<%@ include file="../footer/footer.jsp" %>
 </div>
 
 </div>
