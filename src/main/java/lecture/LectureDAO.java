@@ -46,12 +46,13 @@ public class LectureDAO extends JDBConnect {
 			}
 			
 			//선택 1.카테고리 
+			/*단어검색이랑 겹치면 where절에 && 추가해야 하는데 like 서치해서 조건절로 &&붙인다거나 해야할것같음 */
 			if ( map.get("search_category") != null && map.get("search_category") != "" ) {
 				sb.append("lecture_category="+ map.get("search_category"));
 			}
 			
 			//선택 2.카테고리_중분류
-			if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
+			else if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
 				sb.append("lecture_category_detail="+ map.get("search_category_detail"));
 			}
 		}
@@ -114,7 +115,7 @@ public class LectureDAO extends JDBConnect {
 					}
 					
 					//선택 2.카테고리_중분류
-					if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
+					else if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
 						sb.append("lecture_category_detail="+ map.get("search_category_detail"));
 					}
 				}

@@ -70,7 +70,9 @@
 
 
 <body>
+	<jsp:include page="/header/header.jsp"></jsp:include>
 <main>
+
 	<div id="id0"></div>
     <div id="id1" class="container">
         <a href="/Project4/main.jsp">Home</a>

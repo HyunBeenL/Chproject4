@@ -18,8 +18,8 @@ public class BbsPage {
 			}
 		}
 
-		sb.append((total_page>page_block_end? "&nbsp;&nbsp;<a href='"+tmpLinkURL+"category="+category+"&"+"page_no="+(page_block_end+1)+"'><strong>></strong></a>" : "&nbsp;&nbsp;>"));
-		sb.append((total_page>page_block_end? "&nbsp;&nbsp;<a href='"+tmpLinkURL+"category="+category+"&"+"page_no="+(total_page)+"'><strong>>></strong></a>" : "&nbsp;&nbsp;>>"));
+		sb.append((total_page>=page_block_end? "&nbsp;&nbsp;<a href='"+tmpLinkURL+"category="+category+"&"+"page_no="+(page_block_end+1)+"'><strong>></strong></a>" : "&nbsp;&nbsp;>"));
+		sb.append((total_page>=page_block_end? "&nbsp;&nbsp;<a href='"+tmpLinkURL+"category="+category+"&"+"page_no="+(total_page)+"'><strong>>></strong></a>" : "&nbsp;&nbsp;>>"));
 
 		return sb.toString();
 	}

@@ -34,7 +34,7 @@
             padding: 0 68px 0 20px;
             box-sizing: border-box;
         }
-        #searchText{
+        #search_word{
             font-size: 16px;
             line-height: 48px;
             margin-left:10px;
@@ -55,16 +55,19 @@
             border-bottom: 1px solid black;
             display:grid;
             grid-template-columns: 1fr 6fr 1fr;
+         
         }
         .count{
             padding-left: 20px;
         }
         .countDiv{
             padding: 10px 0;
+            line-height: 50px;
         }
         .registDiv{
             padding: 10px 0;
             padding-right: 20px;
+            text-align: center;
         }
         .categoryDiv{
             display: flex;
@@ -76,6 +79,7 @@
             text-align: center;
             text-decoration: none;
             color: black;
+            line-height: 50px;
         }
         .categoryDiv a:hover{
             background-color:#002475;
@@ -98,12 +102,13 @@
             height: 60px;
             box-sizing:border-box;
             display: table-cell;
+      
         }
         .num{
             width: 100px;
         }
         .type{
-            width: 80px;
+            width: 130px;
         }
         .user{
             width: 130px;
@@ -118,6 +123,10 @@
             width: 1100px;
             text-align: center;
         }
+        #registBtn{
+           vertical-align:middle;
+           
+        }
 
     </style>
 </head>
@@ -130,28 +139,28 @@
 <div class=main>
     <div class="mainhead">
     <div class="searchWrap">
-        <form>
+        <form name="frmSearch" id="frmSearch" method="get" >
         <div class="search">
-        <select name="category" id="select">
+        <select name="search_category" id="search_category">
             <option value="">전체</option>
-            <option value="title">제목만</option>
-            <option value="content">내용만</option>
-            <option value="titleContent">제목+내용</option>
-            <option value="userID">작성자</option>
+            <option value="comu_title">제목만</option>
+            <option value="comu_content">내용만</option>
+            <option value="comu_content">제목+내용</option>
+            <option value="member_user_id">작성자</option>
         </select>
-        <input id="searchText" type="text" placeholder="검색어를 입력하세요." maxlength="100">
-        <button type="button" id="btnSearch"><img class="btnImg" src="/Project4/img/search.png" alt="img"></img></button>
+        <input name="search_word" id="search_word" type="text" placeholder="검색어를 입력하세요." maxlength="100">
+        <button type="submit" id="btnSearch"><img class="btnImg" src="/Project4/img/search.png" alt="img"></img></button>
         </form>
         </div>
     </div>
     </div>
     <div class="mainhead2">
         <div class ="listHead"> 
-            <div class="countDiv"><span class="count">총{?}건</span></div>
+            <div class="countDiv"><span class="count">총${params.total_count}건</span></div>
             <div class="categoryDiv">
-                <a href="">자유게시판</a>
-                <a href="">공지사항</a>
-                <a href="./qna.do">자주묻는질문</a>
+                <a href="comu.do?category=1">자유게시판</a>
+                <a href="comu.do?category=2">공지사항</a>
+                <a href="qna.do">자주묻는질문</a>
             </div>
             <div class="registDiv"><img id="registBtn" src="/Project4/img/write.png" alt="img"></div>
         </div>
@@ -163,16 +172,29 @@
             <span class="title">제목</span>
             <span class="date">등록일</span>
         </li>
-        <li class="tbody">
-            <span class="num">{번호}</span>
-            <span class="type">{구분}</span>
-            <span class="user">{작성자}</span>
-            <span class="title">{제목}</span>
-            <span class="date">{등록일}</span>
-        </li>
+    
+    <c:set var="row" value="${params.total_count - (params.page_no-1)*params.page_size }" />
+	<c:choose>
+	<c:when test="${not empty bbsList }">
+		<c:forEach var="list" items="${bbsList }" varStatus="loop">
+		<li>
+            <span class="num">${row }</span>
+            <span class="type">${list.comu_category}</span>
+            <span class="user">${list.member_user_id}</span>
+            <span class="title">${list.comu_title}</span>
+            <span class="date">${list.comu_reg_date}</span>
+    	</li>
+    	${row= row-1;'' }
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<span class="QNA" style="width: 1100px;"><img src="/Project4/img/Q.png" alt="Q">등록된 글이 없습니다.</span>
+	</c:otherwise>
+	</c:choose>
+    
     </ul>
     <div class="mainfoot">
-        <p>{"paging"}</p>
+        <p>${params.paging }</p>
     </div>
     </div>
 </div>
