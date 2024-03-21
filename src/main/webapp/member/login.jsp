@@ -72,9 +72,8 @@
 	
 		<jsp:include page="/header/header.jsp" />
 	<main>
-	
 		<h1>로그인</h1>
-		<form action="">
+		<form action="login_ok.do">
 	        <div class="loginarea">
 	            <div>
 	                <input type="text" name="id" id="id" placeholder="아이디를 입력하세요.">
