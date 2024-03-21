@@ -64,7 +64,7 @@
         width: 800px;
     }
     .regdate{
-        width: 100px;
+        width: 200px;
         text-align: center;
     }
     a{  
@@ -113,23 +113,23 @@
 </div>
 <div class="main">
     <div class="article">
-        <div class="articletitle"><p>{title}</p></div>
-        <div class="date">작성일 {regdate} 수정일 {modifydate}</div>
-        <div class="mainArticle">{content}</div>
+        <div class="articletitle"><p>${title}</p></div>
+        <div class="date">작성일 ${regdate} 최종 수정일 ${modifydate}</div>
+        <div class="mainArticle">${content}</div>
         <ul>
             <a href="" class= "moveArticle" id="preArticle" >
             <span class="flag">↑</span>
             <span class="flag">이전글</span>
-            <span class="title">{title}</span>
-            <span class="regdate">{regdate}</span>
+            <span class="title">${title}</span>
+            <span class="regdate">${reg_date}</span>
             </a>
         </ul>
         <ul>
             <a href="" class= "moveArticle" id="nextArticle" >
             <span class="flag">↓</span>
             <span class="flag">다음글</span>
-            <span class="title">{title}</span>
-            <span class="regdate">{regdate}</span>
+            <span class="title">${title}</span>
+            <span class="regdate">${reg_date}</span>
             </a>
         </ul>
 
@@ -138,16 +138,16 @@
     <div class="commentView">
         <div>
             <img src="/Project4/img/cmtperson.png">
-            <span id="cmtUserId">{userid}</span>
+            <span id="cmtUserId">${user_id}</span>
         </div>
-        <p>{comment}</p>
-        <p>{regdate}</p>
+        <p>${comment}</p>
+        <p>${reg_date}</p>
     </div>
     <form name="frm_comment" id="frm_comment" action=""method="post">
             <div class="f1">
             <div>
             <img src="/Project4/img/cmtperson.png">
-            <span id="cmtUserId">{userid}</span>
+            <span id="cmtUserId">${user_id}</span>
             </div>
             <input type="hidden" name="user_id" id="user_id" value="{UserId}" readonly>
             </div>

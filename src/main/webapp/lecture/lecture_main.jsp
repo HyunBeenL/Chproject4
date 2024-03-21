@@ -70,18 +70,22 @@
 
 
 <body>
+	<jsp:include page="/header/header.jsp"></jsp:include>
 <main>
 	<div id="id0"></div>
     <div id="id1" class="container">
         <a href="/Project4/main.jsp">Home</a>
         &gt
         <a href="/Project4/lecture/lecture_main.jsp">강좌</a>
-        <!-- 카테고리 값을 받아서 이하 출력하는 기능 추가해야 함.. -->
+       	
+        <c:if test="${lecture_category } != null && ${lecture_category } != ''">
         	&gt
 		        <a href="/Project4/lecture/lecture_main.jsp">{lecture_category }</a>
+		        <c:if test="${lecture_category_detail } != null && ${lecture_category_detail } != ''">
 		        	&gt
 		        	<a href="/Project4/lecture/lecture_main.jsp">{lecture_category_detail }</a>
-
+		        </c:if>
+		</c:if>
         
     </div>
     
@@ -102,16 +106,16 @@
     
     <div id="id3" class="container">
         <form name="frm2" id="frm2">
-            <select name="state" id="state">
+            <select name="search_state" id="search_state">
                 <option value="" selected hidden>개강상태</option>
-                <option value="" >전체</option>
-                <option value="" >진행중</option>
-                <option value="" >개강예정</option>
-                <option value="" >종료</option>
+                <option value="*" >전체</option>
+                <option value="state_ing" >진행중</option>
+                <option value="state_before" >개강예정</option>
+                <option value="state_after" >종료</option>
             </select>
-            <select name="search_category" id="search_category">
+            <select name="search_category" id="search_category" onchange="">
                 <option value="" selected hidden>주제</option>
-                <option value="" >전체</option>
+                <option value="*" >전체</option>
                 <option value="10000" >인문</option>
                 <option value="20000" >사회</option>
                 <option value="30000" >교육</option>
@@ -123,7 +127,7 @@
             </select>
             <select name="search_category_detail" id="search_category_detail">
                 <option value="" selected hidden>중분류</option>
-                <option value="" >전체</option>
+                <option value="*" >전체</option>
                 <option value="10100" >언어문학</option>
                 <option value="10200" >인문과학</option>
                 <option value="20100" >경영·경제</option>
@@ -149,12 +153,12 @@
                 <option value="80100" >융합</option>
                 
             </select>
-            <select name="period" id="period">
+            <select name="search_period" id="search_period">
                 <option value="" selected hidden>학습기간</option>
-                <option value="" >전체</option>
-                <option value="" >단기(1~2주)</option>
-                <option value="" >중기(3~4주)</option>
-                <option value="" >장기(5주~)</option>
+                <option value="*" >전체</option>
+                <option value="period_short" >단기(1~2주)</option>
+                <option value="period_mid" >중기(3~4주)</option>
+                <option value="period_long" >장기(5주~)</option>
             </select>
             <input type="button" value="새로고침" />
         </form>
