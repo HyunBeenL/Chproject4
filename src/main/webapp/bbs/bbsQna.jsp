@@ -133,8 +133,8 @@
     <div class="mainhead2">
         <div class ="listHead"> 
             <div class="categoryDiv">
-                <a href="./comu.do?bbsCate=0">자유게시판</a>
-                <a href="./comu.do?bbsCate=1">공지사항</a>
+                <a href="./comu.do?category=1">자유게시판</a>
+                <a href="./comu.do?category=2">공지사항</a>
                 <a class="qnaA" href="./qna.do" style="color: white;">자주묻는질문</a>
             </div>
         </div>
