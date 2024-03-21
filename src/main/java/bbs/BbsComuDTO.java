@@ -1,7 +1,8 @@
 package bbs;
 
 public class BbsComuDTO {
-	private int comu_category_code;
+	private int comu_idx;
+	private String comu_category;
 	private String comu_title;
 	private String comu_content;
 	private String member_user_id;
@@ -14,14 +15,14 @@ public class BbsComuDTO {
 	/**
 	 * @return the comu_category_code
 	 */
-	public int getComu_category_code() {
-		return comu_category_code;
+	public String getComu_category() {
+		return comu_category;
 	}
 	/**
 	 * @param comu_category_code the comu_category_code to set
 	 */
-	public void setComu_category_code(int comu_category_code) {
-		this.comu_category_code = comu_category_code;
+	public void setComu_category(String comu_category) {
+		this.comu_category = comu_category;
 	}
 	/**
 	 * @return the comu_title
@@ -82,5 +83,17 @@ public class BbsComuDTO {
 	 */
 	public void setComu_modify_date(String comu_modify_date) {
 		this.comu_modify_date = comu_modify_date;
+	}
+	/**
+	 * @return the comu_idx
+	 */
+	public int getComu_idx() {
+		return comu_idx;
+	}
+	/**
+	 * @param comu_idx the comu_idx to set
+	 */
+	public void setComu_idx(int comu_idx) {
+		this.comu_idx = comu_idx;
 	}
 }
