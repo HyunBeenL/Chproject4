@@ -28,7 +28,7 @@ public class LoginOkController extends HttpServlet{
 		if(dto.getMember_user_id() != null){
 			session.setAttribute("userId",dto.getMember_user_id());
 			session.setAttribute("userName",dto.getMember_name());
-			resp.sendRedirect("/Project4/member/login.do");
+			resp.sendRedirect("/Project4/main.jsp");
 		}
 		else {
 			req.getRequestDispatcher("/member/login_ok.jsp").forward(req, resp);
