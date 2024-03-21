@@ -1,3 +1,5 @@
+<%@page import="member.MemberDTO"%>
+<%@page import="member.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
@@ -8,6 +10,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+		*{
+           margin:0px;
+            padding:0px;
+        }
         main{
             width: 1100px;
             height: auto;
@@ -22,7 +28,7 @@
         }
         .viewimport{
             text-align: right;
-            width:460px;
+            width:530px;
             margin-bottom: 20px;
         }
         .viewimport > a{
@@ -65,8 +71,8 @@
 <body>
 	
 		<jsp:include page="/header/header.jsp" />
-	
 	<main>
+	
 		<h1>로그인</h1>
 		<form action="">
 	        <div class="loginarea">
@@ -85,8 +91,6 @@
 	        </div>
     	</form>
 	</main>
-	<footer>
-		
-	</footer>
+	<jsp:include page="/footer/footer.jsp"></jsp:include>
 </body>
 </html>
