@@ -12,7 +12,10 @@
         }
         #back1 {
             background-color: navy;
+            background: url("./img/about_bg_basic01.png");
             color: white;
+            height: 470px;
+            width: 100%;
         }
         #id0 {
             height: 76px;
@@ -42,7 +45,57 @@
         #frm1 {
             
         }
-
+		.heart{
+			width: 58px;
+		    height: 56px;
+		    border-radius: 4px;
+		    background: #fff url(./img/ico_basic_view_03.png) no-repeat center;
+		    vertical-align: middle;
+		    border: 2px solid #fff;
+		    cursor: pointer;
+		}
+		.regist{
+		height: 56px;
+	    font-size: 16px;
+	    font-weight: bold;
+	    line-height: 56px;
+	    border-radius: 4px;
+	    vertical-align: middle;
+	    text-align: center;
+	    background: #00A85D;
+	    color: #fff;
+	    width: 70%;
+	    border: 1px solid #00A85D;
+	    cursor: pointer;
+		}
+		#cancel{
+		height: 56px;
+	    font-size: 16px;
+	    font-weight: bold;
+	    line-height: 56px;
+	    border-radius: 4px;
+	    vertical-align: middle;
+	    text-align: center;
+	    background: #00A85D;
+	    color: #fff;
+	    width: 40%;
+	    border: 1px solid #00A85D;
+	    cursor: pointer;
+		}
+		#play{
+			height: 56px;
+		    font-size: 16px;
+		    font-weight: bold;
+		    line-height: 56px;
+		    border-radius: 4px;
+		    vertical-align: middle;
+		    text-align: center;
+		    background: #00A85D;
+		    color: #fff;
+		    width: 40%;
+		    border: 1px solid #00A85D;
+		    cursor: pointer;
+		}
     </style>
 
 </head>
@@ -52,7 +105,7 @@
 
 	<div id="id0"></div>
     <div id="back1">
-    <div id="id1" class="container">
+  <!--   <div id="id1" class="container">
         <a href="/Project4/main.jsp">Home</a>
         >
         <a href="/Project4/lecture/lecture_main.jsp">강좌</a>
@@ -60,7 +113,7 @@
         <a href="/Project4/lecture/lecture_main.jsp">카테고리</a>
         >
         <a href="/Project4/lecture/lecture_main.jsp">카테고리_detail</a>
-    </div>
+    </div> -->
     
     <div id="id2" class="container">
         <div id="id2_1">
@@ -73,13 +126,83 @@
             <li><span>주관기관</span>${lectureDetail[0].member_company}</li>
             <li><span>학습기간</span>${lectureDetail[0].lecture_start_date}  ~ ${lectureDetail[0].lecture_end_date}</li>
             <li><span>전화번호</span>${lectureDetail[0].member_company}</li>
-            <!-- <li><span>강좌 언어</span>language</li> -->
             <li><span>별점</span>${lectureDetail[0].lecture_star}</li>
         </ul>
-        <form id="frm1">
-            <input type="button" value="♡">
-            <input type="button" value="수강신청">
-        </form>
+       
+        <c:choose>
+        	<c:when test="${checkHeart eq 1 && checkCart eq 1}">
+        		
+		        <form method="post" name="frm" id="frm">
+		         	<input type="hidden" id="heart" class="heart" value="">
+		            <input type="hidden" id="regist" class="regist" value="수강신청">
+		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
+		            <input type="hidden" id="imgUrl" name="imgUrl" value="${lectureDetail[0].lecture_img}">
+			    	<input type="hidden" id="title" name="title" value="${lectureDetail[0].lecture_title}">
+			    	<input type="hidden" id="name" name="name" value="${lectureDetail[0].member_name}">
+			    	<input type="button" id="cancelHeart" name="cancelHeart" value="" style="background: #fff url(./img/ico_basic_view_09.png) no-repeat center;  height: 56px;
+					    border-radius: 4px;
+					width: 58px;
+					    vertical-align: middle;
+					    border: 2px solid #fff;
+					    cursor: pointer;">
+			    	<input type="button" id="play" name="play" value="강좌듣기">
+		            <input type="button" id="cancel" name="cancel" value="수강취소">
+		            
+		        </form>
+        	</c:when>
+        	
+        	<c:when test="${checkHeart eq 1}">
+        	
+		        <form method="post" name="frm" id="frm">
+		         	<input type="hidden" id="heart" class="heart" value="">
+		         	 <input type="button" id="cancelHeart" name="cancelHeart" value="" style="background: #fff url(./img/ico_basic_view_09.png) no-repeat center;  height: 56px;
+					    border-radius: 4px;
+					width: 58px;
+					    vertical-align: middle;
+					    border: 2px solid #fff;
+					    cursor: pointer;">
+		            <input type="button" id="regist" class="regist" value="수강신청">
+		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
+		            <input type="hidden" id="imgUrl" name="imgUrl" value="${lectureDetail[0].lecture_img}">
+			    	<input type="hidden" id="title" name="title" value="${lectureDetail[0].lecture_title}">
+			    	<input type="hidden" id="name" name="name" value="${lectureDetail[0].member_name}">
+			    	
+			    	<input type="hidden" id="play" name="play" value="강좌듣기">
+		            <input type="hidden" id="cancel" name="cancel" value="수강취소">
+		           
+		        </form>
+        	</c:when>
+        	
+        	<c:when test="${checkCart eq 1}">
+        		<form method="post" name="frm" id="frm">
+		         	<input type="button" id="heart" class="heart" value="">
+		            <input type="hidden" id="regist" class="regist" value="수강신청">
+		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
+		            <input type="hidden" id="imgUrl" name="imgUrl" value="${lectureDetail[0].lecture_img}">
+			    	<input type="hidden" id="title" name="title" value="${lectureDetail[0].lecture_title}">
+			    	<input type="hidden" id="name" name="name" value="${lectureDetail[0].member_name}">
+			    	<input type="button" id="play" name="play" value="강좌듣기">
+		            <input type="button" id="cancel" name="cancel" value="수강취소">
+		            <input type="hidden" id="cancelHeart" name="cancelHeart" value="">
+		        </form>
+        	</c:when>
+        	
+        	<c:otherwise>
+        		<form method="post" name="frm" id="frm">
+		         	<input type="button" id="heart" class="heart" value="">
+		            <input type="button" id="regist" class="regist" value="수강신청">
+		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
+		            <input type="hidden" id="imgUrl" name="imgUrl" value="${lectureDetail[0].lecture_img}">
+			    	<input type="hidden" id="title" name="title" value="${lectureDetail[0].lecture_title}">
+			    	<input type="hidden" id="name" name="name" value="${lectureDetail[0].member_name}">
+			    	<input type="hidden" id="play" name="play" value="강좌듣기">
+		            <input type="hidden" id="cancel" name="cancel" value="수강취소">
+		            <input type="hidden" id="cancelHeart" name="cancelHeart" value="">
+		        </form>
+        	</c:otherwise>
+        	
+        </c:choose>
+       
         </div>
     </div>
 
@@ -93,7 +216,7 @@
         <p>${lectureDetail[0].lecture_content}</p>
     
         <h4>홍보/예시 영상</h4>
-        <p><iframe width="560" height="315" src="${lectureDetail[0].lecture_youtube_url} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p><iframe width="560" height="315" src="${lectureDetail[0].lecture_youtube_url}frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </p>
         <h4>강좌 운영 계획</h4>
         <p>${lectureDetail[0].lecture_plan}</p>
@@ -106,8 +229,39 @@
     </div>
     
     </main>
+    
+ 
     <footer>
     
     </footer> 
+    
+    <script type="text/javascript">
+    	document.querySelector(".regist").addEventListener("click", function(){
+    		const frm = document.querySelector("#frm");
+    		frm.action = "/Project4/kmocMain.do?command=cartAdd";
+    		frm.submit();
+    		
+    	});
+    	
+    	document.querySelector(".heart").addEventListener("click", function(){
+    		const frm = document.querySelector("#frm");
+    		frm.action = "/Project4/kmocMain.do?command=heartAdd";
+    		frm.submit();
+    		
+    	});
+    	document.querySelector("#cancel").addEventListener("click", function(){
+    		const frm = document.querySelector("#frm");
+    		frm.action = "/Project4/kmocMain.do?command=cartDelete";
+    		frm.submit();
+    		
+    	});
+    	
+    	document.querySelector("#cancelHeart").addEventListener("click", function(){
+    		const frm = document.querySelector("#frm");
+    		frm.action = "/Project4/kmocMain.do?command=heartDelete";
+    		frm.submit();
+    		
+    	});
+    </script>
 </body>
 </html>

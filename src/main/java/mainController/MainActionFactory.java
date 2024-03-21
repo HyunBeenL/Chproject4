@@ -2,6 +2,10 @@ package mainController;
 
 import action.LectureDetail;
 import action.MainAction;
+import action.cartAdd;
+import action.cartDelete;
+import action.heartAdd;
+import action.heartDelete;
 
 public class MainActionFactory {
 
@@ -25,7 +29,19 @@ public class MainActionFactory {
 		else if (command.equals("lectureDetail")) {
 			action = new LectureDetail();
 		}
-
+		else if (command.equals("cartAdd")) {
+			action = new cartAdd();
+		}
+		else if (command.equals("heartAdd")) {
+			action = new heartAdd();
+		}
+		else if (command.equals("cartDelete")) {
+			action = new cartDelete();
+		}
+		else if (command.equals("heartDelete")) {
+			action = new heartDelete();
+		}
+		
 		System.out.println(action);
 		return action;
 	}

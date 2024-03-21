@@ -118,7 +118,7 @@
 	<jsp:include page="/footer/footer.jsp"></jsp:include>
 	
 	<script type="text/javascript">
-		
+	
 	</script>
 </body>
 </html>
