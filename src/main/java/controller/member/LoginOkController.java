@@ -28,10 +28,10 @@ public class LoginOkController extends HttpServlet{
 		if(dto.getMember_user_id() != null){
 			session.setAttribute("userId",dto.getMember_user_id());
 			session.setAttribute("userName",dto.getMember_name());
-			resp.sendRedirect("/Project4/main.jsp");
+			resp.sendRedirect("/Project4/kmocMain.do?command=main");
 		}
 		else {
-			req.getRequestDispatcher("/member/login_ok.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Project4/kmocMain.do?command=main").forward(req, resp);
 		}
 	}
 }

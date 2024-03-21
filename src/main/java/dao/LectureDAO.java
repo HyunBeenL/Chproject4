@@ -1,22 +1,22 @@
 package dao;
+
 import java.util.ArrayList;
 
 import common.JDBConnect;
 import dto.LectureDTO;
 import jakarta.servlet.ServletContext;
 
-
-public class LectureDAO extends JDBConnect{
+public class LectureDAO extends JDBConnect {
 	public LectureDAO() {
 	}
+
 	public LectureDAO(ServletContext application) {
 		super(application);
 
 	}
 
-
 	public ArrayList<LectureDTO> listBestLecture() {
-		
+
 		ArrayList<LectureDTO> lectureList = new ArrayList<LectureDTO>();
 		String sql = "select * from best_view";
 
@@ -32,12 +32,12 @@ public class LectureDAO extends JDBConnect{
 				lecture.setLecture_img(rs.getString("lecture_img"));
 				lectureList.add(lecture);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("베스트 상품 가져오기 오류");
 		}
-		
+
 		return lectureList;
 	}
 
@@ -59,17 +59,16 @@ public class LectureDAO extends JDBConnect{
 				lecture.setLecture_img(rs.getString("lecture_img"));
 				lectureList.add(lecture);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("추천 상품 가져오기 오류");
 		}
-		
+
 		return lectureList;
 	}
 
-	
-	public ArrayList<LectureDTO> lectureDetail(int lecture_idx){
+	public ArrayList<LectureDTO> lectureDetail(int lecture_idx) {
 		ArrayList<LectureDTO> lectureList = new ArrayList<LectureDTO>();
 		String sql = "select * from kmc_lecture where lecture_idx = ?";
 		try {
@@ -97,17 +96,18 @@ public class LectureDAO extends JDBConnect{
 				lecture.setMember_idx(rs.getInt("member_idx"));
 				lecture.setHeart_count(rs.getInt("heart_count"));
 				lecture.setLecture_reg_date(rs.getDate("lecture_reg_date"));
-				
-				
+
 				lectureList.add(lecture);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("강좌 상세정보 가져오기 오류");
 		}
-		
+
 		return lectureList;
 	}
-	
+
+
+
 }

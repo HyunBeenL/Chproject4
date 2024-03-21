@@ -9,6 +9,6 @@
 <body>
 
 		<a href="/Project4/kmocMain.do?command=main">메인 바로가기</a>
-
+		
 </body>
 </html>
