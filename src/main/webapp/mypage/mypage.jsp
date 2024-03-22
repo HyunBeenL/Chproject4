@@ -1,4 +1,7 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,12 +128,15 @@
 	<div id="id0"></div>
 	
 <div class="container">
+	<fmt:formatDate value="${params.strdate}" pattern="yyyy-MM-dd" var="formattedStartDate" />
+	<fmt:formatDate value="${params.enddate}" pattern="yyyy-MM-dd" var="formattedEndDate" />
+	<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
     <div id="id1">
         <div>
             <h2>마이페이지</h2>
         </div>
         <div>
-            <img src="/Project4/img/my_menu_01.png"/><a href="/Project4/mypage/mypage.jsp">내 강의실</a>
+            <img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
             <br>
             <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
         </div>
@@ -157,7 +163,16 @@
                     <span class="lecture_teacher">${params.teacher}</span>
                     <span class="lecture_date">${params.strdate}~${params.enddate}</span>
                 </div>
-                <p class="content_state">{params.state}</p>
+                <p class="content_state">
+					<c:choose>
+						<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
+							<small class="end">종료</small> 
+						</c:when>
+							<c:otherwise>
+								<small class="ing">진행중</small> 
+						</c:otherwise>
+					</c:choose>
+				</p>
                 <div class="content_cancel">
                     <form id="frm3">
                         <input type="button" id="cancel_lecture" value="수강취소"/>

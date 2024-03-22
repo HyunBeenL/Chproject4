@@ -10,7 +10,7 @@
 		.footer{
 			clear: left;
 			background-color: #000;
-			width: 100%;
+			width: 1920px;
 			height: 180px;
 		}
 
