@@ -1,10 +1,14 @@
 package member;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
 import common.JDBConnect;
+import dto.CartDTO;
+import dto.HeartDTO;
+import lecture.LectureDTO;
 
 public class MemberDAO extends JDBConnect {
 	public MemberDAO() {
@@ -15,6 +19,39 @@ public class MemberDAO extends JDBConnect {
 		super(driver, url, id, pwd);	
 	}
 	
+	public MemberDTO getMemberInfo(String id) {
+		MemberDTO dto = new MemberDTO();
+		String sql = "SELECT * FROM kmc_member WHERE Member_user_id=?";
+		try	{
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto.setMember_user_id(rs.getString("member_user_id"));
+				dto.setMember_name(rs.getString("member_name"));
+				dto.setMember_pwd(rs.getString("member_pwd"));
+				dto.setMember_phone(rs.getString("member_phone"));
+				dto.setMember_email(rs.getString("member_email"));
+				if(rs.getString("member_category").equals("01")) {
+					dto.setMember_category("학생");
+				}
+				else {
+					dto.setMember_category("강사");
+				}
+				if(dto.getMember_category().equals("강사")) {
+					dto.setMember_company_num(rs.getString("member_company_num"));
+					dto.setMember_company(rs.getString("member_company"));
+				}
+				dto.setMember_birth(rs.getString("member_birth"));	
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 	public MemberDTO getMemberInfo(String id,String pwd) {
 		MemberDTO dto = new MemberDTO();
 		String sql = "SELECT * FROM kmc_member WHERE Member_user_id=?";
@@ -136,7 +173,7 @@ public class MemberDAO extends JDBConnect {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO kmc_member(member_name, member_user_id, member_pwd, member_phone,");
-		sb.append("member_email, member_category, member_company_num, member_company, member_bitrh, member_info_update)");
+		sb.append("member_email, member_category, member_company_num, member_company, member_birth, member_info_update)");
 		sb.append(" VALUES(?,?,?,?,?,?,?,?,?,NOW())");
 		
 		try {
@@ -164,5 +201,44 @@ public class MemberDAO extends JDBConnect {
 		return result;
 	}
 	
+	public HashMap<String, Object> getCartInfo(String id) {
+		MemberDTO memdto = new MemberDTO();
+		LectureDTO lecdto = new LectureDTO();
+		CartDTO cartdto = new CartDTO();
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append(" FROM kmc_cart AS A");
+		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
+		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
+		sb.append(" WHERE A.member_user_id = ?");
+				
+		try	{
+			psmt = conn.prepareStatement(sb.toString());
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+					memdto.setMember_email(rs.getString("B.member_email"));
+					memdto.setMember_name(rs.getString("B.member_name"));
+					cartdto.setLecture_title(rs.getString("A.lecture_title"));
+					cartdto.setLecture_teacher(rs.getString("lecture_teacher"));
+					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
+					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
+					
+					params.put("memdto", memdto);
+					params.put("cartdto", cartdto);
+					params.put("lecdto", lecdto);
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return params;
+	}
 	
 }
