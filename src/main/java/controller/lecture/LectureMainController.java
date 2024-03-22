@@ -84,7 +84,7 @@ public class LectureMainController extends HttpServlet {
 		params.put("page_block_end", page_block_end);
 
 		
-		String pagingArea = BbsPage.pagingArea(total_page, page_no, page_block_start, page_block_end, "lecture_main.do","");
+		String pagingArea = BbsPage.pagingArea(total_page, page_no, page_block_start, page_block_end, "lecture_main.do?","");
 				
 		params.put("paging", pagingArea);
 				
