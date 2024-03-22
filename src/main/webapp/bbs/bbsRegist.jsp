@@ -79,6 +79,7 @@
         <input type="button" name="btn_cancel" id="btn_cancel" value="취소">
         <input type="hidden" name="user_id" id="user_id" value="${userId}">
     </form>
+    <br>
 </div>
 
 
@@ -126,7 +127,7 @@
     })
     document.querySelector("#btn_cancel").addEventListener("click",()=>{
         if(confirm("이전페이지로 돌아가시겠습니까?")){
-            window.location.href="../comu.do";
+            window.location.href="./comu.do";
         }
     })
     </script>

@@ -108,14 +108,14 @@
         <form name="frm2" id="frm2">
             <select name="search_state" id="search_state">
                 <option value="" selected hidden>개강상태</option>
-                <option value="*" >전체</option>
+                <option value="" >전체</option>
                 <option value="state_ing" >진행중</option>
                 <option value="state_before" >개강예정</option>
                 <option value="state_after" >종료</option>
             </select>
-            <select name="search_category" id="search_category" onchange="">
+            <select name="search_category" id="search_category">
                 <option value="" selected hidden>주제</option>
-                <option value="*" >전체</option>
+                <option value="" >전체</option>
                 <option value="10000" >인문</option>
                 <option value="20000" >사회</option>
                 <option value="30000" >교육</option>
@@ -127,7 +127,7 @@
             </select>
             <select name="search_category_detail" id="search_category_detail">
                 <option value="" selected hidden>중분류</option>
-                <option value="*" >전체</option>
+                <option value="" >전체</option>
                 <option value="10100" >언어문학</option>
                 <option value="10200" >인문과학</option>
                 <option value="20100" >경영·경제</option>
@@ -155,12 +155,13 @@
             </select>
             <select name="search_period" id="search_period">
                 <option value="" selected hidden>학습기간</option>
-                <option value="*" >전체</option>
+                <option value="" >전체</option>
                 <option value="period_short" >단기(1~2주)</option>
                 <option value="period_mid" >중기(3~4주)</option>
                 <option value="period_long" >장기(5주~)</option>
             </select>
             <input type="button" value="새로고침" />
+            <input type="submit" value="필터 검색" />
         </form>
     </div>
     
@@ -182,7 +183,7 @@
         		<c:forEach var="list" items="${lectureList }" varStatus="loop">
         			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
 					<div>
-						<img src="/lectureImg/${list.lecture_img }">
+						<img src="${list.lecture_img}" />
 						<p>${list.lecture_title }</p>
 						<p>${list.member_name }</p>
 						<p>${list.member_company }</p>
@@ -199,16 +200,6 @@
         </div>
     </div>
     
-    <div id="id5" class="container">
-        ${params.paging }
-    </div>
-    
-        <a id="topBtn" href="#">TOP</a>
-    <script>
-    	document.querySelector("#topBtn").addEventListener("click", (e) => {
-    		main_bg.scrollIntoView({ behavior: 'smooth' , block: 'nearest' })
-    	})
-    </script>
     </main>
 </body>
 </html>

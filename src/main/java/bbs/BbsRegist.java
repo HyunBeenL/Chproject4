@@ -33,7 +33,8 @@ public class BbsRegist extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String directory = "D:\\java4\\JSP\\bbsModel2\\upload";
+		String directory = getServletContext().getRealPath("/upload");
+
 		BbsComuDAO dao = new BbsComuDAO();
 		BbsComuDTO dto = new BbsComuDTO();
 		String a = (String)request.getParameter("category").trim();
