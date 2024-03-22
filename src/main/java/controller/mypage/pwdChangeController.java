@@ -17,6 +17,7 @@ public class pwdChangeController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String id = req.getParameter("id");
+		System.out.println(id);
 		MemberDAO dao = new MemberDAO();
 		req.setAttribute("pwd", dao.pwdconfirm(id));
 		dao.close();
