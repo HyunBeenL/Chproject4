@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,29 +98,48 @@
 	        <h1 style="text-align: center; margin-bottom:50px;"> 아이디 / 비밀번호 찾기</h1>
             <table class="changebtn">
                 <tr>
-                    <td id="findid"><a href ="" id="findid1">아이디 찾기</a></td>
-                    <td id="findpwd"><a href ="" id="findpwd1">비밀번호 찾기</a></td>
+                    <td id="findid"><a href ="/Project4/member/find.jsp?search=1" id="findid1">아이디 찾기</a></td>
+                    <td id="findpwd"><a href ="/Project4/member/find.jsp?search=2" id="findpwd1">비밀번호 찾기</a></td>
                 </tr>
             </table>
+           <input type="hidden" name="idFind" id="idFind" value="${memberId}">
+           <input type="hidden" name="pwdChange" id="pwdChange" value="${pwdChange}">
             <h2 style="text-align: center; margin:50px 0px;"> 회원가입시 기입한 정보를 입력해주세요.</h2>
 	        <div class="border" style="text-align: center;"">
-	        <form action="" class="findfrm" id="login0">
-	            <input type="tel" name="tel" id="tel" maxlength="20" placeholder="전화번호 입력" required autofocus/>
-	            <input type="email" name="email" id="email" placeholder="이메일입력" required/>
-	                                                      
-	            <input type="text" name="id" id="id" placeholder="아이디입력" required/>
-	            
-	            <div>회원가입 시 기입한 정보를 입력해주세요.</div>
-	            <div id="button">
-	                <input type="submit" value="찾기" class="loginbtn">
-	            </div>
-	        </form>
-	        </div>
+		        <c:choose>
+		        	<c:when test="${param.search  eq 1}" >
+		        		<form action="" class="findfrm" id="login0" method="post">
+				            <input type="tel" name="tel" id="tel" maxlength="20" placeholder="- 빼고 전화번호 입력" />
+				            <input type="email" name="email" id="email" placeholder="이메일입력" />
+				                                                      
+				            <input type="hidden" name="id" id="id" placeholder="아이디입력" value="hidden"/>
+				            <input type="hidden" name="search" id="search" value="${param.search}"/>
+				            <div>회원가입 시 기입한 정보를 입력해주세요.</div>
+				            <div id="button">
+				                <input type="button" value="찾기" class="loginbtn">
+				            </div>
+				        </form>
+		        	</c:when>
+		        	<c:otherwise>
+			        	<form method="post" action="" class="findfrm" id="login0">
+				            <input type="tel" name="tel" id="tel" maxlength="20" placeholder="- 뺴고 전화번호 입력" />
+				            <input type="email" name="email" id="email" placeholder="이메일입력" />
+				            <input type="hidden" name="search" id="search" value="${param.search}"/>                    
+				            <input type="text" name="id" id="id" placeholder="아이디입력" />
+				            
+				            <div>회원가입 시 기입한 정보를 입력해주세요.</div>
+				            <div id="button">
+				                <input type="button" value="찾기" class="loginbtn">
+				            </div>
+				        </form>
+		        	</c:otherwise>
+		        </c:choose>
+	        </div>    
         </div>
     </main>
     <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
-    	
+
     	let findid = document.querySelector("#findid");
     	let findid1 = document.querySelector("#findid1");
     	let findpwd = document.querySelector("#findpwd");
@@ -130,18 +151,68 @@
     		document.querySelector("#id").display ="none";
     		
     		findid.style.backgroundColor="blue";
-        	findid1.style.Color="white";
+         	findid1.style.Color="white";
         	findpwd.style.backgroundColor="white";
-        	findpwd1.style.Color="black";
+        	findpwd1.style.Color="black"; 
     	});
     	findpwd1.addEventListener('click',()=>{
     		document.querySelector("#id").display ="block";
     		
-    		findpwd.style.backgroundColor="blue";
+     	findpwd.style.backgroundColor="blue";
         	findpwd1.style.Color="white";
         	findid.style.backgroundColor="white";
-        	findid1.style.Color="black";
+        	findid1.style.Color="black"; 
     	});
+    	
+    	const phone = document.querySelector("#tel");
+    	const email = document.querySelector("#email");
+    	const id = document.querySelector("#id");
+    	const search = document.querySelector("#search");
+
+
+    	document.querySelector(".loginbtn").addEventListener("click",function(){
+    		if(phone.value == null || email.value == null || id.value == null || phone.value == 'null' || email.value == 'null' || id.value == 'null'
+    				|| phone.value == "" || email.value == "" || id.value == "" ){
+    			alert("정보를 모두 입력해주세요.");
+    			
+    		} else {
+    			
+    			if(search.value == 1){
+    				const frm  = document.querySelector(".findfrm");
+    				frm.action = "/Project4/kmocMain.do?command=idSearch";
+        			
+        			
+    				frm.submit(); 
+    			} else {
+    				const frm  = document.querySelector(".findfrm");
+
+    				frm.action = "/Project4/kmocMain.do?command=pwdSearch";
+        			frm.submit(); 
+    			} 
+
+    		}
+    	});
+    	
+    	const idFind = document.querySelector("#idFind");
+    	console.log(idFind.value );
+    	if(idFind.value != null && idFind.value != "" && idFind.value != "null"){
+    		if(idFind.value == "nullId"){
+    			alert("입력하신 회원정보와 일치하는 ID가 없습니다.");
+    		} else {
+    			alert("찾으시는 ID는 : " + idFind.value);
+    		}
+    	}
+    	
+    	const pwdChange = document.querySelector("#pwdChange");
+    	console.log(pwdChange.value );
+    	if(pwdChange.value != null && pwdChange.value != "" && pwdChange.value != "null"){
+    		if(pwdChange.value == "nullPwd"){
+    			alert("입력하신 회원정보와 일치하는 PWD가 없습니다.");
+    		} else {
+    			alert("임시 비밀번호를 발급해드렸습니다. 마이페이지에서 비밀번호를 변경해주세요.  임시비밀번호 : " + pwdChange.value);
+    		}
+    	}
+    	
     	
     </script>
 </body>
