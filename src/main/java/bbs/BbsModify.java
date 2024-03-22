@@ -1,7 +1,9 @@
 package bbs;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import fileupload.FileUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,8 +26,7 @@ public class BbsModify extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String directory = getServletContext().getRealPath("/Upload");
-		String directory = "D:\\java4\\JSP\\bbsModel2\\upload";
+		String directory = getServletContext().getRealPath("/upload");
 		BbsComuDAO dao = new BbsComuDAO(); 
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		BbsComuDTO bbsView = dao.bbsView(idx);
@@ -35,18 +36,17 @@ public class BbsModify extends HttpServlet {
 		bbsView.setComu_content((String)request.getParameter("content"));
 		dao.bbsModify(bbsView);
 		
-//		if(request.getPart("file")!=null) {
-//		ArrayList<String> arrFileName = FileUtil.uploadFile2(request, directory);
-//
-//		for(String orgFileName:arrFileName) {
-//			
-//			String savedFileName = FileUtil.renameFile(directory, orgFileName);
-//			FileUtil.registFile(request, orgFileName, savedFileName,idx);
-//			}
-//		}
-//		else {
-//			System.out.print("파일이 없습니다.");
-//		}
+		if(request.getPart("file")!=null) {
+		ArrayList<String> arrFileName = FileUtil.uploadFile2(request, directory);
+
+		for(String orgFileName:arrFileName) {
+			
+			FileUtil.registFile(request, orgFileName, orgFileName,idx);
+			}
+		}
+		else {
+			System.out.print("파일이 없습니다.");
+		}
 		dao.close();
 		response.sendRedirect("comu.do");
 	}

@@ -19,7 +19,10 @@
             color: black;
         }
         #id2 {
-            background-color: navy;
+                background-color: #002475;
+   				background-image: url("../img/bg_title_01.png"), url("../img/bg_title_02.png");
+    			background-repeat: no-repeat;
+    			background-position: bottom left, top 30% right 20%;
             width: 100%;
             height: 200px;
         }
@@ -91,6 +94,37 @@
             width: 70%;
             height: 40px;
         }
+        #frm1 select {
+        	width: 100px;
+        	height: 40px;
+        	font-size: 16px;
+        }
+        #search_submit {
+        	width:40px;
+        	height: 40px;
+        	margin: 0;
+            background: #00A85D;
+        }
+        #frm2 select {
+        	width: 150px;
+            height: 30px;
+            font-size: 16px;
+            border: 1px solid rgb(200, 200, 200);
+        }
+        #frm2 input[type=button] {
+        	width: 100px;
+            height: 30px;
+            font-size: 16px;
+            padding: 0;
+            border: 1px solid rgb(200, 200, 200);
+        }
+        #frm2 input[type=submit] {
+        	width: 100px;
+            height: 30px;
+            font-size: 16px;
+            padding: 0;
+            border: 1px solid rgb(200, 200, 200);
+        }
         #frm3 {
             display: flex;
         }
@@ -99,8 +133,15 @@
         	display: flex;
         	justify-content: center;
         }
-        .pagehover {
-        	
+        .pagehover{
+        	text-decoration: none;
+        	color: black;
+        	padding: 2px 5px;
+        }
+        .pagehover:hover{
+        	background-color:#002475;
+        	color: white;
+        	padding: 2px 5px;
         }
     </style>
 </head>
@@ -136,7 +177,7 @@
                 <option value="search_teacher">강사명</option>
             </select>
             <input type="search" name="search_word" id="search_word">
-            <input type="submit" value="검색">
+            <input id="search_submit" type="submit" value="🔍">
         </form>
     </div>
     </div>
@@ -197,7 +238,7 @@
                 <option value="period_mid" >중기(3~4주)</option>
                 <option value="period_long" >장기(5주~)</option>
             </select>
-            <input type="button" value="새로고침" />
+            <input type="button" id="search_refresh" value="새로고침" />
             <input type="submit" value="필터 검색" />
         </form>
     </div>
@@ -206,12 +247,19 @@
     
     <div id="id4" class="container">
         <div id="id4_1" >
-        
-            <span>${params.search_word } 총 ${params.total_count} 강좌수</span>
-            
+        	
+        <c:choose>
+        	<c:when test="${param.search_word != '' && param.search_word != null}">
+        		<span>'${params.search_word }' 검색결과 ${params.total_count}건</span>
+        	</c:when>
+        	<c:otherwise>
+        		<span>총 ${params.total_count} 강좌수</span>
+        	</c:otherwise>
+        </c:choose>
+
             <form name="frm3" id="frm3">
-                <input type="radio" name="order_by" id="order_by_1" checked><label for="order_by_1">최신등록순</label> &nbsp;
-                <input type="radio" name="order_by" id="order_by_2"><label for="order_by_2">가나다순</label>
+                <input type="button" name="order_by" id="order_by_1" value = "최신등록순" onclick="this.form.submit()" selected/>
+                <input type="button" name="order_by" id="order_by_2" value = "가나다순" onclick="this.form.submit()" />
             </form>
         </div>
     
@@ -225,7 +273,7 @@
         			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
 					<div class="content_div">
                         <div class="content_img">
-                        	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin=auto;" />
+                        	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin: auto;" />
                         </div>
                        	<div class="content_card">
 						<strong class="content_title">${list.lecture_title }</strong>
@@ -257,7 +305,18 @@
     
     </main>
 <script>
-    
+	let search_refresh= document.querySelector("#search_refresh");
+	search_refresh.addEventListener("click", (e) => {
+        let search_state = document.querySelector("#search_state");
+        let search_categorye = document.querySelector("#search_category");
+        let search_category_detail = document.querySelector("#search_category_detail");
+        let search_period = document.querySelector("#search_period");
+
+        search_state.options[0].selected = true;
+        search_category.options[0].selected = true;
+        search_category_detail.options[0].selected = true;
+        search_period.options[0].selected = true;
+    })
 </script>
 
 </body>

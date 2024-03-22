@@ -1,8 +1,10 @@
 package bbs;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import common.CommonUtil;
+import fileupload.FileUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -52,34 +54,23 @@ public class BbsRegist extends HttpServlet {
 			dto.setComu_title(c);
 			dto.setComu_content(d);
 			dao.bbsRegist(dto);
-//			if(request.getPart("file")!=null) {
-//			ArrayList<String> arrFileName = FileUtil.uploadFile2(request, directory);
-//			try {
-//				dao.psmt = dao.conn.prepareStatement("SELECT LAST_INSERT_ID(idx) FROM tbl_bbs order by idx DESC LIMIT 1;");
-//				dao.rs = dao.psmt.executeQuery();
-//				dao.rs.next();
-//				idx = dao.rs.getInt("LAST_INSERT_ID(idx)");
-//				System.out.print("idx"+idx);
-//			} catch (SQLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//			for(String orgFileName:arrFileName) {
-//				
-//				String savedFileName = FileUtil.renameFile(directory, orgFileName);
-//				FileUtil.registFile(request, orgFileName, savedFileName,idx);
-//				}
-//			}
-//			else {
-//				System.out.print("파일이 없습니다.");
-//			}
-//			response.sendRedirect("list");
+			if(request.getPart("file")!=null) {
+			ArrayList<String> arrFileName = FileUtil.uploadFile2(request, directory);
+			idx = dao.lastInsertId();
+			for(String orgFileName:arrFileName) {
+				
+				FileUtil.registFile(request, orgFileName, orgFileName,idx);
+				}
+			}
+			else {
+				System.out.print("파일이 없습니다.");
+			}
+			response.sendRedirect("comu.do");
 		}
 		else{
 			response.sendRedirect("comu.do?result=fail");
 		}
 		dao.close();
-		response.sendRedirect("comu.do");
 	}
 
 }
