@@ -211,9 +211,25 @@ public class BbsComuDAO extends JDBConnect{
 			// TODO Auto-generated catch block
 			System.out.println("게시판 데이터 삭제 오류");
 			e.printStackTrace();
-		}
-		
+		}	
 	}
+	
+	public int lastInsertId() {
+		String sql = "SELECT LAST_INSERT_ID(comu_idx) FROM kmc_community ORDER BY comu_idx desc LIMIT 1";
+		int last = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			rs.next();
+			last =rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("마지막번호 조회 오류");
+			e.printStackTrace();
+		}
+		return last;
+	}
+	
 	
 //	public void bbsCmtView() {
 //		BbsComuDTO dto = new BbsComuDTO();

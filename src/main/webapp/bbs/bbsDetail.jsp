@@ -60,7 +60,7 @@
     .flag{
         width: 100px;
     }
-    .title{
+    #title{
         width: 800px;
     }
     .regdate{
@@ -112,6 +112,11 @@
     	border: 1px solid black;
     	margin-bottom: 10px;
     }
+    #filelist{
+    	border-collapse: collapse;
+    	width: 600px;
+    	margin: 10px auto;
+    }
 </style>
 </head>
 <body>
@@ -124,20 +129,43 @@
         <div class="title"><p>${title}</p></div>
         <div class="date">작성일 ${reg_date} 최종 수정일 ${modify_date}</div>
         <div class="content" id="content">${content}</div>
+    <table id="filelist" border="1">
+	<tr>
+		<th> 첨부 파일 이름 </th>
+		<th> 파일 다운로드 </th>
+		<th> 파일 삭제 </th>
+	</tr>
+	<c:choose>
+	<c:when test="${not empty fileLists }">
+		<c:forEach var="list" items="${fileLists }" varStatus="loop">
+		<tr>
+			<td>${list.getSaveFile()}</td>
+			<td><a href="./filedown.do?orgFile=${list.getOrgFile()}&saveFile=${list.getSaveFile()}&bbs_idx=${list.getBbs_idx()}">다운로드</a></td>
+			<td><a id="filedelete" href="./filedelete.do?orgFile=${list.getOrgFile()}&saveFile=${list.getSaveFile()}&bbs_idx=${list.getBbs_idx()}">삭제</a></td>
+		</tr>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<tr>
+		<td colspan="3">등록된 게시물이 없습니다.</td>
+		</tr>
+	</c:otherwise>
+	</c:choose>
+	</table>
         <ul>
-            <a href="bbsdetail.do?idx=${idx-1}" class= "moveArticle" id="preArticle" >
+            <a href="bbsdetail.do?idx=${preidx < 1 ? idx : preidx}" class= "moveArticle" id="preArticle" >
             <span class="flag">↑</span>
-            <span class="flag">이전글</span>
-            <span class="title">${title}</span>
-            <span class="regdate">${reg_date}</span>
+            <span class="flag">${preidx  < 1 ? " " : "이전글"}</span>
+            <span class="title" id="title">${preidx  < 1 ? "첫글 입니다." : title1}</span>
+            <span class="regdate">${reg_date1}</span>
             </a>
         </ul>
         <ul>
-            <a href="bbsdetail.do?idx=${idx+1}" class= "moveArticle" id="nextArticle" >
+            <a href="bbsdetail.do?idx=${nextidx > lastidx ? idx : nextidx}" class= "moveArticle" id="nextArticle" >
             <span class="flag">↓</span>
-            <span class="flag">다음글</span>
-            <span class="title">${title}</span>
-            <span class="regdate">${reg_date}</span>
+            <span class="flag">${nextidx >= lastidx ? " " : "다음글"}</span>
+            <span class="title" id="title">${nextidx >= lastidx ? "다음글이 없습니다." : title2}</span>
+            <span class="regdate">${reg_date2}</span>
             </a>
         </ul>
 
@@ -205,7 +233,13 @@
             window.location.href="./comu.do";
         }
     })
-    
+    document.querySelector("#filedelete").addEventListener("click",()=>{
+        if(confirm("정말 삭제하시겠습니까?")){
+        }
+        else{
+        	event.preventDefault();
+        }
+    })
     let a = document.querySelector(".commentView");
 	document.querySelector("#commentbtn").addEventListener("click",()=>{
 	a.style.display=='block'? a.style.display='none': a.style.display='block';
