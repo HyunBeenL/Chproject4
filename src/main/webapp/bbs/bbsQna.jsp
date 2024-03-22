@@ -58,7 +58,7 @@
             width: 12.5%;
         }
         
-        ul{padding: 0px;}
+        .ul1{padding: 0px;}
         .thead, .tbody{
             list-style-type: none;
             display: table;
@@ -152,20 +152,22 @@
         </div>
         <div class="countDiv"><span class="count">총${params.total_count}건</span></div>
     <c:set var="row" value="${params.total_count - (params.page_no-1)*params.page_size }" />
+    ${cnt=1;'' }
 	<c:choose>
 	<c:when test="${not empty bbsList }">
 		<c:forEach var="list" items="${bbsList }" varStatus="loop">
-		<ul>
+		<ul class=ul1>
         <li class="thead">
             <span class="QNA"><img src="/Project4/img/Q.png" alt="Q"></span>
             <span class="type">${list.qna_category}</span>
             <span class="title">${list.qna_title }</span>
-            <span class="flag">▼</span>
+            <span class="flag" id="flag${cnt}">▼</span>
         </li>
-        <li class="tbody">
+        <li class="tbody" id="tbody${cnt}">
             <span class="QNA"><img src="/Project4/img/A.png" alt="A"></span>
             <span class="content">${list.qna_answer}</span>
         </li>
+        ${cnt=cnt+1;''}
     	</ul>
 		</c:forEach>
 	</c:when>
@@ -185,8 +187,44 @@
 
 </div>
 <script>
-let a = document.querySelector(".tbody");
-document.querySelector(".flag").addEventListener("click",()=>{
+document.querySelector("#flag1").addEventListener("click",()=>{
+let a = document.querySelector("#tbody1");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag2").addEventListener("click",()=>{
+let a = document.querySelector("#tbody2");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag3").addEventListener("click",()=>{
+let a = document.querySelector("#tbody3");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag4").addEventListener("click",()=>{
+let a = document.querySelector("#tbody4");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag5").addEventListener("click",()=>{
+let a = document.querySelector("#tbody5");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag6").addEventListener("click",()=>{
+let a = document.querySelector("#tbody6");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag7").addEventListener("click",()=>{
+let a = document.querySelector("#tbody7");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag8").addEventListener("click",()=>{
+let a = document.querySelector("#tbody8");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag9").addEventListener("click",()=>{
+let a = document.querySelector("#tbody9");
+a.style.display=='table'? a.style.display='none': a.style.display='table';
+})
+document.querySelector("#flag10").addEventListener("click",()=>{
+let a = document.querySelector("#tbody10");
 a.style.display=='table'? a.style.display='none': a.style.display='table';
 })
 </script>
