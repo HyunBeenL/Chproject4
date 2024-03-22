@@ -1,6 +1,8 @@
 package bbs;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -173,14 +175,17 @@ public class BbsComuDAO extends JDBConnect{
 	
 	public void bbsModify(BbsComuDTO dto) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("update kmc_community set comu_category =?, comu_title =?, comu_content = ? comu_modify_date = ? where comu_idx = ?");
+		sb.append("update kmc_community set comu_category =?, comu_title =?, comu_content = ? where comu_idx = ?");
 		try {
+			Date date = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String str = format.format(date);
+			
 			psmt = conn.prepareStatement(sb.toString());
 			psmt.setString(1, dto.getComu_category());
 			psmt.setString(2, dto.getComu_title());
 			psmt.setString(3, dto.getComu_content());
-			psmt.setString(4, "now()");
-			psmt.setInt(5, dto.getComu_idx());
+			psmt.setInt(4, dto.getComu_idx());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -202,4 +207,31 @@ public class BbsComuDAO extends JDBConnect{
 		}
 		
 	}
+	
+//	public void bbsCmtView() {
+//		BbsComuDTO dto = new BbsComuDTO();
+//		
+//		StringBuilder sb = new StringBuilder();
+//		sb.append("select comu_idx, comu_category, comu_title, comu_content, member_user_id, comu_reg_date, comu_modify_date from kmc_community ");
+//		sb.append(" where comu_idx = ?");
+//		try {
+//			psmt = conn.prepareStatement(sb.toString());
+//			psmt.setInt(1, idx);
+//			rs = psmt.executeQuery();
+//			if(rs.next()) {
+//				dto.setComu_idx(rs.getInt("comu_idx"));
+//				dto.setComu_category(rs.getString("comu_category"));
+//				dto.setComu_title(rs.getString("comu_title"));
+//				dto.setComu_content(rs.getString("comu_content"));
+//				dto.setMember_user_id(rs.getString("member_user_id"));
+//				dto.setComu_reg_date(rs.getString("comu_reg_date"));
+//				dto.setComu_modify_date(rs.getString("comu_modify_date"));
+//			}
+//		} catch (SQLException e) {
+//			System.out.println("게시판 데이터 조회 오류");
+//			e.printStackTrace();
+//		}
+//		
+//		return dto;
+//	}
 }
