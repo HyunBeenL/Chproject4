@@ -23,7 +23,7 @@
 
 .alram {
 	align-items: center;
-	width: 60%;
+	width: 1100px;
 	height: 100px;
 	margin-left: 20%;
 }
@@ -44,7 +44,7 @@
 	text-align: center;
 	line-height: 90px;
 	font-weight: bold;
-	width: 80%;
+	width: 1100px;
 	height: 100%;
 }
 
@@ -52,7 +52,7 @@
 	border: 3px solid #fff;
 	border-radius: 10px;
 	box-sizing: border-box;
-	width: 60%;
+	width: 1100px;
 	height: 180px;
 	background: url(../mainImg/search_bg01.png) 14% center #0036ce;
 	background-repeat: no-repeat;
@@ -336,7 +336,7 @@
 	background-repeat: no-repeat;
 }
 
-.button_group_btn a {
+.button_group_btn{
 	text-decoration: none;
 	color: #fff;
 	font-size: 16px;

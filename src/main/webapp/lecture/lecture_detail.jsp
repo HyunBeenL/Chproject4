@@ -3,9 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gothic+A1&family=Noto+Sans+KR:wght@100..900&family=Poor+Story&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>lecture_detail</title>
     <style>
+	    *{
+	    font-family: "Gothic A1", sans-serif;
+	    }
         .container {
             width: 1100px;
             margin: 0 auto;
@@ -96,13 +102,32 @@
 		    border: 1px solid #00A85D;
 		    cursor: pointer;
 		}
+		#id2  h3{
+		font-size: 26px;
+	    font-weight: bold;
+	    line-height: 38px;
+	    word-break: keep-all;
+	    color: #fff;
+	    vertical-align: middle;
+		}
+		ul {
+			color:#fff;
+			word-break: break-all;
+		    vertical-align: middle;
+		    font-size: 14px;	
+		    line-height: 40px;
+		    font-weight: 300;
+		}
+		ul > li  > span{
+			font-size: 12px;	
+		}
     </style>
 
 </head>
 <body>
 	<jsp:include page="/header/header.jsp" />
 <main>
-
+	
 	<div id="id0"></div>
     <div id="back1">
   <!--   <div id="id1" class="container">
@@ -122,17 +147,18 @@
         <div id="id2_2">
         <h3>${lectureDetail[0].lecture_title}</h3>
         <ul>
-            <li><span>분야</span>${lectureDetail[0].lecture_category_detail}</li>
-            <li><span>주관기관</span>${lectureDetail[0].member_company}</li>
-            <li><span>학습기간</span>${lectureDetail[0].lecture_start_date}  ~ ${lectureDetail[0].lecture_end_date}</li>
-            <li><span>전화번호</span>${lectureDetail[0].member_company}</li>
-            <li><span>별점</span>${lectureDetail[0].lecture_star}</li>
+            <li><span>분야</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${categoryDetail}</li>
+            <li><span>주관기관</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].member_company}</li>
+            <li><span>학습기간</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].lecture_start_date}  ~ ${lectureDetail[0].lecture_end_date}</li>
+            <li><span>전화번호</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].member_company}</li>
+            <li><span>별점</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].lecture_star}<span class="star">⭐⭐⭐⭐</span></li>
         </ul>
        
         <c:choose>
         	<c:when test="${checkHeart eq 1 && checkCart eq 1}">
         		
 		        <form method="post" name="frm" id="frm">
+		        	<input type="hidden" id="memberId" value="${memberId}">
 		         	<input type="hidden" id="heart" class="heart" value="">
 		            <input type="hidden" id="regist" class="regist" value="수강신청">
 		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
@@ -154,6 +180,7 @@
         	<c:when test="${checkHeart eq 1}">
         	
 		        <form method="post" name="frm" id="frm">
+		      	  	<input type="hidden" id="memberId" value="${memberId}">
 		         	<input type="hidden" id="heart" class="heart" value="">
 		         	 <input type="button" id="cancelHeart" name="cancelHeart" value="" style="background: #fff url(./img/ico_basic_view_09.png) no-repeat center;  height: 56px;
 					    border-radius: 4px;
@@ -175,6 +202,7 @@
         	
         	<c:when test="${checkCart eq 1}">
         		<form method="post" name="frm" id="frm">
+        			<input type="hidden" id="memberId" value="${memberId}">
 		         	<input type="button" id="heart" class="heart" value="">
 		            <input type="hidden" id="regist" class="regist" value="수강신청">
 		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
@@ -189,6 +217,7 @@
         	
         	<c:otherwise>
         		<form method="post" name="frm" id="frm">
+        			<input type="hidden" id="memberId" value="${memberId}">
 		         	<input type="button" id="heart" class="heart" value="">
 		            <input type="button" id="regist" class="regist" value="수강신청">
 		           	<input type="hidden" id="idx" name="idx" value="${lectureDetail[0].lecture_idx}">
@@ -229,25 +258,45 @@
     </div>
     
     </main>
-    
- 
-    <footer>
-    
-    </footer> 
+
+    <jsp:include page="/footer/footer.jsp"></jsp:include>
     
     <script type="text/javascript">
+    	const memberId = document.querySelector("#memberId");
+    	
     	document.querySelector(".regist").addEventListener("click", function(){
-    		const frm = document.querySelector("#frm");
-    		frm.action = "/Project4/kmocMain.do?command=cartAdd";
-    		frm.submit();
+    		if(memberId.value === null || memberId.value === "" || memberId.value === "undefined" || memberId.value === "null" || memberId.value.length === 0){
+    			alert("로그인 후 수강신청이 가능합니다.");
+    		/* 	const frm = document.querySelector("#frm");
+        		frm.action = "/Project4/member/login.do";
+        		frm.submit(); */
+    		}
+    		
+    		else {
+
+    			const frm = document.querySelector("#frm");
+    			frm.action = "/Project4/kmocMain.do?command=cartAdd";
+        		frm.submit();
+    		}
+    		
     		
     	});
     	
     	document.querySelector(".heart").addEventListener("click", function(){
-    		const frm = document.querySelector("#frm");
-    		frm.action = "/Project4/kmocMain.do?command=heartAdd";
-    		frm.submit();
+    		if(memberId.value === null || memberId.value === "" || memberId.value === "undefined" || memberId.value === "null" || memberId.value.length === 0){
+    			alert("로그인 후 찜하기 기능이 가능합니다.");
+    		/* 	const frm = document.querySelector("#frm");
+        		frm.action = "/Project4/member/login.do";
+        		frm.submit(); */
+    			
+    		}
     		
+    		else {
+    			const frm = document.querySelector("#frm");
+        		frm.action = "/Project4/kmocMain.do?command=heartAdd";
+        		frm.submit(); 
+    		}
+	
     	});
     	document.querySelector("#cancel").addEventListener("click", function(){
     		const frm = document.querySelector("#frm");

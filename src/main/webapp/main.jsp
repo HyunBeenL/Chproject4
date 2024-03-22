@@ -45,8 +45,10 @@
 			<div id="searchBox" class="searchBox">
 				<div id="searchBox_search" class="searchBox_search">검색</div>
 				<div id="searchBox_text" class="searchBox_text">
-					<input type="text">
-					<input type="button" value=" 🔍">
+					<form action="" id="searchFrm" method="post">
+					<input type="text" name="search" id="search"value="">
+					<input type="button" id="searchButton"value=" 🔍">
+					</form>
 				</div>
 				
 			</div>
@@ -82,15 +84,15 @@
 
 		<div id="button_group" class="button_group">
 			<div id="button_group_class" class="button_group_class">
-				<button id="button_group_btn" class="button_group_btn"><a href="">인문</a> <img src="./mainImg/btn1.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">사회</a> <img src="./mainImg/btn2.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">교육</a> <img src="./mainImg/btn3.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">공학</a> <img src="./mainImg/btn4.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">자연</a> <img src="./mainImg/btn5.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">의약</a> <img src="./mainImg/btn6.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">예체능</a> <img src="./mainImg/btn7.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">융합</a> <img src="./mainImg/btn8.png" alt=""></button>
-				<button id="button_group_btn" class="button_group_btn"><a href="">기타</a> <img src="./mainImg/btn9.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=10000';" >인문<img src="./mainImg/btn1.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=20000';">사회 <img src="./mainImg/btn2.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=30000';">교육<img src="./mainImg/btn3.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=40000';">공학<img src="./mainImg/btn4.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=50000';">자연<img src="./mainImg/btn5.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=60000';">의약 <img src="./mainImg/btn6.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=70000';">예체능 <img src="./mainImg/btn7.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do?search_state=&search_category=80000';">융합<img src="./mainImg/btn8.png" alt=""></button>
+				<button id="button_group_btn" class="button_group_btn"  onclick="window.location.href='/Project4/lecture/lecture_main.do';">기타<img src="./mainImg/btn9.png" alt=""></button>
 			</div>
 		</div>
 
@@ -116,9 +118,16 @@
     </main>
     
 	<jsp:include page="/footer/footer.jsp"></jsp:include>
-	
-	<script type="text/javascript">
-	
+		<script type="text/javascript">
+		const search = document.querySelector("#search");
+		document.querySelector("#searchButton").addEventListener("click",function(){
+		
+			const frm = document.querySelector("#searchFrm");
+			const v = "/Project4/lecture/lecture_main.do?search_option=search_title&search_word="+search.value;
+			console.log(v);
+			frm.action = v;
+			frm.submit();
+		});
 	</script>
 </body>
 </html>
