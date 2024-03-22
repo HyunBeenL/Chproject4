@@ -1,5 +1,10 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.time.LocalDate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +27,7 @@
 </head>
 <body>
 		<jsp:include page="/header/header.jsp"></jsp:include>
-
+			
 		<main>
 		<div class="carousel_class">
 			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -55,24 +60,39 @@
 		</div>
 
 
-
 		<div id="recommend_box" class="recommend_box">
 			<div id="recommend_box_text" class="recommend_box_text"><p>K-MOOC</p>에서 추천하는 강좌 리스트</div>
 			<div id="recommend_box_lecture" class="recommend_box_lecture">
-
 				
 				<c:forEach var="recommendList" items="${recommendLectureList}">
+					<fmt:formatDate value="${recommendList.lecture_start_date}" pattern="yyyy-MM-dd" var="formattedStartDate" />
+					<fmt:formatDate value="${recommendList.lecture_end_date}" pattern="yyyy-MM-dd" var="formattedEndDate" />
+					<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
+							
+				
 					<div id="recommend_box_All" class="recommend_box_All">
 						<div id="recommend_box_img" class="recommend_box_img">
-							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${recommendList.lecture_idx}"><img src="./${recommendList.lecture_img}" alt=""></a>
+							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${recommendList.lecture_idx}"><img src="./${recommendList.lecture_img}" alt="">
+							<c:if test="${recommendList.lecture_endPrize eq 'y'}">
+							    <small class="certificate">이수증</small> 
+							</c:if>
+							
+							<c:choose>
+								<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
+									<small class="end">종료</small> 
+								</c:when>
+								<c:otherwise>
+									 <small class="ing">진행중</small> 
+								</c:otherwise>
+							</c:choose>
+							</a>
 						</div>
 						<div  id="recommend_box_content" class="recommend_box_content">
 							<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${recommendList.lecture_idx}"><p>${recommendList.lecture_title}</p></a>
-							<p>$recommendList.lecture_title}</p>
 							<p>${recommendList.member_name}</p>
 							<p>${recommendList.member_company}</p>
-							<p>${recommendList.lecture_start_date}</p>
-							<p>${recommendList.lecture_end_date}</p>
+							<p>${recommendList.lecture_start_date} ~ ${recommendList.lecture_end_date}</p>
+							<p></p>
 						</div>
 					</div>
 				</c:forEach>

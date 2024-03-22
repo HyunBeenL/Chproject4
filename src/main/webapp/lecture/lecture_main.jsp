@@ -58,7 +58,7 @@
         	width: 230px;
         	height: 150px;
         	background-size: cover;
-        	background-color: red; 
+        	background-color: rgb(220, 220, 220); 
         }
         .content_card {
         	margin: 5px 10px;
@@ -98,6 +98,9 @@
         	margin: auto;
         	display: flex;
         	justify-content: center;
+        }
+        .pagehover {
+        	
         }
     </style>
 </head>
@@ -199,13 +202,15 @@
         </form>
     </div>
     
+    <br/>
+    
     <div id="id4" class="container">
         <div id="id4_1" >
         
             <span>${params.search_word } 총 ${params.total_count} 강좌수</span>
             
             <form name="frm3" id="frm3">
-                <input type="radio" name="order_by" id="order_by_1" checked><label for="order_by_1">최신등록순</label>
+                <input type="radio" name="order_by" id="order_by_1" checked><label for="order_by_1">최신등록순</label> &nbsp;
                 <input type="radio" name="order_by" id="order_by_2"><label for="order_by_2">가나다순</label>
             </form>
         </div>
@@ -239,6 +244,9 @@
 
         </div>
     </div>
+    
+    <br>
+    
     <div class="container">
     	<div id="paging">
     		<div>

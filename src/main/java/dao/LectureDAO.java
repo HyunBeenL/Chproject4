@@ -30,6 +30,7 @@ public class LectureDAO extends JDBConnect {
 				lecture.setLecture_start_date(rs.getDate("lecture_start_date"));
 				lecture.setLecture_end_date(rs.getDate("lecture_end_date"));
 				lecture.setLecture_img(rs.getString("lecture_img"));
+				lecture.setLecture_endPrize(rs.getString("lecture_endPrize"));
 				lectureList.add(lecture);
 			}
 
@@ -57,6 +58,7 @@ public class LectureDAO extends JDBConnect {
 				lecture.setLecture_start_date(rs.getDate("lecture_start_date"));
 				lecture.setLecture_end_date(rs.getDate("lecture_end_date"));
 				lecture.setLecture_img(rs.getString("lecture_img"));
+				lecture.setLecture_endPrize(rs.getString("lecture_endPrize"));
 				lectureList.add(lecture);
 			}
 
