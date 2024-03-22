@@ -113,9 +113,9 @@
             <h2>마이페이지</h2>
         </div>
         <div>
-            <img src="/Project4/img/my_menu_01.png"/><a href="/Project4/mypage/mypage.jsp">내 강의실</a>
+            <img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
             <br>
-            <img src="/Project4/img/my_menu_02.png"/><a href="/Project4/mypage/mypage_info.jsp">개인정보관리</a>
+            <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
         </div>
     </div>
 
