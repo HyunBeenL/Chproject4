@@ -28,7 +28,7 @@
                     <li><a href="/Project4/member/joinchoice.do">회원가입</a></li>
                     <%}else{ %>
                     <li><a href="/Project4/member/logout.do">로그아웃</a></li>
-                    <li><a href="/Project4/member/joinchoice.jsp">마이페이지</a></li>
+                    <li><a href="/Project4/mypage/mypage.jsp">마이페이지</a></li>
                     <%} %>
                 </ul>
             </nav>

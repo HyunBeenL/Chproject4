@@ -132,15 +132,15 @@
         <div>
             <img src="/Project4/img/my_menu_01.png"/><a href="/Project4/mypage/mypage.jsp">내 강의실</a>
             <br>
-            <img src="/Project4/img/my_menu_02.png"/><a href="/Project4/mypage/mypage_info.jsp">개인정보관리</a>
+            <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
         </div>
     </div>
 
     <div id="id2">
         <div id="id2_1">
                 <img id="img1" src="/Project4/img/user_image.png">
-                <span id="sp_user_name">{user_name}</span>님 안녕하세요. <br>
-                <p><span id="sp_user_email">이메일 주소</span>&nbsp;{user_email}</p>
+                <span id="sp_user_name">${params.name}</span>님 안녕하세요. <br>
+                <p><span id="sp_user_email">이메일 주소</span>&nbsp;${params.email}</p>
         </div>
         <div id="id2_2">
             <hr>
@@ -153,11 +153,11 @@
                     <img src="" style="background-color: grey;"/>
                 </div>
                 <div class="content_card">
-                    <p class="lecture_title">{lecture_title}</p>
-                    <span class="lecture_teacher">{lecture_teacher}</span>
-                    <span class="lecture_date">{lecture_start_date}~{lecture_end_date}</span>
+                    <p class="lecture_title">${params.title }</p>
+                    <span class="lecture_teacher">${params.teacher}</span>
+                    <span class="lecture_date">${params.strdate}~${params.enddate}</span>
                 </div>
-                <p class="content_state">{state}</p>
+                <p class="content_state">{params.state}</p>
                 <div class="content_cancel">
                     <form id="frm3">
                         <input type="button" id="cancel_lecture" value="수강취소"/>

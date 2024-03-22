@@ -5,6 +5,9 @@
 <meta charset="UTF-8">
 <title>MyPage</title>
     <style>
+    	main{
+    		margin-top: 100px;
+    	}
         .container {
             width: 1100px;
             margin: auto;
@@ -100,9 +103,9 @@
     </style>
 </head>
 <body>
-	<header>
+	
 	<jsp:include page="/header/header.jsp" />
-	</header>
+
 <main>
 <div class="container">
     <div id="id1">
@@ -120,7 +123,7 @@
         <table id="id2_1">
             <tr>
                 <th>사용자 아이디</th>
-                <td>{user_id}</td>
+                <td>${params.id}</td>
             </tr>
             <tr>
                 <th>비밀번호 변경</th>
@@ -128,19 +131,19 @@
             </tr>
             <tr>
                 <th>이름</th>
-                <td>{user_name}</td>
+                <td>${params.name}</td>
             </tr>
             <tr>
                 <th>이메일</th>
-                <td>{user_email}</td>
+                <td>${params.email}</td>
             </tr>
             <tr>
                 <th>전화번호</th>
-                <td>{user_tel}</td>
+                <td>${params.tel}</td>
             </tr>
             <tr>
                 <th>회원등급</th>
-                <td>{강사/학생}</td>
+                <td>${params.category}</td>
             </tr>
         </table>
         <br>
