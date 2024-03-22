@@ -18,6 +18,6 @@ public class LogOutController extends HttpServlet{
 		// TODO Auto-generated method stub
 		HttpSession session = req.getSession(true);
 		session.invalidate();
-		resp.sendRedirect("/Project4/main.jsp");
+		resp.sendRedirect("/Project4/kmocMain.do?command=main");
 	}
 }

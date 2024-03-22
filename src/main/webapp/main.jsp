@@ -45,8 +45,10 @@
 			<div id="searchBox" class="searchBox">
 				<div id="searchBox_search" class="searchBox_search">검색</div>
 				<div id="searchBox_text" class="searchBox_text">
-					<input type="text">
-					<input type="button" value=" 🔍">
+					<form action="" id="searchFrm" method="post">
+					<input type="text" name="search" id="search"value="">
+					<input type="button" id="searchButton"value=" 🔍">
+					</form>
 				</div>
 				
 			</div>
@@ -116,9 +118,16 @@
     </main>
     
 	<jsp:include page="/footer/footer.jsp"></jsp:include>
-	
-	<script type="text/javascript">
-	
+		<script type="text/javascript">
+		const search = document.querySelector("#search");
+		document.querySelector("#searchButton").addEventListener("click",function(){
+		
+			const frm = document.querySelector("#searchFrm");
+			const v = "/Project4/lecture/lecture_main.do?search_option=search_title&search_word="+search.value;
+			console.log(v);
+			frm.action = v;
+			frm.submit();
+		});
 	</script>
 </body>
 </html>
