@@ -30,8 +30,49 @@ public class LectureMainController extends HttpServlet {
 		int page_block_start = 1;	//page_no
 		int page_block_end = 1;
 		
-		//JSP 페이지에 전달할 앱 객체 설정
+		//카테고리 한글말 전환 맵
 		Map<String, Object> params = new HashMap<String, Object>();
+		
+		//JSP 페이지에 전달할 앱 객체 설정
+		Map<String, String> category_map = new HashMap<String, String>();
+		category_map.put("10000", "인문");
+		category_map.put("20000", "사회");
+		category_map.put("30000", "교육");
+		category_map.put("40000", "공학");
+		category_map.put("50000", "자연");
+		category_map.put("60000", "의약");
+		category_map.put("70000", "예체능");
+		category_map.put("80000", "융합");
+		
+		category_map.put("10100", "언어문학");
+		category_map.put("10200", "인문과학");
+		category_map.put("20100", "경영경제");
+		category_map.put("20200", "법률");
+		category_map.put("20300", "사회과학");
+		category_map.put("30100", "교육일반");
+		category_map.put("30200", "유아교육");
+		category_map.put("30300", "초등교육");
+		category_map.put("30400", "중등교육");
+		category_map.put("30500", "고등교육");
+		category_map.put("40100", "건축");
+		category_map.put("40200", "전기");
+		category_map.put("40300", "전자");
+		category_map.put("40400", "컴퓨터");
+		category_map.put("50100", "농림");
+		category_map.put("50200", "화학");
+		category_map.put("50300", "생명");
+		category_map.put("60100", "의료");
+		category_map.put("60200", "간호");
+		category_map.put("70100", "디자인");
+		category_map.put("70200", "영화");
+		category_map.put("70300", "미술");
+		category_map.put("80100", "융합");
+		
+		String result_category = category_map.get(req.getParameter("search_category"));
+		String result_category_detail = category_map.get(req.getParameter("search_category_detail"));
+		req.setAttribute("result_category", result_category);
+		req.setAttribute("result_category_detail", result_category_detail);
+		
 		//검색 옵션
 		String search_option = req.getParameter("search_option");
 		String search_word = req.getParameter("search_word");
@@ -100,6 +141,7 @@ public class LectureMainController extends HttpServlet {
 				
 		req.setAttribute("lectureList", lectureList);
 		req.setAttribute("params", params);
+		req.setAttribute("category_map", category_map);
 		
 		
 		req.getRequestDispatcher("/lecture/lecture_main.jsp").forward(req, resp);
