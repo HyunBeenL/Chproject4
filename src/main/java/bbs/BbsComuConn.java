@@ -56,7 +56,6 @@ public class BbsComuConn extends HttpServlet {
 		if(request.getParameter("category") != null){
 			category2 = request.getParameter("category");
 			category = cateList.get(request.getParameter("category").trim());
-
 		}
 		total_count = dao.bbsTotalCount(category);
 		bbsList = dao.bbsList(category,page_skip_cnt,page_size );
@@ -80,7 +79,7 @@ public class BbsComuConn extends HttpServlet {
 		params.put("page_block_end", page_block_end);
 		params.put("page_block_size", page_block_size);
 		
-		String pagingArea = BbsPage.pagingArea(total_page,page_no, page_block_start, page_block_end, "comu.do?",category2);
+		String pagingArea = BbsPage.pagingArea(total_page,page_no, page_block_start, page_block_end, "comu.do?",category2,search_category,search_word);
 		params.put("paging", pagingArea);
 		
 		request.setAttribute("bbsList", bbsList);

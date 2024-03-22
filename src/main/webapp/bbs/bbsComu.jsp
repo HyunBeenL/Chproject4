@@ -156,7 +156,7 @@
             <option value="">전체</option>
             <option value="comu_title">제목만</option>
             <option value="comu_content">내용만</option>
-            <option value="comu_content">제목+내용</option>
+            <option value="tc">제목+내용</option>
             <option value="member_user_id">작성자</option>
         </select>
         <input name="search_word" id="search_word" type="text" placeholder="검색어를 입력하세요." maxlength="100">
