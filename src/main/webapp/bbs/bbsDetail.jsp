@@ -117,6 +117,12 @@
     	width: 600px;
     	margin: 10px auto;
     }
+    #frm_com_modify, #frm_com_delete{
+    	display:inline-block;
+    }
+    .commentView{
+    	padding: 10px;
+    }
 </style>
 </head>
 <body>
@@ -176,12 +182,28 @@
 	<c:choose>
 	<c:when test="${not empty cmtList }">
 		<c:forEach var="list" items="${cmtList}" varStatus="loop">
-		<div>
+		<div class="commentlist">
             <img src="/Project4/img/cmtperson.png">
             <span id="cmtUserId">${list.member_user_id}</span>
-        </div>
+        <c:if test="${ list.member_user_id eq userId}">
+        <form id="frm_com_delete" name="frm_com_delete" action="cmtdelete.do">
+        <input type=hidden id="cmtidx" name="cmtidx" value="${list.comt_idx}">
+        <input type=hidden id="idx" name="idx" value="${idx}">
+        <input type="submit" name="cmt_btn_delete" id="cmt_btn_delete" value="삭제">
+        </form>
+        <form id="frm_com_modify" name="frm_com_modify" action="cmtmodify.do" method="post">
+         <input type=hidden id="cmtidx" name="cmtidx" value="${list.comt_idx}">
+         <input type=hidden id="idx" name="idx" value="${idx}">
+        <input type="submit" name="cmt_btn_modify" id="cmt_btn_modify" value="수정">
+        <textarea style="resize: none; width: 300px; height: 50px; position: absolute; margin-left: 5px;" 
+        name=cmtmodifycontent id=cmtmodifycontent placeholder="수정할 내용을 입력하세요."></textarea>
+        </form>
+        </c:if>
+   
         <p>${list.comt_content}</p>
         <p>${list.comt_reg_date}</p>
+        </div>
+
 		</c:forEach>
 	</c:when>
 	<c:otherwise>
@@ -190,17 +212,23 @@
 	</c:choose>  
         
    </div>
-    <form name="frm_comment" id="frm_comment" action=""method="post">
+    <form name="frm_comment" id="frm_comment" action="cmtregist.do" method="post">
             <div class="f1">
             <div>
             <img src="/Project4/img/cmtperson.png">
             <span id="cmtUserId">${userId}</span>
             </div>
-            <input type="hidden" name="user_id" id="user_id" value="{UserId}" readonly>
+            <input type="hidden" name="user_id" id="user_id" value="${userId}" readonly>
+            <input type="hidden" name="idx" id="idx" value="${idx}" readonly>
             </div>
             <textarea name="cmtContent" id="cmtContent"></textarea>
             <div class="btn">
+            <c:if test="${userId != null}">
             <input type="submit" name="cmt_btn_submit" id="cmt_btn_submit" value="글등록">
+        	</c:if>
+        	<c:if test="${userId == null}">
+            <input type="button" name="cmt_btn_login" id="cmt_btn_login" value="로그인">
+            </c:if>
             </div>  
     </form>
 
@@ -244,6 +272,7 @@
             window.location.href="./comu.do";
         }
     })
+    if(document.querySelector("#btn_submit")!=null){
     document.querySelector("#filedelete").addEventListener("click",()=>{
         if(confirm("정말 삭제하시겠습니까?")){
         }
@@ -251,10 +280,38 @@
         	event.preventDefault();
         }
     })
+    }
     let a = document.querySelector(".commentView");
 	document.querySelector("#commentbtn").addEventListener("click",()=>{
 	a.style.display=='block'? a.style.display='none': a.style.display='block';
 	})
+	if(document.querySelector("#cmt_btn_login")!=null){
+    document.querySelector("#cmt_btn_login").addEventListener("click",()=>{
+        if(confirm("글등록을 하시려면 로그인이 필요합니다. 로그인 페이지로 이동하시겠습니까?")){
+            window.location.href="member/login.do";
+        }
+    })
+	}
+	if(document.querySelector("#cmt_btn_modify")!=null){
+	    document.querySelector("#cmt_btn_modify").addEventListener("click",()=>{
+	        if(confirm("수정 하시겠습니까?")){
+	            window.location.href="./cmtmodify.do?idx=${idx}";
+	        }
+	        else{
+	        	event.preventDefault();
+	        }
+	    })
+		}
+	if(document.querySelector("#cmt_btn_delete")!=null){
+	    document.querySelector("#cmt_btn_delete").addEventListener("click",()=>{
+	        if(confirm("삭제 하시겠습니까?")){
+	            window.location.href="./cmtdelete.do?idx=${idx}";
+	        }
+	        else{
+	        	event.preventDefault();
+	        }
+	    })
+		}
     </script>
 </body>
 </html>

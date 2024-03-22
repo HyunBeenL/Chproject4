@@ -134,10 +134,6 @@ public class BbsDetailConn extends HttpServlet {
 		cmtList = dao3.cmtList(comu_idx);
 		request.setAttribute("cmtList", cmtList);
 		
-		
-		
-		
-		
 		request.getRequestDispatcher("/bbs/bbsDetail.jsp").forward(request, response);
 	}
 
