@@ -42,15 +42,43 @@
             grid-template-rows: repeat(5, 300px);
             grid-gap: 20px;
         }
-        #id4_2 div {
-            background-color: rgb(200, 200, 200);
-            border: 1px solid red;
+        .content_div {
+            background-color: rgb(230, 230, 230);
+            border: 1px solid transparent;
+            width: 100%;
             height: 100%;
             overflow: hidden;	/*넘치지 않게..ㅜㅠclip이랑 뭐가 다른지*/
         }
         #id4_2 a{
             text-decoration: none;
             color: black;
+        }
+        .content_img {
+        	margin: 10px auto;
+        	width: 230px;
+        	height: 150px;
+        	background-size: cover;
+        	background-color: red; 
+        }
+        .content_card {
+        	margin: 5px 10px;
+        }
+        .content_title {
+        	height: 20px;
+        	overflow: clip;
+        }
+        .content_name {
+        	margin: 0 auto;
+        }
+        .content_company {
+        	color:grey;
+        	line-height: 0.5;
+        	font-size: small;
+        }
+        .content_date {
+        	color:grey;
+        	line-height: 0.5;
+        	font-size: small;
         }
         #id5 {
             text-align: center;
@@ -66,6 +94,11 @@
         #frm3 {
             display: flex;
         }
+        #paging {
+        	margin: auto;
+        	display: flex;
+        	justify-content: center;
+        }
     </style>
 </head>
 
@@ -77,15 +110,15 @@
     <div id="id1" class="container">
         <a href="/Project4/main.jsp">Home</a>
         &gt
-        <a href="/Project4/lecture/lecture_main.jsp">강좌</a>
+        <a href="/Project4/lecture/lecture_main.do">강좌</a>
        	
         <c:if test="${param.search_category != '' && param.search_category != null}">
         	&gt
-		        <a href="/Project4/lecture/lecture_main.jsp">${param.search_category }</a>
+		        <a href="/Project4/lecture/lecture_main.do?search_category=${param.search_category }">${param.search_category }</a>
 		</c:if>
 		<c:if test="${param.search_category_detail != '' && param.search_category_detail != null}">
 		        &gt
-		        	<a href="/Project4/lecture/lecture_main.jsp">${param.search_category_detail }</a>
+		        	<a href="/Project4/lecture/lecture_main.do?search_category_detail=${param.search_category_detail }">${param.search_category_detail }</a>
 		</c:if>
         
     </div>
@@ -177,18 +210,24 @@
             </form>
         </div>
     
+    	<br/>
+    	
         <div id="id4_2" class="container">
         
         <c:choose>
         	<c:when test="${not empty lectureList }">
         		<c:forEach var="list" items="${lectureList }" varStatus="loop">
         			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
-					<div>
-						<img src="..${list.lecture_img}" style="background-color: grey; height: 150px; width: 200px;" />
-						<p style="font-weight: 700;">${list.lecture_title }</p>
-						<p>${list.member_name }</p>
-						<p style="color: grey;">${list.member_company }</p>
-						<p style="color: grey;">${list.lecture_start_date } ~ ${list.lecture_end_date }</p>
+					<div class="content_div">
+                        <div class="content_img">
+                        	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin=auto;" />
+                        </div>
+                       	<div class="content_card">
+						<strong class="content_title">${list.lecture_title }</strong>
+						<p class="content_name">${list.member_name }</p>
+						<p class="content_company">${list.member_company }</p>
+						<p class="content_date">${list.lecture_start_date } ~ ${list.lecture_end_date }</p>
+						</div>
 					</div>
 					</a>
 		</c:forEach>
@@ -199,6 +238,13 @@
 		</c:choose>
 
         </div>
+    </div>
+    <div class="container">
+    	<div id="paging">
+    		<div>
+    			${params.paging }
+    		</div>	
+    	</div>
     </div>
     
     </main>
