@@ -6,6 +6,8 @@ import action.cartAdd;
 import action.cartDelete;
 import action.heartAdd;
 import action.heartDelete;
+import action.idSearch;
+import action.pwdSearch;
 
 public class MainActionFactory {
 
@@ -40,6 +42,12 @@ public class MainActionFactory {
 		}
 		else if (command.equals("heartDelete")) {
 			action = new heartDelete();
+		}
+		else if (command.equals("idSearch")) {
+			action = new idSearch();
+		}
+		else if (command.equals("pwdSearch")) {
+			action = new pwdSearch();
 		}
 		
 		System.out.println(action);

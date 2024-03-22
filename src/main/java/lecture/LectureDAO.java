@@ -207,9 +207,14 @@ public class LectureDAO extends JDBConnect {
 				sb.append(" (1=1)");
 			}//검색 끝
 		
-
-		sb.append(" ORDER BY lecture_idx DESC");	//reg_date순으로 정렬해야 하는데 오류나서 임시로
-		
+			
+		//정렬.(실패)
+//		if ( map.get("order_by").equals("order_by_2") ) {
+//			sb.append(" ORDER BY lecture_title DESC");
+//		}
+//		else {
+//			sb.append(" ORDER BY lecture_idx DESC");	//reg_date순으로 정렬해야 하는데 오류나서 임시로
+//		}
 		
 		//페이징
 		if ( map.get("page_skip_cnt") != null && map.get("page_size") != null ) {
