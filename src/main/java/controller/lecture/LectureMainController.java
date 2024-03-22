@@ -83,7 +83,7 @@ public class LectureMainController extends HttpServlet {
 		params.put("page_block_start", page_block_start);
 		params.put("page_block_end", page_block_end);
 
-		//pagingArea 오류나서 잠시 막아둠. 
+		
 		String pagingArea = BbsPage.pagingArea(total_page, page_no, page_block_start, page_block_end, "lecture_main.do","");
 				
 		params.put("paging", pagingArea);
