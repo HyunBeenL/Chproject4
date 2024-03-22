@@ -84,7 +84,8 @@ public class BbsComuConn extends HttpServlet {
 		
 		request.setAttribute("bbsList", bbsList);
 		request.setAttribute("params",params);
-		request.getRequestDispatcher("./bbs/bbsComu.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("./bbs/bbsComu.jsp").forward(request, response);			
 	}
 
 	/**

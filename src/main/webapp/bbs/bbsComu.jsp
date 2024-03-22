@@ -86,7 +86,7 @@
             color: white;
         }
         
-        ul{padding: 0px;}
+        .ul1{padding: 0px;}
         li{
         	list-style-type: none;
         }
@@ -134,11 +134,13 @@
         .pagehover:hover{
         	background-color:#002475;
         	color: white;
+        	padding: 2px 5px;
         }
         .qnaA{
         background-color:#002475;
         color: white;
         }
+        
     </style>
 </head>
 <body>
@@ -175,7 +177,7 @@
             </div>
             <div class="registDiv"><img id="registBtn" src="/Project4/img/write.png" alt="img"></div>
         </div>
-    <ul>
+    <ul class=ul1>
         <li class="thead">
             <span class="num">번호</span>
             <span class="type">구분</span>
@@ -188,7 +190,7 @@
 	<c:choose>
 	<c:when test="${not empty bbsList }">
 		<c:forEach var="list" items="${bbsList}" varStatus="loop">
-		<li>
+		<li >
             <span class="num">${row }</span>
             <span class="type">${list.comu_category}</span>
             <span class="user">${list.member_user_id}</span>
