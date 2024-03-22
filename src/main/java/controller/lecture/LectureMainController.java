@@ -53,10 +53,11 @@ public class LectureMainController extends HttpServlet {
 		
 		
 		//검색 파라미터 설정(카테고리)
-		if ( search_category != null && !search_category.isEmpty()
-				&& search_category_detail != null && !search_category_detail.isEmpty()) {
+		if (true) {
+			params.put("search_state", search_state);
 			params.put("search_category", search_category);
 			params.put("search_category_detail", search_category_detail);
+			params.put("search_period", search_period);
 		}
 		
 		//페이징 파라미터 설정
