@@ -170,15 +170,26 @@
         </ul>
 
     </div>
-    <div class="comment" id="commentbtn"><button>댓글{숫자}<b> ↓</b></button></div>
+    <div class="comment" id="commentbtn"><button>댓글${cmt_total}<b> ▼</b></button></div>
     <div class="commentView">
-        <div>
+    
+	<c:choose>
+	<c:when test="${not empty cmtList }">
+		<c:forEach var="list" items="${cmtList}" varStatus="loop">
+		<div>
             <img src="/Project4/img/cmtperson.png">
-            <span id="cmtUserId">${user_id}</span>
+            <span id="cmtUserId">${list.member_user_id}</span>
         </div>
-        <p>${comment}</p>
-        <p>${reg_date}</p>
-    </div>
+        <p>${list.comt_content}</p>
+        <p>${list.comt_reg_date}</p>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<span class="QNA" style="width: 1100px;"><img src="/Project4/img/Q.png" alt="Q">등록된 글이 없습니다.</span>
+	</c:otherwise>
+	</c:choose>  
+        
+   </div>
     <form name="frm_comment" id="frm_comment" action=""method="post">
             <div class="f1">
             <div>

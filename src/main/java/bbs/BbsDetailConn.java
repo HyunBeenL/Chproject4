@@ -1,6 +1,7 @@
 package bbs;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import fileupload.FileDAO;
@@ -124,6 +125,18 @@ public class BbsDetailConn extends HttpServlet {
 		if(fileLists!=null){
 			request.setAttribute("fileLists", fileLists);
 		}
+		
+		CmtDAO dao3 = new CmtDAO();
+		int comu_idx = idx;
+		int cmt_total = dao3.cmtTotalCount(comu_idx);
+		request.setAttribute("cmt_total", cmt_total);
+		List<CmtDTO> cmtList = new ArrayList<CmtDTO>();
+		cmtList = dao3.cmtList(comu_idx);
+		request.setAttribute("cmtList", cmtList);
+		
+		
+		
+		
 		
 		request.getRequestDispatcher("/bbs/bbsDetail.jsp").forward(request, response);
 	}
