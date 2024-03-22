@@ -103,6 +103,28 @@ public class MemberDAO extends JDBConnect {
 		return check;
 	}
 	
+	public String pwdconfirm(String id){
+		boolean check = false;
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT member_pwd");
+		sb.append(" FROM kmc_member");
+		sb.append(" WHERE member_user_id='"+id.trim()+"'");
+		String result = "";
+		/* sb.append(" LIMIT "+10*(a-1)+", "+10); */
+		try {
+			psmt = conn.prepareStatement(sb.toString());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+	
 	public boolean emailcheck(String email){
 		boolean check = false;
 		StringBuilder sb = new StringBuilder();
