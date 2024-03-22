@@ -25,72 +25,82 @@ public class LectureDAO extends JDBConnect {
 		sb.append("SELECT COUNT(*) FROM kmc_lecture");
 		
 		//검색필터 총합(where 조건절)
-		if ( (map.get("search_word") != null && map.get("search_word") != "")
-				||(map.get("search_state") != null && map.get("search_state") != "")
-				||(map.get("search_category") != null && map.get("search_category") != "")
-				||(map.get("search_category_detail") != null && map.get("search_category_detail") != "")
-				||(map.get("search_period") != null && map.get("search_period") != "")) {
-			
-			sb.append(" WHERE ");
-			//검색
-			if ( map.get("search_word") != null && map.get("search_word") != "" ) {
-				map.get("search_option");
-				
-				if ( map.get("search_option").equals("search_title") ) {
-					sb.append("lecture_title");
-					sb.append(" LIKE '%" + map.get("search_word") + "%'");
-				}
-				else if ( map.get("search_option").equals("search_teacher") ) {
-					sb.append("member_name");
-					sb.append(" LIKE '%" + map.get("search_word") + "%'");
-				}
-				
-			}
-			
-			//검색, 카테고리 여러개 선택 시 " && " 붙이는 로직 필요..
-			
-			//선택 1.개강상태
-			if ( map.get("search_state") != null && map.get("search_state") != "" ) {
-				switch (map.get("search_state").toString()) {
-				case "state_ing":
+				sb.append(" WHERE ");
+					//검색
+					if ( map.get("search_word") != null && map.get("search_word") != "" ) {
+						
+						if ( map.get("search_option").equals("search_title") ) {
+							sb.append("lecture_title");
+							sb.append(" LIKE '%" + map.get("search_word") + "%'");
+						}
+						else if ( map.get("search_option").equals("search_teacher") ) {
+							sb.append("member_name");
+							sb.append(" LIKE '%" + map.get("search_word") + "%'");
+						}
+						
+					}
+					else {
+						sb.append(" (1=1)");
+					}
 					
-					break;
-				case "state_before":
 					
-					break;
-				case "state_after":
 					
-					break;
-				}
-			}
-				
-			//선택 2.카테고리 
-			if ( map.get("search_category") != null && map.get("search_category") != "" ) {
-				sb.append("lecture_category");
-				sb.append(" LIKE '%" + (map.get("search_category")).toString().substring(1) + "%'");
-			}
+					//선택 1.개강상태
+					sb.append(" && ");
+					if ( map.get("search_state") != null && map.get("search_state") != "" ) {
+						switch (map.get("search_state").toString()) {
+						case "state_ing":
+							sb.append("NOW() BETWEEN lecture_start_date AND lecture_end_date");
+							break;
+						case "state_before":
+							sb.append("NOW() < lecture_start_date");
+							break;
+						case "state_after":
+							sb.append("NOW() > lecture_end_date");
+							break;
+						}
+					}
+					else {
+						sb.append(" (1=1)");
+					}
+
+						
+					//선택 2.카테고리 
+					sb.append(" && ");
+					if ( map.get("search_category") != null && map.get("search_category") != "" ) {
+						sb.append("lecture_category=" + map.get("search_category"));
+					}
+					else {
+						sb.append(" (1=1)");
+					}
+							
+					//선택 3.카테고리_중분류
+					sb.append(" && ");
+					if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
+						sb.append("lecture_category_detail=" + map.get("search_category_detail"));
+					}
+					else {
+						sb.append(" (1=1)");
+					}
 					
-			//선택 3.카테고리_중분류
-			if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
-				sb.append("lecture_category_detail=" + map.get("search_category_detail"));
-			}
-			
-			//선택 4.학습기간
-			if ( map.get("search_period") != null && map.get("search_period") != "" ) {
-				switch (map.get("search_period").toString()) {
-				case "period_short":
-					
-					break;
-				case "period_mid":
-					
-					break;
-				case "period_long":
-					
-					break;
-				}
-			}
-		}
-		
+					//선택 4.학습기간
+					sb.append(" && ");
+					if ( map.get("search_period") != null && map.get("search_period") != "" ) {
+						switch (map.get("search_period").toString()) {
+						case "period_short":
+							sb.append("datediff(lecture_end_date, lecture_start_date) < 15");
+							break;
+						case "period_mid":
+							sb.append("datediff(lecture_end_date, lecture_start_date) > 15 && datediff(lecture_end_date, lecture_start_date) < 29");
+							break;
+						case "period_long":
+							sb.append("datediff(lecture_end_date, lecture_start_date) > 29");
+							break;
+						}
+					}
+					else {
+						sb.append(" (1=1)");
+					}//검색 끝
 		
 		try {
 			psmt = conn.prepareStatement(sb.toString());
@@ -121,17 +131,10 @@ public class LectureDAO extends JDBConnect {
 		sb.append(" FROM kmc_lecture");	//kmc 강의 테이블
 		
 		//검색필터 총합(where 조건절)
-		if ( (map.get("search_word") != null && map.get("search_word") != "")
-				||(map.get("search_state") != null && map.get("search_state") != "")
-				||(map.get("search_category") != null && map.get("search_category") != "")
-				||(map.get("search_category_detail") != null && map.get("search_category_detail") != "")
-				||(map.get("search_period") != null && map.get("search_period") != "")) {
-					
-			sb.append(" WHERE ");
+		sb.append(" WHERE ");
 			//검색
 			if ( map.get("search_word") != null && map.get("search_word") != "" ) {
-				map.get("search_option");
-						
+				
 				if ( map.get("search_option").equals("search_title") ) {
 					sb.append("lecture_title");
 					sb.append(" LIKE '%" + map.get("search_word") + "%'");
@@ -140,53 +143,71 @@ public class LectureDAO extends JDBConnect {
 					sb.append("member_name");
 					sb.append(" LIKE '%" + map.get("search_word") + "%'");
 				}
-						
+				
 			}
-					
-			//검색, 카테고리 여러개 선택 시 " && " 붙이는 로직 필요..
-					
+			else {
+				sb.append(" (1=1)");
+			}
+			
+			
 			//선택 1.개강상태
+			sb.append(" && ");
 			if ( map.get("search_state") != null && map.get("search_state") != "" ) {
 				switch (map.get("search_state").toString()) {
 				case "state_ing":
-							
+					sb.append("NOW() BETWEEN lecture_start_date AND lecture_end_date");
 					break;
 				case "state_before":
-							
+					sb.append("NOW() < lecture_start_date");
 					break;
 				case "state_after":
-							
+					sb.append("NOW() > lecture_end_date");
 					break;
 				}
 			}
-						
-			//선택 2.카테고리 
-			if ( map.get("search_category") != null && map.get("search_category") != "" ) {
-				sb.append("lecture_category");
-				sb.append(" LIKE '%" + (map.get("search_category")).toString().substring(1) + "%'");
+			else {
+				sb.append(" (1=1)");
 			}
-							
+
+				
+			//선택 2.카테고리 
+			sb.append(" && ");
+			if ( map.get("search_category") != null && map.get("search_category") != "" ) {
+				sb.append("lecture_category=" + map.get("search_category"));
+			}
+			else {
+				sb.append(" (1=1)");
+			}
+					
 			//선택 3.카테고리_중분류
+			sb.append(" && ");
 			if ( map.get("search_category_detail") != null && map.get("search_category_detail") != "" ) {
 				sb.append("lecture_category_detail=" + map.get("search_category_detail"));
 			}
-					
+			else {
+				sb.append(" (1=1)");
+			}
+			
 			//선택 4.학습기간
+			sb.append(" && ");
 			if ( map.get("search_period") != null && map.get("search_period") != "" ) {
 				switch (map.get("search_period").toString()) {
 				case "period_short":
-							
+					sb.append("datediff(lecture_end_date, lecture_start_date) < 15");
 					break;
 				case "period_mid":
-							
+					sb.append("datediff(lecture_end_date, lecture_start_date) > 15 && datediff(lecture_end_date, lecture_start_date) < 29");
 					break;
 				case "period_long":
-							
+					sb.append("datediff(lecture_end_date, lecture_start_date) > 29");
 					break;
 				}
 			}
-		}
+			else {
+				sb.append(" (1=1)");
+			}//검색 끝
 		
+
 		sb.append(" ORDER BY lecture_idx DESC");	//reg_date순으로 정렬해야 하는데 오류나서 임시로
 		
 		
@@ -194,6 +215,7 @@ public class LectureDAO extends JDBConnect {
 		if ( map.get("page_skip_cnt") != null && map.get("page_size") != null ) {
 			sb.append(" LIMIT "+ map.get("page_skip_cnt") +", "+ map.get("page_size"));
 		}
+		
 		System.out.println("sql : " + sb.toString());	//쿼리 출력
 		
 		
