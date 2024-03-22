@@ -66,12 +66,12 @@
                 <tr>
                     <td>
                     <div style="background: url('/Project4/img/adult.png') no-repeat center;height:100px;"></div>
-                    <a href="termsagree.do">일반 회원 ></a>
+                    <a href="joinChoiceOk.do?type=user">일반 회원 ></a>
                     <p>만 14세 이상 회원가입</p>
                     </td>
                     <td>
                     <div style="background: url('/Project4/img/child.png') no-repeat center;height:100px;"></div>
-                    <a href="agreement.jsp">어린이 회원 ></a>
+                    <a href="joinChoiceOk.do?type=child">어린이 회원 ></a>
                     <p>만 14세 미만 회원가입</p>
                     </td>
                 </tr>

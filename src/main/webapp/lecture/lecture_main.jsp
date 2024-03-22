@@ -43,9 +43,10 @@
             grid-gap: 20px;
         }
         #id4_2 div {
-            background-color: grey;
+            background-color: rgb(200, 200, 200);
             border: 1px solid red;
             height: 100%;
+            overflow: hidden;	/*넘치지 않게..ㅜㅠclip이랑 뭐가 다른지*/
         }
         #id4_2 a{
             text-decoration: none;
@@ -78,13 +79,13 @@
         &gt
         <a href="/Project4/lecture/lecture_main.jsp">강좌</a>
        	
-        <c:if test="${lecture_category } != null && ${lecture_category } != ''">
+        <c:if test="${param.search_category != '' && param.search_category != null}">
         	&gt
-		        <a href="/Project4/lecture/lecture_main.jsp">{lecture_category }</a>
-		        <c:if test="${lecture_category_detail } != null && ${lecture_category_detail } != ''">
-		        	&gt
-		        	<a href="/Project4/lecture/lecture_main.jsp">{lecture_category_detail }</a>
-		        </c:if>
+		        <a href="/Project4/lecture/lecture_main.jsp">${param.search_category }</a>
+		</c:if>
+		<c:if test="${param.search_category_detail != '' && param.search_category_detail != null}">
+		        &gt
+		        	<a href="/Project4/lecture/lecture_main.jsp">${param.search_category_detail }</a>
 		</c:if>
         
     </div>
@@ -168,11 +169,11 @@
     <div id="id4" class="container">
         <div id="id4_1" >
         
-            <span>총 ${params.total_count} 강좌수</span>
+            <span>${params.search_word } 총 ${params.total_count} 강좌수</span>
             
             <form name="frm3" id="frm3">
-                <input type="button" value="최신등록순">
-                <input type="button" value="가나다순">
+                <input type="radio" name="order_by" id="order_by_1" checked><label for="order_by_1">최신등록순</label>
+                <input type="radio" name="order_by" id="order_by_2"><label for="order_by_2">가나다순</label>
             </form>
         </div>
     
@@ -183,11 +184,11 @@
         		<c:forEach var="list" items="${lectureList }" varStatus="loop">
         			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
 					<div>
-						<img src="${list.lecture_img}" />
-						<p>${list.lecture_title }</p>
+						<img src="..${list.lecture_img}" style="background-color: grey; height: 150px; width: 200px;" />
+						<p style="font-weight: 700;">${list.lecture_title }</p>
 						<p>${list.member_name }</p>
-						<p>${list.member_company }</p>
-						<p>${list.lecture_start_date } ~ ${list.lecture_end_date }</p>
+						<p style="color: grey;">${list.member_company }</p>
+						<p style="color: grey;">${list.lecture_start_date } ~ ${list.lecture_end_date }</p>
 					</div>
 					</a>
 		</c:forEach>
@@ -201,5 +202,9 @@
     </div>
     
     </main>
+<script>
+    
+</script>
+
 </body>
 </html>

@@ -87,6 +87,7 @@
 </style>
 </head>
 <body>
+	<% boolean id = true; %>
 	<header>
 		<jsp:include page="/header/header.jsp" />
 	</header>
@@ -95,8 +96,8 @@
 	        <h1 style="text-align: center; margin-bottom:50px;"> 아이디 / 비밀번호 찾기</h1>
             <table class="changebtn">
                 <tr>
-                    <td id="findid"><a href ="#" onclick = "" style="color:white;">아이디 찾기</a></td>
-                    <td id="findpwd"><a href ="#" onclick= "">비밀번호 찾기</a></td>
+                    <td id="findid"><a href ="#" onclick = "<% id=true; %>" style="color:white;">아이디 찾기</a></td>
+                    <td id="findpwd"><a href ="#" onclick= "<% id=false;%>">비밀번호 찾기</a></td>
                 </tr>
             </table>
             <h2 style="text-align: center; margin:50px 0px;"> 회원가입시 기입한 정보를 입력해주세요.</h2>
@@ -104,6 +105,9 @@
 	        <form action="" class="findfrm" id="login0">
 	            <input type="tel" name="tel" id="tel" maxlength="20" placeholder="전화번호 입력" required autofocus/>
 	            <input type="email" name="email" id="email" placeholder="이메일입력" required/>
+	            <%if(!id){ %>
+	            <input type="email" name="email" id="email" placeholder="이메일입력" required/>
+	            <%} %>
 	            <div>회원가입 시 기입한 정보를 입력해주세요.</div>
 	            <div id="button">
 	                <input type="submit" value="찾기" class="loginbtn">

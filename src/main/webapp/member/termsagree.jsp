@@ -30,7 +30,6 @@
             background-color: white;
             padding: 20px 40px;
         }
-        
         .contact label{
             width: 120px;
             height: 72px;
@@ -52,13 +51,11 @@
         	border-radius:3px;
         	margin:10px;
         }
-        
         .submitbtn input:hover,.submitbtn button:hover{
             background-color: black;
             color:white;
             border:1px solid gray;
         }
-        
         .submitbtn{
             text-align: center;
         }
@@ -73,10 +70,9 @@
         	border-radius:3px;
         } */
         #findid{
-        	background-color:#0036ce;
+        	background-color:#0036CE;
             color:white;
         }
-        
         input[type=checkbox]{
             width:20px;
             margin:10px;
@@ -93,10 +89,10 @@
         <div class="main">
             <h1 style="text-align: center; margin-bottom:50px;"> 약관동의</h1>
             <h2 style="text-align: center; margin:50px 0px;"> </h2>
-            <form action="join.do" method="post">
+            <form action="join.do" id="frm" method="post">
                 <div class="border">
                     <div style="width:680px; display:block; margin:0px auto; font-size:20px; height:30px;">
-                        <input type="checkbox">전체 약관에 동의합니다.
+                        <input type="checkbox" class ="check" id="check">전체 약관에 동의합니다.
                     </div>
                     <fieldset class="contact">
                         <ul>
@@ -113,7 +109,6 @@
                                 <input class="check" id="check4" type="checkbox">홍보 설문 관련 정보 수신 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
                         </ul>
-                        
                     </fieldset>
                 </div>
                 <div class="submitbtn">
@@ -122,7 +117,6 @@
                 </div>
             </form>
         </div>
-        
         <div class="popup_layer" id="popup_layer" style="display: none;">
           <div class="popup_box">
               <div style="height: 10px; width: 800px; float:right;">
@@ -141,17 +135,40 @@
     </main>
     <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
-	    let findid = document.querySelector("#findid");
-	    if(!document.querySelector("#check1").value && !document.querySelector("#check2").value){
-	    	document.querySelector("#btn").disabled;
-	    }
+	   
+		/* if(!document.querySelector("#check1").checked || !document.querySelector("#check2").checked){
+			document.querySelector("#nextbtn").disabled = true;
+		} */
+		let nextbtn = document.querySelector("#nextbtn");
+		let btngroup = document.querySelectorAll(".check");
+		let entirecheck = document.querySelector("#check");
 		
+		nextbtn.addEventListener('click',()=>{
+			event.preventDefault();
+			if(!document.querySelector("#check1").checked || !document.querySelector("#check2").checked){
+				alert("필수 항목체크가 되지 않았습니다.");
+				return false;
+			}
+			document.querySelector("#frm").submit();
+		});
+		
+		entirecheck.addEventListener('click',()=>{
+			if(entirecheck.checked){
+				for(let i=0; i<btngroup.length; i++){
+					btngroup[i].checked = true;
+				}
+			}
+			else{
+				for(let i=0; i<btngroup.length; i++){
+					btngroup[i].checked = false;
+				}
+			}
+			
+		});
 		
 		function openPop() {
 	        document.getElementById("popup_layer").style.display = "block";
-
 	    }
-
 	    //팝업 닫기
 	    function closePop() {
 	        document.getElementById("popup_layer").style.display = "none";
@@ -159,3 +176,4 @@
     </script>
 </body>
 </html>
+
