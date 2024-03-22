@@ -23,6 +23,8 @@ public class BbsDetailConn extends HttpServlet {
 		int idx = 0;
 		idx = Integer.parseInt(request.getParameter("idx"));
 		BbsComuDTO bbsView = dao.bbsView(idx);
+		BbsComuDTO prebbsView = dao.bbsView(idx-1);
+		BbsComuDTO nextbbsView = dao.bbsView(idx+1);
 		dao.close();
 		
 		String user_id="";

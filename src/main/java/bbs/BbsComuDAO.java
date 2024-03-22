@@ -41,8 +41,11 @@ public class BbsComuDAO extends JDBConnect{
 		int total_count = 0;
 		StringBuilder sb = new StringBuilder();
 		sb.append("Select count(*) from kmc_community ");
-		if(search_category !=null && !search_category.isEmpty() && search_word != null && !search_word.isEmpty()) {
+		if(!search_category.trim().equals("tc") && search_category !=null && !search_category.isEmpty() && search_word != null && !search_word.isEmpty()) {
 			sb.append(" where " +search_category+" Like '%"+search_word+"%'");
+		}
+		if(search_category.trim().equals("tc")) {
+			sb.append(" where comu_title Like '%"+search_word+"%'" +" || comu_content Like '%"+search_word+"%'");
 		}
 		try {
 			String sql = sb.toString();
@@ -99,9 +102,13 @@ public class BbsComuDAO extends JDBConnect{
 		sb.append("select comu_idx, comu_category, comu_title, comu_content, member_user_id, comu_reg_date, comu_modify_date from kmc_community ");
 		
 		
-		if(search_category !=null && !search_category.isEmpty() && search_word != null && !search_word.isEmpty()) {
+		if(!search_category.trim().equals("tc") && search_category !=null && !search_category.isEmpty() && search_word != null && !search_word.isEmpty()) {
 			sb.append(" where " +search_category+" Like '%"+search_word+"%'");
 		}
+		if(search_category.trim().equals("tc")) {
+			sb.append(" where comu_title Like '%"+search_word+"%'" +" || comu_content Like '%"+search_word+"%'");
+		}
+		
 		sb.append(" ORDER BY comu_idx DESC");
 		sb.append(" limit "+ page_skip_cnt+", "+page_size);
 		try {

@@ -10,42 +10,130 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
-	String name = request.getParameter("name");
-	String id = request.getParameter("id");
-	String pwd = request.getParameter("password");
-	String birth = request.getParameter("birth");
-	String tel = request.getParameter("phone");
-	String email = request.getParameter("email");
-	String memtype = request.getParameter("memtype");
-	String compnum = request.getParameter("compnum");
-	String compname = request.getParameter("compname");
-	
-	
-	
-	MemberDAO dao = new MemberDAO();
-	MemberDTO dto = new MemberDTO();
-	dto.setMember_name(name);
-	dto.setMember_user_id(id);
-	dto.setMember_pwd(pwd);
-	dto.setMember_phone(tel);
-	dto.setMember_email(email);
-	dto.setMember_category(memtype);
-	dto.setMember_company_num(compnum);
-	dto.setMember_company(compname);
-	dto.setMember_birth(birth);
-	
-	int result = dao.join(dto);
-	dao.close();
-	if(result >0){
-		response.sendRedirect("login.do");
-	}
-	else{
-		out.println("<script>");
-		out.println("alert('오류 발생!')");
-		out.println("window.location.replace('join.do')");
-		out.println("</script>");
-	}
-%>
+	<style>
+        *{
+           margin:0px;
+            padding:0px;
+        }
+        .main{
+            margin:200px auto;
+            width: 744px;
+        }
+        .border{
+            width: 622px;
+            border:1px solid white;
+            padding:30px 60px;
+            background-color: #e3f0fc;
+        }
+        #idrange,#passwordrange{
+            border:1px solid black;
+            padding:10px;
+            margin:20px 0px;
+        }
+        
+        .findfrm input:not([type = submit]){
+            height:50px;
+            width:100%;
+            margin:20px 0px;
+            border:1px solid blue;
+        }
+        .loginbtn{
+            width:100px;
+            height:30px;
+            margin:0px auto;
+            margin-top:30px;
+            display:block;
+        }
+        .loginbtn:hover{
+            font-weight: bold;
+            background-color: black;
+            border: 2px solid gray;
+            color:white;
+        }
+        
+        .changebtn{
+            width:100%;
+            height:62px;
+            background-color: white;
+            border-collapse: collapse;
+            border:1px solid gray;
+        }
+        .changebtn tr td{
+            list-style-type: none;
+            display:inline-block;
+            width:48%;
+            height:100%;
+            text-align: center;
+        }
+        .changebtn tr td a{
+            text-decoration: none;
+            height: 100%;
+            margin: 10px auto;
+            display:inline-block;
+        }
+        .changebtn{
+            margin:20px auto;
+        }
+        #button input{
+        	width: 120px;
+            height: 50px;
+            background-color:#0036ce;
+            color:white;
+        	font-size:16px;
+        	border:1px solid white;
+        	border-radius:3px;
+        }
+        #button{
+        	text-align:center;
+        }
+        .information{
+        	width:600px;
+        	height:200px;
+        	background-color:white;
+        	border:1px solid white;
+        	margin-botthom:20px;
+        }
+        
+        .information tr th,.information tr td{
+        	border:1px solid black;
+        }
+        
+</style>
+</head>
+<body>
+	<header>
+		<jsp:include page="/header/header.jsp" />
+	</header>
+	<main>
+    	<div class="main">
+	        <h1 style="text-align: center; margin-bottom:50px;"> 회원가입 성공</h1>
+            <h2 style="text-align: center; margin:50px 0px;"> 가입한 회원정보</h2>
+	        <div class="border" style="text-align: center;"">
+	        <table class="information">
+	        	<thead>
+	        		<tr>
+	        			<th>이름</th>
+	        			<th>아이디</th>
+	        			<th>이메일</th>
+	        		</tr>
+	        	</thead>
+	        	<tbody>
+	        		<tr>
+	        			<td>${params.name }</td>
+	        			<td>${params.id }</td>
+	        			<td>${params.email }</td>
+	        		</tr>
+	        	</tbody>
+	        </table>
+	        <h4>로그인 하시겠습니까?</h4>
+	        <input type="button" onclick="location.href='login.do'" value="로그인">
+	        </div>
+        </div>
+        
+    </main>
+    <jsp:include page="/footer/footer.jsp"></jsp:include>
+    <script>
+    	
+    </script>
 </body>
 </html>
