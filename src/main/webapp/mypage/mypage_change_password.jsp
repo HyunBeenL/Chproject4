@@ -1,136 +1,172 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPage</title>
-    <style>
-        .container {
-            width: 1100px;
-            margin: auto;
-        }
-        #id0 {
-            height: 76px;
-        }
-        table, tr, th, td{
-            border: 1px solid transparent;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-        th {
-            height: 40px;
-            width: 250px;
-            font-size: 16px;
-        }
-        #change_pwd {
-            border: 1px solid grey;
-            border-radius: 4px;
-            background-color: white;
-            text-decoration: none;
-            color: black;
-            padding: 5px 15px;
-        }
-        #change_pwd:hover {
-            border: 1px solid grey;
-            border-radius: 4px;
-            background-color: rgb(200, 200, 200);
-        }
-        #change_pwd:active {
-            border: 1px solid grey;
-            border-radius: 4px;
-            background-color: rgb(200, 200, 200);
-            box-shadow: 1px 1px 1px 1px rgb(180, 180, 180);
-        }
-        #id2_2 {
-            margin: 0 auto;
-            left: 200px;
-            position: relative;
-        }
-        #info_save {
-            color: white;
-            border: 4px solid rgb(0, 123, 255);
-            background-color: rgb(0, 123, 255);
-            padding: 5px 40px;
-        }
-        #info_save:hover {
-            color: white;
-            border: 4px solid rgb(0, 105, 217);
-            background-color: rgb(0, 105, 217);
-            padding: 5px 40px;
-        }
-        #info_save:active {
-            color: white;
-            border: 4px solid rgb(0, 123, 255);
-            background-color: rgb(0, 123, 255);
-            padding: 5px 40px;
-        }
-        #info_cancel {
-            border: 4px solid rgb(0, 123, 255);
-            background-color: white;
-            padding: 5px 40px;
-        }
-        #info_cancel:hover {
-            border: 4px solid rgb(0, 105, 217);
-            background-color: rgb(0, 105, 217);
-            padding: 5px 40px;
-        }
-        #info_cancel:active {
-            border: 4px solid rgb(0, 123, 255);
-            background-color: rgb(0, 123, 255);
-            padding: 5px 40px;
-        }
-    </style>
-</head>
-<body>
-	<jsp:include page="/header/header.jsp" />
-<main>
-	<div id="id0"></div>
-<div class="container">
-        <table id="id2_1">
-        <form id="frm2">
-            <tr>
-                <th>사용자 아이디</th>
-                <td><input type="text" value="{user_id}" readonly></td>
-            </tr>
-            <tr>
-                <th><label for="pwd_now">현재 비밀번호</label></th>
-                <td><input type="password" name="pwd_now" id="pwd_now"></td>
-            </tr>
-            <tr>
-                <th><label for="pwd_new">새 비밀번호</label></th>
-                <td><input type="password" name="pwd_new" id="pwd_new"></td>
-            </tr>
-            <tr>
-                <th><label for="pwd_chk">비밀번호 확인</label></th>
-                <td><input type="password" name="pwd_chk" id="pwd_chk"></td>
-            </tr>
-            
-        </table>
-        <br>
-        <div id="id2_2">
-            <input id="info_save" type="button" value="저장"/>
-            <input id="info_cancel" type="button" value="취소"/>
-        </div>
-    </form>
-</div>
-</main>
-
-<script>
-let info_save = document.querySelector("#info_save");
-let info_cancel = document.querySelector("#info_cancel");
-
-info_save.addEventListener("click", function(e) {
-    let chk_save = confirm("저장하시겠습니까?");
-})
-
-info_cancel.addEventListener("click", function(e) {
-    let chk_cancel = confirm("취소하시겠습니까?");
-    if (chk_cancel) {
-        location.href = "/Project4/mypage/mypage_info.jsp";
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.contact li{
+    	list-style-type: none;
     }
-})
-</script>
+   
+</style>
+</head>
+
+
+
+<body>
+<% String pwd = request.getParameter("pwd"); %>
+<b><font size="4" color="gray">비밀번호 변경</font></b>
+	<br>
+	
+	<form name="checkpwdForm">
+		<div class="border">
+			<fieldset class="contact">
+			<ul>
+				<li>
+		        	<label for="password" >현재 비밀번호</label>
+		        	<input type="password" id ="password_now" name="password_now" maxlength="30" class="contents"  placeholder="비밀번호 입력" required>
+		        	<p id ="pwdnowequal"></p>
+		        </li>
+				<li>
+		        	<label for="password" >비밀번호</label>
+		        	<input type="password" id ="password" name="password" maxlength="30" class="contents"  placeholder="비밀번호 입력" required>
+		        	<p id ="pwderr"></p>
+		        </li>
+		        <li>
+		        	<label for="password" >비밀번호 확인</label>
+		        	<input type="password" id ="password2" name="password2" maxlength="30" class="contents"  placeholder="비밀번호 다시 입력" required>
+		        	<p id ="pwdequal"></p>
+		        </li>
+	        </ul>
+			<input type="button" id="change" value="변경"/>
+			</fieldset>
+		</div>
+	</form>
+	<script>
+		let pwd = document.querySelector('#password');
+    	let pwd2 = document.querySelector('#password2');
+    	let pwdnow = document.querySelector('#password_now');
+    	
+    	let pwdnowequalerr = document.querySelector('#pwdnowequal');
+    	let pwderr = document.querySelector('#pwderr');
+	    let pwderr2 = document.querySelector("#pwdequal");
+    	
+    	let pwdnowequal = false;
+    	let pwdequal = false;
+    	let pwdconfirm = false;
+    	
+        
+        document.querySelector("#change").addEventListener('click',()=>{
+        	 event.preventDefault();
+        	 if(pwdnowequal == false){
+        		alert("원래비밀번호가 다릅니다.");
+              	return false;
+        	 }
+        	 else if(pwdconfirm == false){
+            	 alert("양식에 맞게 비밀번호를 설정하세요.");
+            	
+             	return false;
+             }
+        	 else if(pwdequal == false){
+        		 alert("비밀번호가 일치하지 않습니다.");
+             	return false;
+             }
+             
+        	 
+        	 document.querySelector("#change").disabled = true;
+        	 opener.document.querySelector("#pwd").value = document.querySelector("#password").value;
+          	 window.close();
+        	 
+        });
+        
+        pwd.addEventListener('keypress', () =>{
+            if(pwd.value.match(/[a-zA-Z]/g) == null 
+					|| pwd.value.match(/[0-9]/g) == null 
+					|| pwd.value.match(/[\W_]/g) == null 
+					|| pwd.value.length<4 ||pwd.value.length >20){
+                pwderr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;4글자~20글자이내 영어/숫자/특수문자를 최소 하나씩넣어서 작성해주세요</strong>"                
+                pwderr.style.color = "red";
+                pwdconfirm = false;
+            }
+            else{
+                pwderr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;올바른 비밀번호입니다.";
+                pwderr.style.color = "green";
+                pwdconfirm = true;
+            }
+        });
+        
+        pwd2.addEventListener('keypress', () =>{
+        	if(pwd.value !== pwd2.value){
+                pwderr2.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치하지 않습니다.</strong>"                
+                pwderr2.style.color = "red";
+                pwdequal = false;
+            }
+            else{
+            	pwderr2.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치합니다.</strong>";
+                pwderr2.style.color = "green";
+                pwdequal = true;
+            }
+        });
+        
+        pwdnow.addEventListener('keypress', () =>{
+        	if(pwdnow.value != ${pwd}){
+                pwdnowequalerr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치하지 않습니다.</strong>"                
+                pwdnowequalerr.style.color = "red";
+                pwdnowequal = false;
+            }
+            else{
+            	pwdnowequalerr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치합니다.</strong>";
+            	pwdnowequalerr.style.color = "green";
+            	pwdnowequal = true;
+            }
+        });
+        
+        pwd.addEventListener('keyup', () =>{
+            if(pwd.value.match(/[a-zA-Z]/g) == null 
+					|| pwd.value.match(/[0-9]/g) == null 
+					|| pwd.value.match(/[\W_]/g) == null 
+					|| pwd.value.length<4 ||pwd.value.length >20){
+                pwderr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;4글자~20글자이내 영어/숫자/특수문자를 최소 하나씩넣어서 작성해주세요</strong>"                
+                pwderr.style.color = "red";
+                pwdconfirm = false;
+            }
+            else{
+                pwderr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;올바른 비밀번호입니다.";
+                pwderr.style.color = "green";
+                pwdconfirm = true;
+            }
+        });
+        
+        pwd2.addEventListener('keyup', () =>{
+        	if(pwd.value !== pwd2.value){
+                pwderr2.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치하지 않습니다.</strong>"                
+                pwderr2.style.color = "red";
+                pwdequal = false;
+            }
+            else{
+            	pwderr2.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치합니다.</strong>";
+                pwderr2.style.color = "green";
+                pwdequal = true;
+            }
+        });
+        
+        pwdnow.addEventListener('keyup', () =>{
+        	if(pwdnow.value != ${pwd}){
+                pwdnowequalerr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치하지 않습니다.</strong>"                
+                pwdnowequalerr.style.color = "red";
+                pwdnowequal = false;
+            }
+            else{
+            	pwdnowequalerr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치합니다.</strong>";
+            	pwdnowequalerr.style.color = "green";
+            	pwdnowequal = true;
+            }
+        });
+    </script>
 
 </body>
 </html>
