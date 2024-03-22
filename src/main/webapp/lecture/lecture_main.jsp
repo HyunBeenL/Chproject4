@@ -262,9 +262,14 @@
         	</c:otherwise>
         </c:choose>
 
-            <form name="frm3" id="frm3">
-                <input type="button" name="order_by" id="order_by_1" value = "최신등록순" onclick="this.form.submit()" selected/>
-                <input type="button" name="order_by" id="order_by_2" value = "가나다순" onclick="this.form.submit()" />
+            <form name="frm3" id="frm3" method="post">
+              <!--   <input type="button" name="order_by" id="order_by_1" value = "최신등록순" onclick="this.form.submit()" selected/>
+                <input type="button" name="order_by" id="order_by_2" value = "가나다순" onclick="this.form.submit()" /> -->
+            	 <select name="order_by" id="order_by" class="order_by">
+	                <option value=""  >정렬</option>
+	                <option value="order_by_1" >최신등록순</option>
+	                <option value="order_by_2" >가나다순</option>
+	            </select>
             </form>
         </div>
     
@@ -322,6 +327,14 @@
         search_category_detail.options[0].selected = true;
         search_period.options[0].selected = true;
     })
+      
+      const frm  = document.querySelector("#frm3");
+	 const frm1  = document.querySelector(".order_by");
+    document.querySelector(".order_by").addEventListener("change", function(){
+
+    	frm.action = "/Project4/lecture/lecture_main.do";
+    	frm.submit();
+    });
 </script>
 
 </body>

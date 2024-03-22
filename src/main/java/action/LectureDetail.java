@@ -25,7 +25,7 @@ public class LectureDetail implements Action{
 		ArrayList<LectureDTO> lecture_detail = dao.lectureDetail(lecture_idx);
 
 		String categoryDetail = dao.categoryDetail(lecture_idx);
-		
+		 System.out.println(categoryDetail+"#################");
 		request.setAttribute("lectureDetail", lecture_detail);
 		request.setAttribute("categoryDetail", categoryDetail);
 		
