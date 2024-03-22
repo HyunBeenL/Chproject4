@@ -40,6 +40,10 @@ public class LectureMainController extends HttpServlet {
 		String search_category = req.getParameter("search_category");
 		String search_category_detail = req.getParameter("search_category_detail");
 		String search_period = req.getParameter("search_period");
+		//정렬 옵션
+		String order_by = req.getParameter("order_by");
+		System.out.println(order_by);
+		
 		//페이징 옵션
 		page_no = (req.getParameter("page_no")!=null ? Integer.parseInt(req.getParameter("page_no")) : 1);
 		page_skip_cnt = (page_no-1)*page_size;

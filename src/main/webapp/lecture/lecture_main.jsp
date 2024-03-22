@@ -19,7 +19,10 @@
             color: black;
         }
         #id2 {
-            background-color: navy;
+                background-color: #002475;
+   				background-image: url("../img/bg_title_01.png"), url("../img/bg_title_02.png");
+    			background-repeat: no-repeat;
+    			background-position: bottom left, top 30% right 20%;
             width: 100%;
             height: 200px;
         }
@@ -100,6 +103,7 @@
         	width:40px;
         	height: 40px;
         	margin: 0;
+            background: #00A85D;
         }
         #frm2 select {
         	width: 150px;
@@ -240,8 +244,8 @@
             <span>${params.search_word } 총 ${params.total_count} 강좌수</span>
             
             <form name="frm3" id="frm3">
-                <input type="radio" name="order_by" id="order_by_1" checked><label for="order_by_1">최신등록순</label> &nbsp;
-                <input type="radio" name="order_by" id="order_by_2"><label for="order_by_2">가나다순</label>
+                <input type="radio" name="order_by" id="order_by_1" value = "order_by_1" onclick="this.form.submit()" selected/><label for="order_by_1">최신등록순</label> &nbsp;
+                <input type="radio" name="order_by" id="order_by_2" value = "order_by_2" onclick="this.form.submit()" /><label for="order_by_2">가나다순</label>
             </form>
         </div>
     
@@ -255,7 +259,7 @@
         			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
 					<div class="content_div">
                         <div class="content_img">
-                        	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin=auto;" />
+                        	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin: auto;" />
                         </div>
                        	<div class="content_card">
 						<strong class="content_title">${list.lecture_title }</strong>
@@ -287,18 +291,18 @@
     
     </main>
 <script>
-let search_refresh= document.querySelector("#search_refresh");
-search_refresh.addEventListener("click", (e) => {
-    let search_state = document.querySelector("#search_state");
-    let search_categorye = document.querySelector("#search_category");
-    let search_category_detail = document.querySelector("#search_category_detail");
-    let search_period = document.querySelector("#search_period");
+	let search_refresh= document.querySelector("#search_refresh");
+	search_refresh.addEventListener("click", (e) => {
+        let search_state = document.querySelector("#search_state");
+        let search_categorye = document.querySelector("#search_category");
+        let search_category_detail = document.querySelector("#search_category_detail");
+        let search_period = document.querySelector("#search_period");
 
-    search_state.options[0].selected = true;
-    search_category.options[0].selected = true;
-    search_category_detail.options[0].selected = true;
-    search_period.options[0].selected = true;
-})
+        search_state.options[0].selected = true;
+        search_category.options[0].selected = true;
+        search_category_detail.options[0].selected = true;
+        search_period.options[0].selected = true;
+    })
 </script>
 
 </body>
