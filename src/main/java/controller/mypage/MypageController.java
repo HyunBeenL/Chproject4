@@ -27,6 +27,7 @@ public class MypageController extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		String id = (String)session.getAttribute("userId");
 		List<HashMap<String, Object>> param = new ArrayList<HashMap<String,Object>>();
+		List<HashMap<String, Object>> heartparam = new ArrayList<HashMap<String,Object>>();
 		MemberDAO dao = new MemberDAO();
 		
 		List<String> emailList = new ArrayList<String>();
@@ -37,6 +38,8 @@ public class MypageController extends HttpServlet {
 		List<Date> enddateList = new ArrayList<Date>();
 		List<Integer> idxList = new ArrayList<Integer>();
 		param = dao.getCartInfo(id);
+		
+		
 		for(int i = 0; i<param.size(); i++) {
 			MemberDTO memdto = new MemberDTO();
 			LectureDTO lecdto = new LectureDTO();
@@ -45,7 +48,7 @@ public class MypageController extends HttpServlet {
 			memdto = (MemberDTO)param.get(i).get(i+"memdto");
 			lecdto = (LectureDTO)param.get(i).get(i+"lecdto");
 			cartdto = (CartDTO)param.get(i).get(i+"cartdto");
-			System.out.println(cartdto.getLecture_title());
+			
 			emailList.add(memdto.getMember_email());
 			nameList.add(memdto.getMember_name());
 			titleList.add(cartdto.getLecture_title());
@@ -56,7 +59,31 @@ public class MypageController extends HttpServlet {
 			
 		}
 		
+		List<String> hearttitleList = new ArrayList<String>();
+		List<String> heartteacherList = new ArrayList<String>();
+		List<Date> heartstrdateList = new ArrayList<Date>();
+		List<Date> heartenddateList = new ArrayList<Date>();
+		List<Integer> heartidxList = new ArrayList<Integer>();
+		heartparam = dao.getHeartInfo(id);
+		
+		for(int i = 0; i<heartparam.size(); i++) {
+			
+			LectureDTO lecdto = new LectureDTO();
+			CartDTO cartdto = new CartDTO();
+			
+			lecdto = (LectureDTO)heartparam.get(i).get(i+"lecdto");
+			cartdto = (CartDTO)heartparam.get(i).get(i+"cartdto");
+			
+			hearttitleList.add(cartdto.getLecture_title());
+			heartteacherList.add(cartdto.getLecture_teacher());
+			heartstrdateList.add(lecdto.getLecture_start_date());
+			heartenddateList.add(lecdto.getLecture_end_date());
+			heartidxList.add(lecdto.getLecture_idx());
+			
+		}
+		
 		Map<String, Object> params = new HashMap<String,Object>();
+		Map<String, Object> params1 = new HashMap<String,Object>();
 		
 		
 		
@@ -69,7 +96,16 @@ public class MypageController extends HttpServlet {
 		params.put("enddateList", enddateList);
 		params.put("idxList", idxList);
 		
+		
+		
+		params1.put("titleList", hearttitleList);
+		params1.put("teacherList", heartteacherList);
+		params1.put("strdateList", heartstrdateList);
+		params1.put("enddateList", heartenddateList);
+		params1.put("idxList", heartidxList);
+		
 		req.setAttribute("params", params);
+		req.setAttribute("params1", params1);
 		dao.close();
 		req.getRequestDispatcher("/mypage/mypage.jsp").forward(req, resp);
 	}

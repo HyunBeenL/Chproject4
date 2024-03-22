@@ -34,7 +34,7 @@
         }
         .lecture_title {
             margin: 20px 0px 30px 0px;
-            font-size: 34px;
+            font-size: 18px;
             font-weight: 800;
         }
         .lecture_date {
@@ -173,9 +173,10 @@
         <div id="id2_2">
             <hr>
             <div id="id2_2_1">
-                <a href="">수강중인 강좌</a>
-                <a href="">관심 강좌</a>
+                <button id="classbtn1" class="btn">수강중인 강좌</button>
+                <button id="classbtn2" class="btn">관심 강좌</button>
             </div>
+            <div class="class1">
             <c:forEach var="i" begin="0" end="${params.titleList.size()-1}">
             <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params.idxList.get(i)}"><div class="content">
                 <div class="content_img">
@@ -200,13 +201,49 @@
 					</c:choose>
 				</p>
                 <div class="content_cancel">
-                    <form id="frm3">
+                    <form class="frm3">
                         <input type="button" id="cancel_lecture" value="수강취소"/>
                     </form>
                 </div>
  
             </div></a>
             </c:forEach>
+            </div>
+            
+            <div class="class2" style="display:none;">
+           
+            <c:forEach var="i" begin="0" end="${params1.titleList.size()-1}">
+            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params1.idxList.get(i)}"><div class="content">
+                <div class="content_img">
+                    <img src="" style="background-color: grey;"/>
+                </div>
+                <div class="content_card">
+                    <p class="lecture_title">${params1.titleList.get(i) }</p>
+                    <span class="lecture_teacher">${params1.teacherList.get(i)}</span>
+                    <span class="lecture_date">${params1.strdateList.get(i)}~${params1.enddateList.get(i)}</span>
+                </div>
+                <fmt:formatDate value="${params1.strdateList.get(i)}" pattern="yyyy-MM-dd" var="formattedStartDate" />
+				<fmt:formatDate value="${params1.enddateList.get(i)}" pattern="yyyy-MM-dd" var="formattedEndDate" />
+				<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
+                <p class="content_state">
+					<c:choose>
+						<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
+							<small class="end">종료</small> 
+						</c:when>
+							<c:otherwise>
+								<small class="ing">진행중</small> 
+						</c:otherwise>
+					</c:choose>
+				</p>
+                <div class="content_cancel">
+                    <form class="frm3">
+                        <input type="button" id="cancel_lecture" value="수강취소"/>
+                    </form>
+                </div>
+ 
+            </div></a>
+            </c:forEach>
+            </div>
         </div>
     </div>
 </div>
@@ -217,8 +254,21 @@
     	event.preventDefault();	//강의 상세페이지 이동 해제
         let chk_cnl = confirm("취소하시겠습니까?");
         if (chk_cnl) {
-        	location.href="/Project4/mypage/mypage.jsp";
+        	location.href="/Project4/mypage/mypage.do";
         }
+    });
+    
+    let classbtn1 = document.querySelector("#classbtn1");
+    let classbtn2 = document.querySelector("#classbtn2");
+    
+    classbtn1.addEventListener('click',()=>{
+    	document.querySelector(".class1").style.display ="block";
+    	document.querySelector(".class2").style.display ="none";
+    });
+    
+    classbtn2.addEventListener('click',()=>{
+    	document.querySelector(".class2").style.display ="block";
+    	document.querySelector(".class1").style.display ="none";
     });
     
 </script>
