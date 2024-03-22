@@ -120,6 +120,31 @@
         #sp_user_email {
             font-weight: 600;
         }
+        .ing{
+			box-sizing: border-box;
+		    display: inline-block;
+		    width: 58px;
+		    height: 23px;
+		    font-size: 12px;
+		    color: #fff;
+		    line-height: 23px;
+		    text-align: center;
+		    border-radius: 2px;
+		    background: rgba(8, 119, 240, 0.9);
+		}
+		.end{
+			box-sizing: border-box;
+		    display: inline-block;
+		    width: 58px;
+		    height: 23px;
+		    font-size: 12px;
+		    color: #fff;
+		    line-height: 23px;
+		    text-align: center;
+		    border-radius: 2px;
+		    background-color: rgba(140,42,108,0.9);
+		
+		}
     </style>
 </head>
 <body>
@@ -128,9 +153,6 @@
 	<div id="id0"></div>
 	
 <div class="container">
-	<fmt:formatDate value="${params.strdate}" pattern="yyyy-MM-dd" var="formattedStartDate" />
-	<fmt:formatDate value="${params.enddate}" pattern="yyyy-MM-dd" var="formattedEndDate" />
-	<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
     <div id="id1">
         <div>
             <h2>마이페이지</h2>
@@ -145,8 +167,8 @@
     <div id="id2">
         <div id="id2_1">
                 <img id="img1" src="/Project4/img/user_image.png">
-                <span id="sp_user_name">${params.name}</span>님 안녕하세요. <br>
-                <p><span id="sp_user_email">이메일 주소</span>&nbsp;${params.email}</p>
+                <span id="sp_user_name">${params.nameList.get(0)}</span>님 안녕하세요. <br>
+                <p><span id="sp_user_email">이메일 주소</span>&nbsp;${params.emailList.get(0)}</p>
         </div>
         <div id="id2_2">
             <hr>
@@ -154,15 +176,19 @@
                 <a href="">수강중인 강좌</a>
                 <a href="">관심 강좌</a>
             </div>
-            <a href="../lecture/lecture_detail.jsp"><div class="content">
+            <c:forEach var="i" begin="0" end="${params.titleList.size()-1}">
+            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params.idxList.get(i)}"><div class="content">
                 <div class="content_img">
                     <img src="" style="background-color: grey;"/>
                 </div>
                 <div class="content_card">
-                    <p class="lecture_title">${params.title }</p>
-                    <span class="lecture_teacher">${params.teacher}</span>
-                    <span class="lecture_date">${params.strdate}~${params.enddate}</span>
+                    <p class="lecture_title">${params.titleList.get(i) }</p>
+                    <span class="lecture_teacher">${params.teacherList.get(i)}</span>
+                    <span class="lecture_date">${params.strdateList.get(i)}~${params.enddateList.get(i)}</span>
                 </div>
+                <fmt:formatDate value="${params.strdateList.get(i)}" pattern="yyyy-MM-dd" var="formattedStartDate" />
+				<fmt:formatDate value="${params.enddateList.get(i)}" pattern="yyyy-MM-dd" var="formattedEndDate" />
+				<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
                 <p class="content_state">
 					<c:choose>
 						<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
@@ -178,7 +204,9 @@
                         <input type="button" id="cancel_lecture" value="수강취소"/>
                     </form>
                 </div>
+ 
             </div></a>
+            </c:forEach>
         </div>
     </div>
 </div>

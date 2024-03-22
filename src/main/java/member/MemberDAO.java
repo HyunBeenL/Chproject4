@@ -1,5 +1,6 @@
 package member;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -191,8 +192,8 @@ public class MemberDAO extends JDBConnect {
 			psmt.setString(8, compname);
 			psmt.setString(9, birth);
 			
-			
 			result = psmt.executeUpdate();
+			
 			}
 		}
 		catch(Exception e){
@@ -201,15 +202,15 @@ public class MemberDAO extends JDBConnect {
 		return result;
 	}
 	
-	public HashMap<String, Object> getCartInfo(String id) {
-		MemberDTO memdto = new MemberDTO();
-		LectureDTO lecdto = new LectureDTO();
-		CartDTO cartdto = new CartDTO();
+	public List<HashMap<String, Object>> getCartInfo(String id) {
 		
-		HashMap<String, Object> params = new HashMap<String, Object>();
 		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		List<HashMap<String, Object>> params = new ArrayList<HashMap<String, Object>>();
+		
+		int i = 0;
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append("SELECT A.lecture_idx, A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
 		sb.append(" FROM kmc_cart AS A");
 		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
 		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
@@ -219,17 +220,24 @@ public class MemberDAO extends JDBConnect {
 			psmt = conn.prepareStatement(sb.toString());
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
+					MemberDTO memdto = new MemberDTO();
+					LectureDTO lecdto = new LectureDTO();
+					CartDTO cartdto = new CartDTO();
 					memdto.setMember_email(rs.getString("B.member_email"));
 					memdto.setMember_name(rs.getString("B.member_name"));
 					cartdto.setLecture_title(rs.getString("A.lecture_title"));
 					cartdto.setLecture_teacher(rs.getString("lecture_teacher"));
+					lecdto.setLecture_idx(rs.getInt("A.lecture_idx"));;
 					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
 					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
 					
-					params.put("memdto", memdto);
-					params.put("cartdto", cartdto);
-					params.put("lecdto", lecdto);
+					param.put(i+"memdto", memdto);
+					param.put(i+"cartdto", cartdto);
+					param.put(i+"lecdto", lecdto);
+					params.add(param);
+					
+					i++;
 				
 			}
 			
