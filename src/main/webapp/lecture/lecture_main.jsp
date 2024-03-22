@@ -133,8 +133,15 @@
         	display: flex;
         	justify-content: center;
         }
-        .pagehover {
-        	
+        .pagehover{
+        	text-decoration: none;
+        	color: black;
+        	padding: 2px 5px;
+        }
+        .pagehover:hover{
+        	background-color:#002475;
+        	color: white;
+        	padding: 2px 5px;
         }
     </style>
 </head>
@@ -240,12 +247,19 @@
     
     <div id="id4" class="container">
         <div id="id4_1" >
-        
-            <span>${params.search_word } 총 ${params.total_count} 강좌수</span>
-            
+        	
+        <c:choose>
+        	<c:when test="${param.search_word != '' && param.search_word != null}">
+        		<span>'${params.search_word }' 검색결과 ${params.total_count}건</span>
+        	</c:when>
+        	<c:otherwise>
+        		<span>총 ${params.total_count} 강좌수</span>
+        	</c:otherwise>
+        </c:choose>
+
             <form name="frm3" id="frm3">
-                <input type="radio" name="order_by" id="order_by_1" value = "order_by_1" onclick="this.form.submit()" selected/><label for="order_by_1">최신등록순</label> &nbsp;
-                <input type="radio" name="order_by" id="order_by_2" value = "order_by_2" onclick="this.form.submit()" /><label for="order_by_2">가나다순</label>
+                <input type="button" name="order_by" id="order_by_1" value = "최신등록순" onclick="this.form.submit()" selected/>
+                <input type="button" name="order_by" id="order_by_2" value = "가나다순" onclick="this.form.submit()" />
             </form>
         </div>
     
