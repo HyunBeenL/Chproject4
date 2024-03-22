@@ -91,6 +91,36 @@
             width: 70%;
             height: 40px;
         }
+        #frm1 select {
+        	width: 100px;
+        	height: 40px;
+        	font-size: 16px;
+        }
+        #search_submit {
+        	width:40px;
+        	height: 40px;
+        	margin: 0;
+        }
+        #frm2 select {
+        	width: 150px;
+            height: 30px;
+            font-size: 16px;
+            border: 1px solid rgb(200, 200, 200);
+        }
+        #frm2 input[type=button] {
+        	width: 100px;
+            height: 30px;
+            font-size: 16px;
+            padding: 0;
+            border: 1px solid rgb(200, 200, 200);
+        }
+        #frm2 input[type=submit] {
+        	width: 100px;
+            height: 30px;
+            font-size: 16px;
+            padding: 0;
+            border: 1px solid rgb(200, 200, 200);
+        }
         #frm3 {
             display: flex;
         }
@@ -136,7 +166,7 @@
                 <option value="search_teacher">강사명</option>
             </select>
             <input type="search" name="search_word" id="search_word">
-            <input type="submit" value="검색">
+            <input id="search_submit" type="submit" value="🔍">
         </form>
     </div>
     </div>
@@ -197,7 +227,7 @@
                 <option value="period_mid" >중기(3~4주)</option>
                 <option value="period_long" >장기(5주~)</option>
             </select>
-            <input type="button" value="새로고침" />
+            <input type="button" id="search_refresh" value="새로고침" />
             <input type="submit" value="필터 검색" />
         </form>
     </div>
@@ -257,7 +287,18 @@
     
     </main>
 <script>
-    
+let search_refresh= document.querySelector("#search_refresh");
+search_refresh.addEventListener("click", (e) => {
+    let search_state = document.querySelector("#search_state");
+    let search_categorye = document.querySelector("#search_category");
+    let search_category_detail = document.querySelector("#search_category_detail");
+    let search_period = document.querySelector("#search_period");
+
+    search_state.options[0].selected = true;
+    search_category.options[0].selected = true;
+    search_category_detail.options[0].selected = true;
+    search_period.options[0].selected = true;
+})
 </script>
 
 </body>
