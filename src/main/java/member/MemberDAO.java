@@ -93,6 +93,34 @@ public class MemberDAO extends JDBConnect {
 		return check;
 	}
 	
+	public boolean compnumcheck(String compnum){
+		boolean check = false;
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT COUNT(*)");
+		sb.append(" FROM kmc_member");
+		sb.append(" WHERE compnum='"+compnum.trim()+"'");
+		int result = 0;
+		/* sb.append(" LIMIT "+10*(a-1)+", "+10); */
+		try {
+			psmt = conn.prepareStatement(sb.toString());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(result >= 1) {
+			check = false;
+		}
+		else {
+			check =true;
+		}
+		
+		return check;
+	}
+	
 	
 	public int join(MemberDTO dto){
 		String name = dto.getMember_name();

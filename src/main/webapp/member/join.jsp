@@ -91,13 +91,12 @@
     </style>
 </head>
 <body>
-
-    
         <jsp:include page="../header/header.jsp" />
-    
+    	<%String type = (String)session.getAttribute("type"); %>
     <main>
     	<input type="hidden" value="false" id="check" name="check">
     	<input type="hidden" value="false" id="emailcheck" name="check">
+    	<input type="hidden" value="false" id="compnumcheck" name="check">
         <div class="main">
             <h1 style="text-align: center; margin-bottom:50px;"> 회원가입</h1>
             <h2 style="text-align: center; margin:50px 0px;"> K-MOOC에 오신것을 환영합니다.</h2>
@@ -108,7 +107,7 @@
                             <ul>
                             	<li>
                                     <label for="name">이름</label>
-                                    <input type="text" id ="name" name="name" maxlength="20" class="contents"  placeholder="아이디 입력" autofocus required/>
+                                    <input type="text" id ="name" name="name" maxlength="20" class="contents"  placeholder="한글 이름을 작성해주세요." autofocus required/>
                                 </li>
                                 <li>
                                     <label for="id">아이디</label>
@@ -151,8 +150,12 @@
                                     <div>
                                         <table style="width:800px; height: 72px; text-align: center;">
                                             <tr>
-                                                <td><input type="radio" name="memtype" id="memtype1" value="학생" style="margin:10px;" checked>학생</td>
-                                                <td><input type="radio" name="memtype" id="memtype2" value="강사" style="margin:10px;" >강사</td>
+                                                <td><input type="radio" name="memtype" id="memtype1" value="1" style="margin:10px;" checked>학생</td>
+                                                <%if(type.equals("child")){ %>
+                                                <td><input type="radio" name="memtype" id="memtype2" value="2" style="margin:10px;" disabled>강사</td>
+                                                <%}else{ %>
+                                                <td><input type="radio" name="memtype" id="memtype2" value="2" style="margin:10px;" >강사</td>
+                                                <%}; %>
                                             </tr>
                                         </table>
                                     </div>
@@ -184,6 +187,17 @@
     <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
     	
+    	
+    	var onlyKorean = function() {
+    	  var pattern = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+    	  this.value = this.value.replace(pattern, '');
+    	};
+    	
+    	var onlyNumber = function() {
+      	  var pattern = /[^-0-9]/g;
+      	  this.value = this.value.replace(pattern, '');
+      	};
+    	
 	    /////////////////에러메시지 영역//////////////////////
     	let iderr = document.querySelector("#iderr");
 	    let pwderr = document.querySelector('#pwderr');
@@ -191,17 +205,28 @@
 	    let emailerr = document.querySelector('#emailerr');
 	    
 	    /////////////////INPUT태그 영역///////////////////
+	    let name = document.querySelector('#name');
+	    name.addEventListener("keypress", onlyKorean);
+	    name.addEventListener("keyup", onlyKorean);
+	    
 	    let id = document.querySelector('#id');
 	    let pwd = document.querySelector('#password');
 	    let pwd2 = document.querySelector('#password2');
 	    let email = document.querySelector('#email');
+	    
+	    let tel = document.querySelector("#phone");
+	    tel.addEventListener("keypress",onlyNumber);
+	    tel.addEventListener("keyup",onlyNumber);
+	    
 	    let birth = document.querySelector("#birth");
+	    let compname =	document.querySelector("#compname");
+	    let compnum = document.querySelector("#compnum");
+	    compnum.addEventListener("keypress",onlyNumber);
+	    compnum.addEventListener("keyup",onlyNumber);
+	    
 	    let now = new Date();
 	    
 	    //////////////////////////////////////////////////
-	    let birth1 = new Date(parseInt(birth.value.substring(0,4))
-				,parseInt(birth.value.substring(5,7))-1
-				,parseInt(birth.value.substring(8,10)));
 	    
 	    let submit = document.querySelector(".submitbtn");
 	
@@ -209,34 +234,39 @@
 	    ///////////////중복확인 버튼////////////////////////////
 	    let idconfirmbtn = document.querySelector("#idconfirm");
 	    let emailconfirmbtn = document.querySelector("#emailconfirm");
+	    let compnumconfirmbtn = document.querySelector("#compnumconfirm");
 	    
 	    ///////////////양식확인////////////////////////////
 	    let idconfirm = document.querySelector("#check").value;
 	    let emailconfirm = false;
+	    let compnumconfirm = false;
 	    let pwdconfirm = false;
 	    let pwdequal = false;
     
+	    let teachcheck = false; ///강사 체크여부
     	///// 강사,학생 선택 영역
     	let a = document.querySelector("#memtype1");
     	let b = document.querySelector("#memtype2");
     	
     	///강사 가입 영역
     	let c = document.querySelector(".companyarea");
-    	let compnum = document.querySelector("#compnum");
-    	let compname = document.querySelector("#compname");
-    	
     	let required = document.createAttribute("required");
     	required.value = false;
+    	
     	c.style.display="none";
     	
     	a.addEventListener('click', ()=>{
     		c.style.display="none";
+    		teachcheck=false;
     		compnum.required =false;
     		compname.required =false;
+    		compnum.value="";
+    		compname.value="";
     	});
     	
     	b.addEventListener('click', ()=>{
     		c.style.display="block";
+    		teachcheck=true;
     		compnum.required =true;
     		compname.required =true;
     	});
@@ -244,12 +274,15 @@
     	
     	///////////////중복 및 확인//////////////////////
     	submit.addEventListener('click',() =>{
+    		let birth1 = new Date(parseInt(birth.value.substring(0,4))
+    				,parseInt(birth.value.substring(5,7))-1
+    				,parseInt(birth.value.substring(8,10)));
     		event.preventDefault();
             if(idconfirm == false || document.querySelector("#check").value=="false"){
                 alert("아이디 중복확인");
             	return false;
             }
-            else if(emailconfirm == false){
+            else if(emailconfirm == false || document.querySelector("#emailcheck").value=="false"){
                 alert("이메일 중복확인");
             	return false;
             }
@@ -258,13 +291,28 @@
             	return false;
             }
             else if(pwdconfirm == false){
-                alert("빨간 글씨가 안보이니?");
+                alert("양식에 맞게 비밀번호를 설정하세요.");
+            	return false;
+            }
+            else if(tel.value.length != 11){
+            	alert("번호가 일치하지 않습니다.");
             	return false;
             }
             else if(now < birth1){
 				alert("날짜 다시입력");
 				return false;
 			}
+            else if(teachcheck==true){
+            	if(compnumconfirm == false || document.querySelector("#compnumcheck").value=="false"){
+            		alert("사업자등록번호 다시입력");
+            		return false;
+            	}
+            	else if(compname.value == ""){
+            		alert("사업자이름을 입력하세요");
+            		return false;
+            	}
+            	
+            }
             submit.disabeld = true;
             document.querySelector("#frm").submit();
             
@@ -402,6 +450,11 @@
         	window.open("emailcheck.do?email="+email.value, "PopupWin", "width=500,height=600");
         });
 
+		compnumconfirmbtn.addEventListener('click',()=>{
+        	
+        	compnumconfirm = document.querySelector("#compnumcheck").value
+        	window.open("compnumcheck.do?compnum="+compnum.value, "PopupWin", "width=500,height=600");
+        });
 		
     </script>
 </body>
