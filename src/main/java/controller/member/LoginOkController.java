@@ -31,7 +31,7 @@ public class LoginOkController extends HttpServlet{
 			resp.sendRedirect("/Project4/kmocMain.do?command=main");
 		}
 		else {
-			req.getRequestDispatcher("/Project4/kmocMain.do?command=main").forward(req, resp);
+			req.getRequestDispatcher("login_ok.jsp").forward(req, resp);
 		}
 	}
 }

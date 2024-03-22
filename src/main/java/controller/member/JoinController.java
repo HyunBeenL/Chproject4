@@ -20,12 +20,6 @@ public class JoinController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		MemberDAO dao = new MemberDAO();
-		List<MemberDTO> list = dao.MemberList();
-		
-		dao.close();
-		
-		req.setAttribute("list", list);
 		req.getRequestDispatcher("/member/join.jsp").forward(req, resp);
 		
 	}
