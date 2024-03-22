@@ -61,7 +61,6 @@
         	width: 230px;
         	height: 150px;
         	background-size: cover;
-        	background-color: rgb(220, 220, 220); 
         }
         .content_card {
         	margin: 5px 10px;
@@ -118,12 +117,18 @@
             padding: 0;
             border: 1px solid rgb(200, 200, 200);
         }
+        #frm2 input[type=button]:hover {
+        	background-color: #007bff;
+        }
         #frm2 input[type=submit] {
         	width: 100px;
             height: 30px;
             font-size: 16px;
             padding: 0;
             border: 1px solid rgb(200, 200, 200);
+        }
+        #frm2 input[type=submit]:hover {
+        	background-color: #007bff;
         }
         #frm3 {
             display: flex;
@@ -158,11 +163,11 @@
        	
         <c:if test="${param.search_category != '' && param.search_category != null}">
         	&gt
-		        <a href="/Project4/lecture/lecture_main.do?search_category=${param.search_category }">${param.search_category }</a>
+		        <a href="/Project4/lecture/lecture_main.do?search_category=${param.search_category }">${result_category}</a>
 		</c:if>
 		<c:if test="${param.search_category_detail != '' && param.search_category_detail != null}">
 		        &gt
-		        	<a href="/Project4/lecture/lecture_main.do?search_category_detail=${param.search_category_detail }">${param.search_category_detail }</a>
+		        	<a href="/Project4/lecture/lecture_main.do?search_category_detail=${param.search_category_detail }">${result_category_detail}</a>
 		</c:if>
         
     </div>
