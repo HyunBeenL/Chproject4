@@ -23,7 +23,7 @@
         margin-right: 15px;
 
     }
-    .articletitle{
+    .title{
         font-size: 28px;
         text-align: center;
         width: 1100px;
@@ -32,7 +32,7 @@
         margin: 20px 0;
         font-size: 18px;
     }
-    .mainArticle{
+    .content{
         margin: 20px 0;
         font-size: 18px;
     }
@@ -104,6 +104,14 @@
         border-top: 1px silver solid;
         border-bottom: 1px silver solid;
     }
+    .btn{
+    	margin-bottom: 10px;
+    }
+    .commentView{
+    	display:none;
+    	border: 1px solid black;
+    	margin-bottom: 10px;
+    }
 </style>
 </head>
 <body>
@@ -113,11 +121,11 @@
 </div>
 <div class="main">
     <div class="article">
-        <div class="articletitle"><p>${title}</p></div>
-        <div class="date">작성일 ${regdate} 최종 수정일 ${modifydate}</div>
-        <div class="mainArticle">${content}</div>
+        <div class="title"><p>${title}</p></div>
+        <div class="date">작성일 ${reg_date} 최종 수정일 ${modify_date}</div>
+        <div class="content" id="content">${content}</div>
         <ul>
-            <a href="" class= "moveArticle" id="preArticle" >
+            <a href="bbsdetail.do?idx=${idx-1}" class= "moveArticle" id="preArticle" >
             <span class="flag">↑</span>
             <span class="flag">이전글</span>
             <span class="title">${title}</span>
@@ -125,7 +133,7 @@
             </a>
         </ul>
         <ul>
-            <a href="" class= "moveArticle" id="nextArticle" >
+            <a href="bbsdetail.do?idx=${idx+1}" class= "moveArticle" id="nextArticle" >
             <span class="flag">↓</span>
             <span class="flag">다음글</span>
             <span class="title">${title}</span>
@@ -134,7 +142,7 @@
         </ul>
 
     </div>
-    <div class="comment"><a href="">댓글{숫자}</a></div>
+    <div class="comment" id="commentbtn"><button>댓글{숫자}<b> ↓</b></button></div>
     <div class="commentView">
         <div>
             <img src="/Project4/img/cmtperson.png">
@@ -147,23 +155,23 @@
             <div class="f1">
             <div>
             <img src="/Project4/img/cmtperson.png">
-            <span id="cmtUserId">${user_id}</span>
+            <span id="cmtUserId">${userId}</span>
             </div>
             <input type="hidden" name="user_id" id="user_id" value="{UserId}" readonly>
             </div>
-            <textarea name="content" id="content"></textarea>
+            <textarea name="cmtContent" id="cmtContent"></textarea>
             <div class="btn">
             <input type="submit" name="cmt_btn_submit" id="cmt_btn_submit" value="글등록">
             </div>  
     </form>
 
-    <form name="frm_regist" id="frm_regist" action="" method="post">
         <div class="btn">
         <input type="button" name="btn_cancel" id="btn_cancel" value="목록">
+        <c:if test="${ user_id eq userId}">
         <input type="button" name="btn_delete" id="btn_delete" value="삭제">
         <input type="submit" name="btn_submit" id="btn_submit" value="수정">
+        </c:if>
         </div>
-    </form>
 </div>
 
 
@@ -174,25 +182,34 @@
 </div>
 
 <script>
-	
-    document.querySelector("#cmt_btn_submit").addEventListener("click",()=>{
-        let a = document.getElementById("user_id");
+	if(document.querySelector("#btn_submit")!=null){
+    document.querySelector("#btn_submit").addEventListener("click",()=>{
+        
         let c = document.getElementById("content");
         if(c.value == ""){
             alert("내용이 비어있습니다.");
             event.preventDefault();
         }
+        window.location.href="./modifyConn.do?idx=${idx}";
     })
+	}
+	if(document.querySelector("#btn_submit")!=null){
     document.querySelector("#btn_delete").addEventListener("click",()=>{
         if(confirm("삭제하시겠습니까?")){
-            window.location.href="list";
+            window.location.href="./delete.do?idx=${idx}";
         }
     })
+	}
     document.querySelector("#btn_cancel").addEventListener("click",()=>{
         if(confirm("이전페이지로 돌아가시겠습니까?")){
-            window.location.href="list";
+            window.location.href="./comu.do";
         }
     })
+    
+    let a = document.querySelector(".commentView");
+	document.querySelector("#commentbtn").addEventListener("click",()=>{
+	a.style.display=='block'? a.style.display='none': a.style.display='block';
+	})
     </script>
 </body>
 </html>

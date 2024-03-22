@@ -22,7 +22,6 @@ public class BbsDetailConn extends HttpServlet {
 		BbsComuDAO dao = new BbsComuDAO(); 
 		int idx = 0;
 		idx = Integer.parseInt(request.getParameter("idx"));
-		//idx = (bbs_idx !=null && !bbs_idx.isEmpty() ? Integer.parseInt("bbs_idx") :0);
 		BbsComuDTO bbsView = dao.bbsView(idx);
 		dao.close();
 		
