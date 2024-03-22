@@ -36,6 +36,7 @@ public class CmtDAO extends JDBConnect {
 		List<CmtDTO> list = new Vector<CmtDTO>();
 		StringBuilder sb = new StringBuilder();
 		sb.append("select comt_idx, comu_idx, comt_content, comt_reg_date, member_user_id, member_img from kmc_comment ");
+		sb.append("where comu_idx = '"+comu_idx+"'");
 		sb.append(" ORDER BY comt_reg_date DESC");
 	
 		try {
@@ -62,14 +63,15 @@ public class CmtDAO extends JDBConnect {
 		return list;
 	}
 	
-	public void cmtRegist(BbsQnaDTO dto) {
+	public void cmtRegist(CmtDTO dto) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("insert into kmc_qna(qna_category,qna_title,qna_answer) values (?,?,?)");
+		sb.append("insert into kmc_comment(comu_idx,comt_content,member_user_id,member_img) values (?,?,?,?)");
 		try {
 			psmt = conn.prepareStatement(sb.toString());
-			psmt.setString(1, dto.getQna_category());
-			psmt.setString(2, dto.getQna_title());
-			psmt.setString(3, dto.getQna_answer());
+			psmt.setInt(1, dto.getComu_idx());
+			psmt.setString(2, dto.getComt_content());
+			psmt.setString(3, dto.getMember_user_id());
+			psmt.setString(4, dto.getMember_img());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,15 +81,13 @@ public class CmtDAO extends JDBConnect {
 		
 	}
 	
-	public void cmtModify(BbsQnaDTO dto) {
+	public void cmtModify(CmtDTO dto) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("update kmc_qna set qna_category =?, qna_title =?, qna_answer = ? where qna_idx = ?");
+		sb.append("update kmc_comment set comt_content =? where comt_idx = ?");
 		try {
 			psmt = conn.prepareStatement(sb.toString());
-			psmt.setString(1, dto.getQna_category());
-			psmt.setString(2, dto.getQna_title());
-			psmt.setString(3, dto.getQna_answer());
-			psmt.setInt(4, dto.getQna_idx());
+			psmt.setString(1, dto.getComt_content());
+			psmt.setInt(2, dto.getComt_idx());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
