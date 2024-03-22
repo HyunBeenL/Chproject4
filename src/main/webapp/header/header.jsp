@@ -13,7 +13,7 @@
         <div id="headcontainer">
         	<% boolean login = CommonUtil.loginCheck(session); %>
             <div id="logo">
-                <a href="/Project4/main.jsp"><img src="/Project4/mainImg/header_logo.png" alt=""></a>
+                <a href="/Project4/kmocMain.do?command=main"><img src="/Project4/mainImg/header_logo.png" alt=""></a>
             </div>
             <nav id="top_menu">
                 <ul>

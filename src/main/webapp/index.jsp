@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-		<a href="/Project4/kmocMain.do?command=main">메인 바로가기</a>
+		<%
+		response.sendRedirect("/Project4/kmocMain.do?command=main");
+		%>
 		
 </body>
 </html>

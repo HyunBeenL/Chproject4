@@ -115,7 +115,7 @@
 			word-break: break-all;
 		    vertical-align: middle;
 		    font-size: 14px;	
-		    line-height: 50px;
+		    line-height: 40px;
 		    font-weight: 300;
 		}
 		ul > li  > span{
