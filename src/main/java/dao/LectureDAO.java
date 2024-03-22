@@ -109,5 +109,26 @@ public class LectureDAO extends JDBConnect {
 	}
 
 
+	public String categoryDetail(int idx) {
+		String sql = "select B.lecture_category_detail_name\r\n"
+				+ "from kmc_lecture   as A\r\n"
+				+ "inner join kmc_category as B on A.lecture_category_detail = B.lecture_category_detail\r\n"
+				+ "where A.lecture_idx = ?";
+		String detail = "";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, idx);
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				detail = rs.getString("lecture_category_detail_name");
+			}
+			
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("강좌 상세정보 가져오기 오류");
+		}
+		
+		return detail;
+	}
 }
