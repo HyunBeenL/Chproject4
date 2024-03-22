@@ -23,9 +23,11 @@ public class LectureDetail implements Action{
 		
 		LectureDAO dao = new LectureDAO();
 		ArrayList<LectureDTO> lecture_detail = dao.lectureDetail(lecture_idx);
-		System.out.println(lecture_detail);
+
+		String categoryDetail = dao.categoryDetail(lecture_idx);
+		 System.out.println(categoryDetail+"#################");
 		request.setAttribute("lectureDetail", lecture_detail);
-		
+		request.setAttribute("categoryDetail", categoryDetail);
 		
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("userId");
@@ -40,6 +42,9 @@ public class LectureDetail implements Action{
 			request.setAttribute("checkHeart", check_Heart);
 			System.out.println("############# 찜하기 확인 ");
 		}
+
+		request.setAttribute("memberId", memberId);
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
