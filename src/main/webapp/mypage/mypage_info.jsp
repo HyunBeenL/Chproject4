@@ -121,16 +121,19 @@
     </div>
 
     <div id="id2">
-    	<form action = "modifyMypage.do" id="frm">
+    	<form action = "modifyMypage.do" id="frm" method="get">
 	        <table id="id2_1">
 	            <tr>
 	                <th>사용자 아이디</th>
 	                <td>${params.id}</td>
+	                <td><input type="hidden" name="id" id="id" value="${params.id}"></td>
+	                
 	            </tr>
 	            <tr>
 	                <th>비밀번호 변경</th>
 	                <td><button type="button" id="change_pwd">비밀번호 변경</button></td>
-	                <input type="hidden" name="pwd" id="pwd" value="">
+	                <td><input type="hidden" name="pwd" id="pwd" value=""></td>
+	                
 	            </tr>
 	            <tr>
 	                <th>이름</th>
@@ -138,24 +141,26 @@
 	            </tr>
 	            <tr>
 	                <th>이메일</th>
-	                <td><input type="email" name="email" id="email" maxlength="30" value=${params.email }></td>
+	                <td><input type="email" name="email" id="email" maxlength="30" value="${params.email }"></td>
 	            </tr>
 	            <tr>
 	                <th>전화번호</th>
-	                <td><input type="tel" name="phone" id="phone" maxlength="11" value=${params.tel }></td>
+	                <td><input type="tel" name="phone" id="phone" maxlength="11" value="${params.tel }"></td>
 	            </tr>
 	            <tr>
 	                <th>회원등급</th>
 	                <td>${params.category}</td>
 	            </tr>
+	            
 	        </table>
+	        <input type="submit" id="info_save" value="저장"/>
+            <input id="leave" type="button" value="회원탈퇴"/>
         </form>
         <br>
         <div id="id2_2">
-            <form id="frm2">
-                <input id="info_save" type="submit" value="저장"/>
-                <input id="leave" type="button" value="회원탈퇴"/>
-            </form>
+            
+                
+            
         </div>
     
     </div>
@@ -166,12 +171,17 @@
 	document.querySelector("#change_pwd").addEventListener('click', ()=>{
 		window.open("mypage_change_password.do?id=${params.id}" , "PopupWin", "width=500,height=600");
 	});
-	
-    let info_save = document.querySelector("#info_save");
+	document.querySelector("#leave").addEventListener('click', ()=>{
+		console.log("${params.id}");
+		console.log(document.querySelector("#pwd").value);
+		console.log(document.querySelector("#email").value);
+		console.log(document.querySelector("#phone").value);
+	})
+    /* let info_save = document.querySelector("#info_save");
 
     info_save.addEventListener("click", function(e) {
         let chk_save = confirm("저장하시겠습니까?");
-    });
+    }); */
 </script>
 
 </body>

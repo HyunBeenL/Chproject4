@@ -113,7 +113,7 @@
         });
         
         pwdnow.addEventListener('keypress', () =>{
-        	if(pwdnow.value != ${pwd}){
+        	if(pwdnow.value != "${pwd}"){
                 pwdnowequalerr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치하지 않습니다.</strong>"                
                 pwdnowequalerr.style.color = "red";
                 pwdnowequal = false;
@@ -155,7 +155,7 @@
         });
         
         pwdnow.addEventListener('keyup', () =>{
-        	if(pwdnow.value != ${pwd}){
+        	if(pwdnow.value != "${pwd}"){
                 pwdnowequalerr.innerHTML = "<strong>&nbsp;&nbsp;&nbsp;비밀번호가 일치하지 않습니다.</strong>"                
                 pwdnowequalerr.style.color = "red";
                 pwdnowequal = false;

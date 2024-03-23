@@ -314,4 +314,23 @@ public class MemberDAO extends JDBConnect {
 		return params;
 	}
 	
+	public int pwdChange(String phone, String email, String memberId,String pwd) {
+		String sql = "update kmc_member set member_pwd = ?, member_phone = ? , member_email = ? where member_user_id =? ;"
+				+ "";
+		int rResult = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,pwd);
+			psmt.setString(2,phone);
+			psmt.setString(3,email);
+			psmt.setString(4,memberId);
+			rResult = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("일치하는 PWD 없음");
+			e.printStackTrace();
+		}
+		return rResult;
+	}  
+	
 }

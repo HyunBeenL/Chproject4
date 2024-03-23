@@ -25,6 +25,7 @@ public class MypageController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession(true);
+		
 		String id = (String)session.getAttribute("userId");
 		List<HashMap<String, Object>> param = new ArrayList<HashMap<String,Object>>();
 		List<HashMap<String, Object>> heartparam = new ArrayList<HashMap<String,Object>>();
