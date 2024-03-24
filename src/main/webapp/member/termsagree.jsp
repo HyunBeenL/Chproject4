@@ -25,23 +25,23 @@
             padding: 60px 30px;
         }
         .contact{
-            width:600px;
+            width:680px;
             margin:0px auto;
             background-color: white;
-            padding: 20px 40px;
         }
-        .contact label{
-            width: 120px;
+        .terms{
+        	display:inline-block;
+            width: 470px;
             height: 72px;
-            float: left;
-            text-align: center;
-            line-height: 75px;
+            font-size:20px;
+            
         }
         .contents{
-            margin:10px;
+            margin:30px;
         }
         .contact li{
             list-style-type: none;
+            margin-left:10px;
         }
         .btn{
            	width: 120px;
@@ -81,6 +81,19 @@
         	background-color:blue;
         	Color:white;
         }
+        .agreebtn{
+        	width: 120px;
+            height: 40px;
+            margin :10px;
+            background-color:white;
+        	font-size:16px;
+        	border:1px solid #ebebeb;
+        	border-radius:4px;
+        }
+        .check{
+			height:20px;   
+        }
+        
     </style>
 </head>
 <body>
@@ -91,23 +104,26 @@
             <h2 style="text-align: center; margin:50px 0px;"> </h2>
             <form action="join.do" id="frm" method="post">
                 <div class="border">
-                    <div style="width:680px; display:block; margin:0px auto; font-size:20px; height:30px;">
+                    <div style="width:680px; display:block; margin:20px auto; font-size:20px; height:30px;">
                         <input type="checkbox" class ="check" id="check">전체 약관에 동의합니다.
                     </div>
                     <fieldset class="contact">
                         <ul>
                             <li>
-                                <input class="check" id="check1" type="checkbox">이용약관 동의<button type="button" onclick="openPop()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check1"><label class="terms">이용약관 동의</label><button type="button" onclick="openPop()" class="agreebtn">자세히 보기</button>
                             </li>
                             <li>
-                                <input class="check" id="check2" type="checkbox">개인정보 필수항목 수집 이용 및 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check2"><label class="terms">개인정보 필수항목 수집 이용 및 동의</label><button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
+                            
                             <li>
-                                <input class="check" id="check3" type="checkbox">개인정보 선택항목 수집 및 이용 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check3"><label class="terms">개인정보 선택항목 수집 및 이용 동의</label><button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
-                            <li>
-                                <input class="check" id="check4" type="checkbox">홍보 설문 관련 정보 수신 동의<button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                            
+                            <li> 
+                                <input type="checkbox" class="check" id="check4"><label class="terms">홍보 설문 관련 정보 수신 동의</label><button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
                             </li>
+                            
                         </ul>
                     </fieldset>
                 </div>
