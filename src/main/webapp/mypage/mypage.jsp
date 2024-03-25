@@ -167,8 +167,8 @@
     <div id="id2">
         <div id="id2_1">
                 <img id="img1" src="/Project4/img/user_image.png">
-                <span id="sp_user_name">${params.nameList.get(0)}</span>님 안녕하세요. <br>
-                <p><span id="sp_user_email">이메일 주소</span>&nbsp;${params.emailList.get(0)}</p>
+                <span id="sp_user_name">${params.name}</span>님 안녕하세요. <br>
+                <p><span id="sp_user_email">이메일 주소</span>&nbsp;${params.email}</p>
         </div>
         <div id="id2_2">
             <hr>
@@ -177,8 +177,10 @@
                 <button id="classbtn2" class="btn">관심 강좌</button>
             </div>
             <div class="class1">
+            <c:if test="${params.titleList.size()-1 >=0 }">
             <c:forEach var="i" begin="0" end="${params.titleList.size()-1}">
-            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params.idxList.get(i)}"><div class="content">
+            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params.idxList.get(i)}">
+            <div class="content">
                 <div class="content_img">
                     <img src="" style="background-color: grey;"/>
                 </div>
@@ -202,16 +204,29 @@
 				</p>
                 <div class="content_cancel">
                     <form class="frm3">
-                        <input type="button" id="cancel_lecture" value="수강취소"/>
+                        <input type="button" id="cancel_lecture${i}" onclick="location.href='/Project4/kmocMain.do?command=cartDelete&idx=${params.idxList.get(i)}'" value="수강취소"/>
                     </form>
                 </div>
  
-            </div></a>
+            </div>
+            </a>
             </c:forEach>
+            </c:if>
+            <c:if test="${params.titleList.size()-1 < 0 }">
+            <div class="content">
+            	<h1>등록된 정보가 없습니다.</h1>
+            </div>
+            </c:if>
+            </div>
+            
+            
+            
+            
             </div>
             
             <div class="class2" style="display:none;">
            
+           	<c:if test="${params1.titleList.size()-1 >=0 }">
             <c:forEach var="i" begin="0" end="${params1.titleList.size()-1}">
             <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params1.idxList.get(i)}"><div class="content">
                 <div class="content_img">
@@ -237,28 +252,24 @@
 				</p>
                 <div class="content_cancel">
                     <form class="frm3">
-                        <input type="button" id="cancel_lecture" value="수강취소"/>
+                        <input type="button" id="cancel_heart${i}" onclick="location.href='/Project4/kmocMain.do?command=heartDelete&idx=${params1.idxList.get(i)}'" value="찜 해제"/>
                     </form>
                 </div>
- 
+			
             </div></a>
             </c:forEach>
+            </c:if>
+            <c:if test="${params1.titleList.size()-1 < 0 }">
+            <h1>등록된 정보가 없습니다.</h1>
+            </c:if>
             </div>
         </div>
     </div>
 </div>
 </main>
 <script>
-    let cnl_lecture = document.querySelector("#cancel_lecture");
-    cnl_lecture.addEventListener("click", function(e) {
-    	event.preventDefault();	//강의 상세페이지 이동 해제
-        let chk_cnl = confirm("취소하시겠습니까?");
-        if (chk_cnl) {
-        	location.href="/Project4/mypage/mypage.do";
-        }
-    });
-    
-    let classbtn1 = document.querySelector("#classbtn1");
+	
+	let classbtn1 = document.querySelector("#classbtn1");
     let classbtn2 = document.querySelector("#classbtn2");
     
     classbtn1.addEventListener('click',()=>{

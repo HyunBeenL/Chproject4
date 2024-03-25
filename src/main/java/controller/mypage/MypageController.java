@@ -30,7 +30,11 @@ public class MypageController extends HttpServlet {
 		List<HashMap<String, Object>> param = new ArrayList<HashMap<String,Object>>();
 		List<HashMap<String, Object>> heartparam = new ArrayList<HashMap<String,Object>>();
 		MemberDAO dao = new MemberDAO();
+		MemberDTO memdto = new MemberDTO();
 		
+		memdto = dao.getMemberInfo(id);
+		String name = memdto.getMember_user_id();
+		String email = memdto.getMember_email();
 		List<String> emailList = new ArrayList<String>();
 		List<String> nameList = new ArrayList<String>();
 		List<String> titleList = new ArrayList<String>();
@@ -42,16 +46,15 @@ public class MypageController extends HttpServlet {
 		
 		
 		for(int i = 0; i<param.size(); i++) {
-			MemberDTO memdto = new MemberDTO();
+			
 			LectureDTO lecdto = new LectureDTO();
 			CartDTO cartdto = new CartDTO();
 			
-			memdto = (MemberDTO)param.get(i).get(i+"memdto");
+			
 			lecdto = (LectureDTO)param.get(i).get(i+"lecdto");
 			cartdto = (CartDTO)param.get(i).get(i+"cartdto");
 			
-			emailList.add(memdto.getMember_email());
-			nameList.add(memdto.getMember_name());
+			
 			titleList.add(cartdto.getLecture_title());
 			teacherList.add(cartdto.getLecture_teacher());
 			strdateList.add(lecdto.getLecture_start_date());
@@ -88,8 +91,8 @@ public class MypageController extends HttpServlet {
 		
 		
 		
-		params.put("emailList", emailList);
-		params.put("nameList", nameList);
+		params.put("email", email);
+		params.put("name", name);
 		params.put("id", id);
 		params.put("titleList", titleList);
 		params.put("teacherList", teacherList);
@@ -104,6 +107,8 @@ public class MypageController extends HttpServlet {
 		params1.put("strdateList", heartstrdateList);
 		params1.put("enddateList", heartenddateList);
 		params1.put("idxList", heartidxList);
+		
+		
 		
 		req.setAttribute("params", params);
 		req.setAttribute("params1", params1);

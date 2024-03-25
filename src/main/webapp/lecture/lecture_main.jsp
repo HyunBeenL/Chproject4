@@ -280,7 +280,7 @@
         <c:choose>
         	<c:when test="${not empty lectureList }">
         		<c:forEach var="list" items="${lectureList }" varStatus="loop">
-        			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
+        			<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${list.lecture_idx }">
 					<div class="content_div">
                         <div class="content_img">
                         	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin: auto;" />
