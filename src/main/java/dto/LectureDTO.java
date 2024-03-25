@@ -24,6 +24,9 @@ public class LectureDTO {
 	private String recommendyn;
 	private String bestyn;
 	private Date lecture_reg_date;
+	private String member_phone;
+	private String member_user_id;
+	
 	public int getLecture_idx() {
 		return lecture_idx;
 	}
@@ -150,12 +153,27 @@ public class LectureDTO {
 	public void setLecture_reg_date(Date lecture_reg_date) {
 		this.lecture_reg_date = lecture_reg_date;
 	}
+	public String getMember_phone() {
+		return member_phone;
+	}
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+	public String getMember_user_id() {
+		return member_user_id;
+	}
+	public void setMember_user_id(String member_user_id) {
+		this.member_user_id = member_user_id;
+	}
+	public LectureDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	public LectureDTO(int lecture_idx, String lecture_title, String member_name, String member_company,
 			Date lecture_start_date, Date lecture_end_date, String lecture_img, String lecture_endPrize,
 			int lecture_star, String lecture_content, String lecture_plan, String lecture_content_detail,
 			String lecture_question, String lecture_youtube_url, String lecture_category,
 			String lecture_category_detail, int member_idx, int heart_count, String recommendyn, String bestyn,
-			Date lecture_reg_date) {
+			Date lecture_reg_date, String member_phone, String member_user_id) {
 		super();
 		this.lecture_idx = lecture_idx;
 		this.lecture_title = lecture_title;
@@ -178,6 +196,8 @@ public class LectureDTO {
 		this.recommendyn = recommendyn;
 		this.bestyn = bestyn;
 		this.lecture_reg_date = lecture_reg_date;
+		this.member_phone = member_phone;
+		this.member_user_id = member_user_id;
 	}
 	@Override
 	public String toString() {
@@ -189,9 +209,7 @@ public class LectureDTO {
 				+ ", lecture_question=" + lecture_question + ", lecture_youtube_url=" + lecture_youtube_url
 				+ ", lecture_category=" + lecture_category + ", lecture_category_detail=" + lecture_category_detail
 				+ ", member_idx=" + member_idx + ", heart_count=" + heart_count + ", recommendyn=" + recommendyn
-				+ ", bestyn=" + bestyn + ", lecture_reg_date=" + lecture_reg_date + "]";
-	}
-	
-	public LectureDTO() {
+				+ ", bestyn=" + bestyn + ", lecture_reg_date=" + lecture_reg_date + ", member_phone=" + member_phone
+				+ ", member_user_id=" + member_user_id + "]";
 	}
 }
