@@ -42,6 +42,7 @@ public class MypageController extends HttpServlet {
 		List<Date> strdateList = new ArrayList<Date>();
 		List<Date> enddateList = new ArrayList<Date>();
 		List<Integer> idxList = new ArrayList<Integer>();
+		List<String> imgList = new ArrayList<String>();
 		param = dao.getCartInfo(id);
 		
 		
@@ -60,6 +61,7 @@ public class MypageController extends HttpServlet {
 			strdateList.add(lecdto.getLecture_start_date());
 			enddateList.add(lecdto.getLecture_end_date());
 			idxList.add(lecdto.getLecture_idx());
+			imgList.add(lecdto.getLecture_img());
 			
 		}
 		
@@ -68,6 +70,7 @@ public class MypageController extends HttpServlet {
 		List<Date> heartstrdateList = new ArrayList<Date>();
 		List<Date> heartenddateList = new ArrayList<Date>();
 		List<Integer> heartidxList = new ArrayList<Integer>();
+		List<String> heartimgList = new ArrayList<String>();
 		heartparam = dao.getHeartInfo(id);
 		
 		for(int i = 0; i<heartparam.size(); i++) {
@@ -83,6 +86,7 @@ public class MypageController extends HttpServlet {
 			heartstrdateList.add(lecdto.getLecture_start_date());
 			heartenddateList.add(lecdto.getLecture_end_date());
 			heartidxList.add(lecdto.getLecture_idx());
+			heartimgList.add(lecdto.getLecture_img());
 			
 		}
 		
@@ -99,7 +103,7 @@ public class MypageController extends HttpServlet {
 		params.put("strdateList", strdateList);
 		params.put("enddateList", enddateList);
 		params.put("idxList", idxList);
-		
+		params.put("imgList", imgList);
 		
 		
 		params1.put("titleList", hearttitleList);
@@ -107,6 +111,7 @@ public class MypageController extends HttpServlet {
 		params1.put("strdateList", heartstrdateList);
 		params1.put("enddateList", heartenddateList);
 		params1.put("idxList", heartidxList);
+		params1.put("imgList", heartimgList);
 		
 		
 		

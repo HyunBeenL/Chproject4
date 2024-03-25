@@ -182,7 +182,7 @@
             <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params.idxList.get(i)}">
             <div class="content">
                 <div class="content_img">
-                    <img src="" style="background-color: grey;"/>
+                    <img src="/Project4${params.imgList.get(i) }" style="background-color: grey; background-size:cover; width:150px; height:120px;"/>
                 </div>
                 <div class="content_card">
                     <p class="lecture_title">${params.titleList.get(i) }</p>
@@ -230,7 +230,7 @@
             <c:forEach var="i" begin="0" end="${params1.titleList.size()-1}">
             <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params1.idxList.get(i)}"><div class="content">
                 <div class="content_img">
-                    <img src="" style="background-color: grey;"/>
+                    <img src="/Project4${params1.imgList.get(i) }" style="background-color: grey; background-size:cover; width:150px; height:120px;"/>
                 </div>
                 <div class="content_card">
                     <p class="lecture_title">${params1.titleList.get(i) }</p>

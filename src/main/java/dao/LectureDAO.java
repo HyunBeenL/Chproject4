@@ -98,7 +98,8 @@ public class LectureDAO extends JDBConnect {
 				lecture.setMember_idx(rs.getInt("member_idx"));
 				lecture.setHeart_count(rs.getInt("heart_count"));
 				lecture.setLecture_reg_date(rs.getDate("lecture_reg_date"));
-
+				lecture.setMember_phone(rs.getString("member_phone"));
+				
 				lectureList.add(lecture);
 			}
 
