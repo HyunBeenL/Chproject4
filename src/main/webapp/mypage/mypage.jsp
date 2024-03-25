@@ -103,6 +103,19 @@
             text-decoration: none;
             color: black;
         }
+        #id2_2_1 button {
+        	width: 120px;
+            height: 30px;
+            font-size: 16px;
+            padding: 2px 5px;
+            border: 1px solid rgb(200, 200, 200);
+        }
+        #id2_2_1 button:hover {
+        	background-color:#007bff;
+        }
+        #id2_2_1 button:active {
+        	color: white;
+        }
         #id2_2_1 a{
             padding: 0px 20px ;
             color: grey;
@@ -158,9 +171,9 @@
             <h2>마이페이지</h2>
         </div>
         <div>
-            <img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
+            <div><img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a></div>
             <br>
-            <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
+            <div><img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a></div>
         </div>
     </div>
 
