@@ -41,19 +41,30 @@ public class JoinOkController extends HttpServlet {
 		dto.setMember_company(compname);
 		dto.setMember_birth(birth);
 		
-		Map<String, Object> params = new HashMap<String,Object>();
-		params.put("name", name);
-		params.put("id", id);
-		params.put("email", email);
+		
 		int result = dao.join(dto);
+		
+		
 		dao.close();
-		if(result >0){
-			req.setAttribute("params",params);
-			req.getRequestDispatcher("/member/join_ok.jsp").forward(req, resp);
+		
+		try {
+			if(result >0){
+				req.setAttribute("name", name);
+				req.setAttribute("id", id);
+				req.setAttribute("email", email);
+				req.getRequestDispatcher("/member/join_ok.jsp").forward(req, resp);
+			}
+			else{
+				req.setAttribute("errmsg", "회원가입 실패");
+				req.getRequestDispatcher("/member/join.do").forward(req, resp);
+			}
 		}
-		else{
-			
+		catch(Exception e) {
+			e.printStackTrace();
+			req.setAttribute("errmsg", "회원가입 실패");
+			req.getRequestDispatcher("/member/join.do").forward(req, resp);
 		}
+		
 		
 	}
 }
