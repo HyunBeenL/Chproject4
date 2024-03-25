@@ -120,6 +120,9 @@
         #frm2 input[type=button]:hover {
         	background-color: #007bff;
         }
+        #frm2 input[type=button]:hover {
+        	color: white;
+        }
         #frm2 input[type=submit] {
         	width: 100px;
             height: 30px;
@@ -130,8 +133,17 @@
         #frm2 input[type=submit]:hover {
         	background-color: #007bff;
         }
+        #frm2 input[type=submit]:active {
+        	color: white;
+        }
         #frm3 {
             display: flex;
+        }
+		#frm3 select{
+        	width: 120px;
+            height: 30px;
+            font-size: 16px;
+            border: 1px solid rgb(200, 200, 200);
         }
         #paging {
         	margin: auto;
