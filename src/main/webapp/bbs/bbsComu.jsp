@@ -55,7 +55,15 @@
             border-bottom: 1px solid black;
             display:grid;
             grid-template-columns: 1fr 6fr 1fr;
-         
+        }
+        .listBody {
+        	display: flex;
+        	align-items: center;
+        }
+        .listBody span{
+        	display: flex;
+        	justify-content: center;
+        	align-items: center;
         }
         .count{
             padding-left: 20px;
@@ -89,6 +97,7 @@
         .ul1{padding: 0px;}
         li{
         	list-style-type: none;
+        	border-bottom: 1px solid rgb(200, 200, 200);
         }
         .thead .tbody{
             list-style-type: none;
@@ -190,7 +199,7 @@
 	<c:choose>
 	<c:when test="${not empty bbsList }">
 		<c:forEach var="list" items="${bbsList}" varStatus="loop">
-		<li >
+		<li class="listBody">
             <span class="num">${row }</span>
             <span class="type">${list.comu_category}</span>
             <span class="user">${list.member_user_id}</span>
