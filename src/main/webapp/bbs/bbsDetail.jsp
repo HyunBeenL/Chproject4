@@ -169,8 +169,8 @@
         <ul>
             <a href="bbsdetail.do?idx=${nextidx > lastidx ? idx : nextidx}" class= "moveArticle" id="nextArticle" >
             <span class="flag">↓</span>
-            <span class="flag">${nextidx >= lastidx ? " " : "다음글"}</span>
-            <span class="title" id="title">${nextidx >= lastidx ? "다음글이 없습니다." : title2}</span>
+            <span class="flag">${nextidx > lastidx ? " " : "다음글"}</span>
+            <span class="title" id="title">${nextidx > lastidx ? "다음글이 없습니다." : title2}</span>
             <span class="regdate">${reg_date2}</span>
             </a>
         </ul>

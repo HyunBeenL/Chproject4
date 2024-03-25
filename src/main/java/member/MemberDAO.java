@@ -331,6 +331,22 @@ public class MemberDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 		return rResult;
-	}  
+	}
+	
+	public int DeleteMember(String id) {
+		String sql = "delete from kmc_member where member_user_id = ?";
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			result = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 	
 }
