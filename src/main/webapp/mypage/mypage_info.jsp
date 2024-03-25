@@ -172,11 +172,11 @@
 		window.open("mypage_change_password.do?id=${params.id}" , "PopupWin", "width=500,height=600");
 	});
 	document.querySelector("#leave").addEventListener('click', ()=>{
-		console.log("${params.id}");
-		console.log(document.querySelector("#pwd").value);
-		console.log(document.querySelector("#email").value);
-		console.log(document.querySelector("#phone").value);
+		if(confirm("정말 삭제하시겠습니까?")){
+			location.href="/Project4/member/deletecheck.do";
+		}
 	})
+	
     /* let info_save = document.querySelector("#info_save");
 
     info_save.addEventListener("click", function(e) {
