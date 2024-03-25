@@ -99,7 +99,7 @@
             <table class="changebtn">
                 <tr>
                     <td id="findid"><a href ="/Project4/member/find.jsp?search=1" id="findid1">아이디 찾기</a></td>
-                    <td id="findpwd"><a href ="/Project4/member/find.jsp?search=2" id="findpwd1">비밀번호 찾기</a></td>
+                    <td id="findpwd"><a href ="/Project4/member/find.jssp?search=2" id="findpwd1">비밀번호 찾기</a></td>
                 </tr>
             </table>
            <input type="hidden" name="idFind" id="idFind" value="${memberId}">

@@ -151,7 +151,7 @@
             <li><span>주관기관</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].member_company}</li>
             <li><span>학습기간</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].lecture_start_date}  ~ ${lectureDetail[0].lecture_end_date}</li>
             <li><span>전화번호</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;010-4444-4444</li>
-            <li><span>별점</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${lectureDetail[0].lecture_star}<span class="star">⭐⭐⭐⭐</span></li>
+            <li><span>별점</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%-- ${lectureDetail[0].lecture_star} --%><span class="star">⭐⭐⭐⭐</span></li>
         </ul>
        
         <c:choose>
@@ -245,8 +245,9 @@
         <p>${lectureDetail[0].lecture_content}</p>
     
         <h4>홍보/예시 영상</h4>
-        <p><iframe width="560" height="315" src="${lectureDetail[0].lecture_youtube_url}frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </p>
+        <p><iframe width="560" height="345" src="https://www.youtube.com/embed/wE7lh8YNVR4?si=DsGH-Q_j7WxLOZ4A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </p>		
+        
         <h4>강좌 운영 계획</h4>
         <p>${lectureDetail[0].lecture_plan}</p>
 
@@ -311,6 +312,12 @@
     		frm.submit();
     		
     	});
+    	
+    	document.querySelector("#play").addEventListener('click',()=>{
+         	
+         	
+         	window.open("/Project4/lecture/lecture.jsp", "PopupWin", "width=560,height=400");
+         });
     </script>
 </body>
 </html>
