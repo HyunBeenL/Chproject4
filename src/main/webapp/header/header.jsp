@@ -19,7 +19,20 @@
             </div>
             <nav id="top_menu">
                 <ul>
-                    <li><button style="margin-left: 50px ;" onclick="location.href='/Project4/lecture/lecture_main.do'">강좌</button></li>
+                    <li><button style="margin-left: 50px ;" onclick="location.href='/Project4/lecture/lecture_main.do'" id="lecturebtn">강좌</button>
+                    <div id = "dropbar" style="width:150px;height:600px;position:absolute;top:83px;border:1px solid black;border-top:1px solid white;display:none;z-index:100; background-color:white">
+        				<ul style="text-align:center; padding:0;">
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=10000">인문</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=20000">사회</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=30000">교육</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=40000">공학</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=50000">자연</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=60000">의약</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=70000">예체능</a></li><br>
+        					<li><a href="/Project4/lecture/lecture_main.do?search_state=&search_category=80000">융합</a></li><br>
+        				</ul>
+        			</div>
+        			</li>
                     <li><a href="/Project4/comu.do">커뮤니티</a></li>
                 </ul>
             </nav>
@@ -42,4 +55,16 @@
                 </ul>
             </nav>
         </div>
+        
+        <script>
+    	document.querySelector("#lecturebtn").addEventListener('mouseover',()=>{
+    		console.log("Test");
+    		document.querySelector("#dropbar").style.display="block";
+    	});
+    	document.querySelector("#dropbar").addEventListener('mouseleave',()=>{
+    		console.log("Test");
+    		document.querySelector("#dropbar").style.display="none";
+    	})
+    </script>
     </header>
+    
