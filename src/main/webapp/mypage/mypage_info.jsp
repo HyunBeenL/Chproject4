@@ -82,6 +82,7 @@
             border: 4px solid rgb(0, 123, 255);
             background-color: rgb(0, 123, 255);
             padding: 5px 40px;
+            margin-left: 72px;
         }
         #info_save:hover {
             color: white;
@@ -117,14 +118,14 @@
         </div>
         <div><c:choose>
             	<c:when test="${params.category eq '강사'}">
-            		<img src="/Project4/img/my_menu_01.png"/><a href="/Project4/kmocMain.do?command=teacherMypage">내 강의실</a>
+            		<div><img src="/Project4/img/my_menu_01.png"/><a href="/Project4/kmocMain.do?command=teacherMypage">내 강의실</a></div>
             	</c:when>
             	<c:otherwise>
-            		<img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
+            		<div><img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a></div>
             	</c:otherwise>
             </c:choose>
             <br>
-            <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
+            <div><img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a></div>
         </div>
     </div>
 
