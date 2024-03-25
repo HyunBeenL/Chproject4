@@ -232,7 +232,7 @@ public class MemberDAO extends JDBConnect {
 		
 		int i = 0;
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT A.lecture_idx, A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append("SELECT A.lecture_idx, A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date,C.lecture_img");
 		sb.append(" FROM kmc_cart AS A");
 		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
 		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
@@ -253,6 +253,7 @@ public class MemberDAO extends JDBConnect {
 					lecdto.setLecture_idx(rs.getInt("A.lecture_idx"));;
 					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
 					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
+					lecdto.setLecture_img(rs.getString("C.lecture_img"));
 					
 					param.put(i+"memdto", memdto);
 					param.put(i+"cartdto", cartdto);
@@ -279,7 +280,7 @@ public class MemberDAO extends JDBConnect {
 		
 		int i = 0;
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT A.lecture_idx, A.lecture_title,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append("SELECT A.lecture_idx, A.lecture_title,lecture_teacher, C.lecture_start_date, C.lecture_end_date,C.lecture_img");
 		sb.append(" FROM kmc_heart AS A");
 		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
 		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
@@ -297,6 +298,7 @@ public class MemberDAO extends JDBConnect {
 					lecdto.setLecture_idx(rs.getInt("A.lecture_idx"));;
 					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
 					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
+					lecdto.setLecture_img(rs.getString("C.lecture_img"));
 					
 					param.put(i+"cartdto", cartdto);
 					param.put(i+"lecdto", lecdto);
