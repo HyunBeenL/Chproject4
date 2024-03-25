@@ -138,8 +138,11 @@ public class LectureMainController extends HttpServlet {
 		params.put("page_block_start", page_block_start);
 		params.put("page_block_end", page_block_end);
 
+//		String pagingArea = BbsPage.pagingArea(total_page, page_no, page_block_start, page_block_end,
+//				"lecture_main.do?", "");
+		
 		String pagingArea = BbsPage.pagingArea(total_page, page_no, page_block_start, page_block_end,
-				"lecture_main.do?", "");
+				"lecture_main.do?", search_option, search_word, search_state, search_category, search_category_detail, search_period);
 
 		params.put("paging", pagingArea);
 
