@@ -89,6 +89,7 @@
         .content{
             width: 1100px;
             text-align: left;
+            padding-left: 134px;
         }
         .mainfoot{
             width: 1100px;

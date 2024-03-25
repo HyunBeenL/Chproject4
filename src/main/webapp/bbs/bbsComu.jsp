@@ -41,7 +41,7 @@
             width: 500px;
         }
         #btnSearch{
-            width: 50px;
+            width: 55px;
             height: 55px;
             background-color: #00A85D;
         }
@@ -95,9 +95,13 @@
         }
         
         .ul1{padding: 0px;}
-        li{
+        .main li{
         	list-style-type: none;
         	border-bottom: 1px solid rgb(200, 200, 200);
+        }
+        .thead span {
+        	font-size: 18px;
+        	font-weight: 700;
         }
         .thead .tbody{
             list-style-type: none;
@@ -139,6 +143,7 @@
 		 .pagehover{
         	text-decoration: none;
         	color: black;
+        	padding: 2px 5px;
         }
         .pagehover:hover{
         	background-color:#002475;
