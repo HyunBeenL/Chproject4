@@ -25,8 +25,8 @@
     }
     .title{
     	font-size: 22px;
-        text-align: center;
         width: 1100px;
+        border-bottom: 1px solid rgb(200, 200, 200);
     }
     .date{
         margin: 20px 0;
@@ -180,7 +180,7 @@
 <div class="main">
     <div class="article">
         <div class="title"><p>${title}</p></div>
-        <div class="date">작성일 ${reg_date} 최종 수정일 ${modify_date}</div>
+        <div class="date"><strong>작성일</strong> ${reg_date} &nbsp; <strong>최종 수정일</strong> ${modify_date} </div>
         <div class="content" id="content">${content}</div>
     <table id="filelist" border="1">
 	<tr>

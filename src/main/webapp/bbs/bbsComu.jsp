@@ -219,6 +219,8 @@
 	</c:otherwise>
 	</c:choose>
     
+    <br/>
+    
     </ul>
     <div class="mainfoot">
         <p>${params.paging }</p>
