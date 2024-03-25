@@ -20,6 +20,7 @@ public class LoginOkController extends HttpServlet{
 		HttpSession session = req.getSession(true);
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
+		
 		System.out.println("id : "+id+" ,pwd:" + pwd);
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto =	dao.getMemberInfo(id,pwd);
@@ -28,6 +29,7 @@ public class LoginOkController extends HttpServlet{
 		if(dto.getMember_user_id() != null){
 			session.setAttribute("userId",dto.getMember_user_id());
 			session.setAttribute("userName",dto.getMember_name());
+			session.setAttribute("member_category", dto.getMember_category());
 			resp.sendRedirect("/Project4/kmocMain.do?command=main");
 		}
 		else {

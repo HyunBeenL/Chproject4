@@ -64,6 +64,7 @@ public class MemberDAO extends JDBConnect {
 				if(rs.getString("Member_pwd").equals(pwd) ) {
 					dto.setMember_user_id(rs.getString("Member_user_id"));
 					dto.setMember_name(rs.getString("Member_name"));
+					dto.setMember_category(rs.getString("member_category"));
 				}	
 				
 			}
