@@ -100,7 +100,7 @@
                     </fieldset>
                 </div>
                 <div class="submitbtn">
-                    <button class="btn" onclick="window.location.href='login.do'">취소</button>
+                    <button class="btn" type="button" onclick="window.location.href='login.do'">취소</button>
                     <input class="btn btn1" id="nextbtn" type="submit" value="다음">
                 </div>
             </form>
