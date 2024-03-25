@@ -33,7 +33,7 @@ public class MemberDAO extends JDBConnect {
 				dto.setMember_pwd(rs.getString("member_pwd"));
 				dto.setMember_phone(rs.getString("member_phone"));
 				dto.setMember_email(rs.getString("member_email"));
-				if(rs.getString("member_category").equals("01")) {
+				if(rs.getString("member_category").equals("1")) {
 					dto.setMember_category("학생");
 				}
 				else {
@@ -64,6 +64,7 @@ public class MemberDAO extends JDBConnect {
 				if(rs.getString("Member_pwd").equals(pwd) ) {
 					dto.setMember_user_id(rs.getString("Member_user_id"));
 					dto.setMember_name(rs.getString("Member_name"));
+					dto.setMember_category(rs.getString("member_category"));
 				}	
 				
 			}

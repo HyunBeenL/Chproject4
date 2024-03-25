@@ -245,7 +245,7 @@
         <p>${lectureDetail[0].lecture_content}</p>
     
         <h4>홍보/예시 영상</h4>
-        <p><iframe width="560" height="345" src="https://www.youtube.com/embed/wE7lh8YNVR4?si=DsGH-Q_j7WxLOZ4A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p><iframe width="560" height="345" src="${lectureDetail[0].lecture_youtube_url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </p>		
         
         <h4>강좌 운영 계획</h4>

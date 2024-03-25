@@ -1,6 +1,8 @@
 <%@page import="common.CommonUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +30,14 @@
                     <li><a href="/Project4/member/joinchoice.do">회원가입</a></li>
                     <%}else{ %>
                     <li><a href="/Project4/member/logout.do">로그아웃</a></li>
-                    <li><a href="/Project4/mypage/mypage.do">마이페이지</a></li>
+                    <c:choose>
+                    	<c:when test="${member_category eq '1'}">
+                    		<li><a href="/Project4/mypage/mypage.do">마이페이지</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    	  <li><a href="/Project4/kmocMain.do?command=teacherMypage">강사 마이페이지</a></li>
+                    	</c:otherwise>
+                    </c:choose>
                     <%} %>
                 </ul>
             </nav>
