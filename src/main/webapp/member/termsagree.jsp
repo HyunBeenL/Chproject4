@@ -110,18 +110,18 @@
                     <fieldset class="contact">
                         <ul>
                             <li>
-                                <input type="checkbox" class="check" id="check1"><label class="terms">이용약관 동의</label><button type="button" onclick="openPop()" class="agreebtn">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check1"><label class="terms">이용약관 동의</label><button type="button" onclick="openPop1()" class="agreebtn">자세히 보기</button>
                             </li>
                             <li>
-                                <input type="checkbox" class="check" id="check2"><label class="terms">개인정보 필수항목 수집 이용 및 동의</label><button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check2"><label class="terms">개인정보 필수항목 수집 이용 및 동의</label><button type="button" class="agreebtn" onclick="openPop2()">자세히 보기</button>
                             </li>
                             
                             <li>
-                                <input type="checkbox" class="check" id="check3"><label class="terms">개인정보 선택항목 수집 및 이용 동의</label><button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check3"><label class="terms">개인정보 선택항목 수집 및 이용 동의</label><button type="button" class="agreebtn" onclick="openPop3()">자세히 보기</button>
                             </li>
                             
                             <li> 
-                                <input type="checkbox" class="check" id="check4"><label class="terms">홍보 설문 관련 정보 수신 동의</label><button type="button" class="agreebtn" onclick="openPop()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check4"><label class="terms">홍보 설문 관련 정보 수신 동의</label><button type="button" class="agreebtn" onclick="openPop4()">자세히 보기</button>
                             </li>
                             
                         </ul>
@@ -133,21 +133,23 @@
                 </div>
             </form>
         </div>
-        <div class="popup_layer" id="popup_layer" style="display: none;">
+        <% for(int i =1; i<=4; i++){ %>
+        <div class="popup_layer" id="popup_layer<%=i %>" style="display: none;">
           <div class="popup_box">
               <div style="height: 10px; width: 800px; float:right;">
-                <a href="javascript:closePop();"><img src="/Project4/img/close.png" class="m_header-banner-close" width="30px" height="30px" style="float:right;"></a>
+                <a href="javascript:closePop<%=i%>();"><img src="/Project4/img/close.png" class="m_header-banner-close" width="30px" height="30px" style="float:right;"></a>
               </div>
               <!--팝업 컨텐츠 영역-->
-              <div class="popup_cont">
-        		  <object width="800px" height="700px" data="/Project4/img/테스트.pdf"></object>
+              <div class="popup_cont" style="margin-top:30px;">
+        		  <img src="/Project4/img/약관<%=i%>.jpg"></img>
               </div>
               <!--팝업 버튼 영역-->
               <div class="popup_btn" style="float: bottom; margin-top: 200px;">
-                  <a href="javascript:closePop();">닫기</a>
+                  <a href="javascript:closePop<%=i%>();">닫기</a>
               </div>
           </div>
-          </div>
+         </div>
+         <%} %>
     </main>
     <jsp:include page="/footer/footer.jsp"></jsp:include>
     <script>
@@ -182,13 +184,35 @@
 			
 		});
 		
-		function openPop() {
-	        document.getElementById("popup_layer").style.display = "block";
+		function openPop1() {
+	        document.getElementById("popup_layer1").style.display = "block";
 	    }
 	    //팝업 닫기
-	    function closePop() {
-	        document.getElementById("popup_layer").style.display = "none";
+	    function closePop1() {
+	        document.getElementById("popup_layer1").style.display = "none";
 	    }
+	    function openPop2() {
+	        document.getElementById("popup_layer2").style.display = "block";
+	    }
+	    //팝업 닫기
+	    function closePop2() {
+	        document.getElementById("popup_layer2").style.display = "none";
+	    }
+	    function openPop3() {
+	        document.getElementById("popup_layer3").style.display = "block";
+	    }
+	    //팝업 닫기
+	    function closePop3() {
+	        document.getElementById("popup_layer3").style.display = "none";
+	    }
+	    function openPop4() {
+	        document.getElementById("popup_layer4").style.display = "block";
+	    }
+	    //팝업 닫기
+	    function closePop4() {
+	        document.getElementById("popup_layer4").style.display = "none";
+	    }
+	    
     </script>
 </body>
 </html>
