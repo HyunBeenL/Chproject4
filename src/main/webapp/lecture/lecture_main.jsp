@@ -169,7 +169,7 @@
 <main>
 	<div id="id0"></div>
     <div id="id1" class="container">
-        <a href="/Project4/main.jsp">Home</a>
+        <a href="/Project4/kmocMain.do?command=main">Home</a>
         &gt
         <a href="/Project4/lecture/lecture_main.do">강좌</a>
        	

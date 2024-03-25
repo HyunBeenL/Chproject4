@@ -10,20 +10,22 @@
 		.footer{
 			clear: left;
 			background-color: #000;
-			width: 1920px;
+			/* width: 1920px; */
 			height: 180px;
 		}
 		.line{
 			display: block;
-			width: 60%;
-			margin-left: 360px;
+			width: 900px;
+			/* margin-left: 360px; */
+            margin: auto;
 			height: 1px;
 			border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 
 		}
 		.footer_wrap{
 			height: 30%;
-			width: 60%;
+			/* width: 60%; */
+            width: 1100px;
 			color: #fff;
 			font-size: 14px;
 			font-weight: 700;
@@ -32,11 +34,13 @@
 		.footer_wrap > a{
 			font-family: "Poor Story", system-ui;
 			text-decoration: none;
+            width: 1100px;
 		}
 
 		.footer_wrap_1{
 			height: 60%;
-			width: 60%;
+			/* width: 60%; */
+            width: 800px;
 			color: rgba(255, 255, 255, 0.6);
 			font-size: 14px;
 			line-height: 24px;
