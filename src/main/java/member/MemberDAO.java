@@ -103,6 +103,28 @@ public class MemberDAO extends JDBConnect {
 		return check;
 	}
 	
+	public String pwdconfirm(String id){
+		boolean check = false;
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT member_pwd");
+		sb.append(" FROM kmc_member");
+		sb.append(" WHERE member_user_id='"+id.trim()+"'");
+		String result = "";
+		/* sb.append(" LIMIT "+10*(a-1)+", "+10); */
+		try {
+			psmt = conn.prepareStatement(sb.toString());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getString(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+	}
+	
 	public boolean emailcheck(String email){
 		boolean check = false;
 		StringBuilder sb = new StringBuilder();
@@ -248,5 +270,67 @@ public class MemberDAO extends JDBConnect {
 		
 		return params;
 	}
+	
+	public List<HashMap<String, Object>> getHeartInfo(String id) {
+		
+		
+		HashMap<String, Object> param = new HashMap<String, Object>();
+		List<HashMap<String, Object>> params = new ArrayList<HashMap<String, Object>>();
+		
+		int i = 0;
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT A.lecture_idx, A.lecture_title,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append(" FROM kmc_heart AS A");
+		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
+		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
+		sb.append(" WHERE A.member_user_id = ?");
+				
+		try	{
+			psmt = conn.prepareStatement(sb.toString());
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+					LectureDTO lecdto = new LectureDTO();
+					CartDTO cartdto = new CartDTO();
+					cartdto.setLecture_title(rs.getString("A.lecture_title"));
+					cartdto.setLecture_teacher(rs.getString("lecture_teacher"));
+					lecdto.setLecture_idx(rs.getInt("A.lecture_idx"));;
+					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
+					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
+					
+					param.put(i+"cartdto", cartdto);
+					param.put(i+"lecdto", lecdto);
+					params.add(param);
+					
+					i++;
+				
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return params;
+	}
+	
+	public int pwdChange(String phone, String email, String memberId,String pwd) {
+		String sql = "update kmc_member set member_pwd = ?, member_phone = ? , member_email = ? where member_user_id =? ;"
+				+ "";
+		int rResult = 0;
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,pwd);
+			psmt.setString(2,phone);
+			psmt.setString(3,email);
+			psmt.setString(4,memberId);
+			rResult = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			System.out.println("일치하는 PWD 없음");
+			e.printStackTrace();
+		}
+		return rResult;
+	}  
 	
 }

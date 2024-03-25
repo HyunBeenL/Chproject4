@@ -61,7 +61,6 @@
         	width: 230px;
         	height: 150px;
         	background-size: cover;
-        	background-color: rgb(220, 220, 220); 
         }
         .content_card {
         	margin: 5px 10px;
@@ -118,12 +117,18 @@
             padding: 0;
             border: 1px solid rgb(200, 200, 200);
         }
+        #frm2 input[type=button]:hover {
+        	background-color: #007bff;
+        }
         #frm2 input[type=submit] {
         	width: 100px;
             height: 30px;
             font-size: 16px;
             padding: 0;
             border: 1px solid rgb(200, 200, 200);
+        }
+        #frm2 input[type=submit]:hover {
+        	background-color: #007bff;
         }
         #frm3 {
             display: flex;
@@ -158,11 +163,11 @@
        	
         <c:if test="${param.search_category != '' && param.search_category != null}">
         	&gt
-		        <a href="/Project4/lecture/lecture_main.do?search_category=${param.search_category }">${param.search_category }</a>
+		        <a href="/Project4/lecture/lecture_main.do?search_category=${param.search_category }">${result_category}</a>
 		</c:if>
 		<c:if test="${param.search_category_detail != '' && param.search_category_detail != null}">
 		        &gt
-		        	<a href="/Project4/lecture/lecture_main.do?search_category_detail=${param.search_category_detail }">${param.search_category_detail }</a>
+		        	<a href="/Project4/lecture/lecture_main.do?search_category_detail=${param.search_category_detail }">${result_category_detail}</a>
 		</c:if>
         
     </div>
@@ -257,9 +262,14 @@
         	</c:otherwise>
         </c:choose>
 
-            <form name="frm3" id="frm3">
-                <input type="button" name="order_by" id="order_by_1" value = "최신등록순" onclick="this.form.submit()" selected/>
-                <input type="button" name="order_by" id="order_by_2" value = "가나다순" onclick="this.form.submit()" />
+            <form name="frm3" id="frm3" method="post">
+              <!--   <input type="button" name="order_by" id="order_by_1" value = "최신등록순" onclick="this.form.submit()" selected/>
+                <input type="button" name="order_by" id="order_by_2" value = "가나다순" onclick="this.form.submit()" /> -->
+            	 <select name="order_by" id="order_by" class="order_by">
+	                <option value=""  >정렬</option>
+	                <option value="order_by_1" >최신등록순</option>
+	                <option value="order_by_2" >가나다순</option>
+	            </select>
             </form>
         </div>
     
@@ -270,7 +280,7 @@
         <c:choose>
         	<c:when test="${not empty lectureList }">
         		<c:forEach var="list" items="${lectureList }" varStatus="loop">
-        			<a href="Project4/lecutre/lecture_detail.do?idx=${list.lecture_idx }">
+        			<a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${list.lecture_idx }">
 					<div class="content_div">
                         <div class="content_img">
                         	<img src="..${list.lecture_img}" style="width: 230px; height: 150px; margin: auto;" />
@@ -317,6 +327,14 @@
         search_category_detail.options[0].selected = true;
         search_period.options[0].selected = true;
     })
+      
+      const frm  = document.querySelector("#frm3");
+	 const frm1  = document.querySelector(".order_by");
+    document.querySelector(".order_by").addEventListener("change", function(){
+
+    	frm.action = "/Project4/lecture/lecture_main.do";
+    	frm.submit();
+    });
 </script>
 
 </body>
