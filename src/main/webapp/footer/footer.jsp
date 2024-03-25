@@ -13,7 +13,6 @@
 			width: 1920px;
 			height: 180px;
 		}
-
 		.line{
 			display: block;
 			width: 60%;
@@ -42,8 +41,9 @@
 			font-size: 14px;
 			line-height: 24px;
 			word-break: keep-all;
-			margin-top: 15px;
-			margin-left: 380px;
+			/* margin-top: 15px;
+			margin-left: 380px; */
+			margin: 15px auto 0px auto;
 		}
 </style>
 </head>

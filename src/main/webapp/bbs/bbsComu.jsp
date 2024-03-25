@@ -41,7 +41,7 @@
             width: 500px;
         }
         #btnSearch{
-            width: 50px;
+            width: 55px;
             height: 55px;
             background-color: #00A85D;
         }
@@ -55,7 +55,15 @@
             border-bottom: 1px solid black;
             display:grid;
             grid-template-columns: 1fr 6fr 1fr;
-         
+        }
+        .listBody {
+        	display: flex;
+        	align-items: center;
+        }
+        .listBody span{
+        	display: flex;
+        	justify-content: center;
+        	align-items: center;
         }
         .count{
             padding-left: 20px;
@@ -87,8 +95,13 @@
         }
         
         .ul1{padding: 0px;}
-        li{
+        .main li{
         	list-style-type: none;
+        	border-bottom: 1px solid rgb(200, 200, 200);
+        }
+        .thead span {
+        	font-size: 18px;
+        	font-weight: 700;
         }
         .thead .tbody{
             list-style-type: none;
@@ -130,6 +143,7 @@
 		 .pagehover{
         	text-decoration: none;
         	color: black;
+        	padding: 2px 5px;
         }
         .pagehover:hover{
         	background-color:#002475;
@@ -190,7 +204,7 @@
 	<c:choose>
 	<c:when test="${not empty bbsList }">
 		<c:forEach var="list" items="${bbsList}" varStatus="loop">
-		<li >
+		<li class="listBody">
             <span class="num">${row }</span>
             <span class="type">${list.comu_category}</span>
             <span class="user">${list.member_user_id}</span>
@@ -204,6 +218,8 @@
 		<span class="QNA" style="width: 1100px;"><img src="/Project4/img/Q.png" alt="Q">등록된 글이 없습니다.</span>
 	</c:otherwise>
 	</c:choose>
+    
+    <br/>
     
     </ul>
     <div class="mainfoot">
