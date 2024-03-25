@@ -128,6 +128,13 @@
         }
         .title{
             width: 800px;
+            
+        }
+        .title a{
+        	width:600px;
+            text-decoration: none;
+            color: black;
+            text-align:left;
         }
         .date{
             width: 170px;
