@@ -13,6 +13,7 @@
         *{
            margin:0px;
             padding:0px;
+          
         }
         .main{
             margin:200px auto;
@@ -56,6 +57,7 @@
             background-color: white;
             border-collapse: collapse;
             border:1px solid gray;
+            color: white;
         }
         .changebtn tr td{
             list-style-type: none;
@@ -63,12 +65,14 @@
             width:48%;
             height:100%;
             text-align: center;
+            
         }
         .changebtn tr td a{
             text-decoration: none;
             height: 100%;
             margin: 10px auto;
             display:inline-block;
+            color: white;
         }
         .changebtn{
             margin:20px auto;
@@ -85,7 +89,9 @@
         #button{
         	text-align:center;
         }
-        
+        #findpwd{
+        	background: gray;
+        }
 </style>
 </head>
 <body>
@@ -99,7 +105,7 @@
             <table class="changebtn">
                 <tr>
                     <td id="findid"><a href ="/Project4/member/find.jsp?search=1" id="findid1">아이디 찾기</a></td>
-                    <td id="findpwd"><a href ="/Project4/member/find.jssp?search=2" id="findpwd1">비밀번호 찾기</a></td>
+                    <td id="findpwd"><a href ="/Project4/member/find.jsp?search=2" id="findpwd1">비밀번호 찾기</a></td>
                 </tr>
             </table>
            <input type="hidden" name="idFind" id="idFind" value="${memberId}">
@@ -155,10 +161,10 @@
         	findpwd.style.backgroundColor="white";
         	findpwd1.style.Color="black"; 
     	});
-    	findpwd1.addEventListener('click',()=>{
+     	findpwd1.addEventListener('click',()=>{
     		document.querySelector("#id").display ="block";
     		
-     	findpwd.style.backgroundColor="blue";
+     		findpwd.style.backgroundColor="blue";
         	findpwd1.style.Color="white";
         	findid.style.backgroundColor="white";
         	findid1.style.Color="black"; 
