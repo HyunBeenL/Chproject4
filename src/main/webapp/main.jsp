@@ -42,7 +42,7 @@
 			<div id="categoryBox" class="categoryBox">
 				<div id="alram" class="alram">
 					<div id="alram_img" class="alram_img">공지</div>
-					<div id="alram_text "class="alram_text"><a href="">2024년 산업맞춤 단기직무능력인증과정 매치업(Match業) 사업 공고</a></div>
+					<div id="alram_text "class="alram_text"><a href="/Project4/comu.do?category=2" style="text-decoration: none; ">2024년 최신 공지사항 확인하러 가기</a></div>
 				</div>
 			</div>
 		</div>
