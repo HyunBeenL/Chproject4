@@ -120,6 +120,9 @@
         #frm2 input[type=button]:hover {
         	background-color: #007bff;
         }
+        #frm2 input[type=button]:active {
+        	color: white;
+        }
         #frm2 input[type=submit] {
         	width: 100px;
             height: 30px;
@@ -130,8 +133,17 @@
         #frm2 input[type=submit]:hover {
         	background-color: #007bff;
         }
+        #frm2 input[type=submit]:active {
+        	color: white;
+        }
         #frm3 {
             display: flex;
+        }
+		#frm3 select{
+        	width: 120px;
+            height: 30px;
+            font-size: 16px;
+            border: 1px solid rgb(200, 200, 200);
         }
         #paging {
         	margin: auto;
@@ -199,41 +211,41 @@
             <select name="search_category" id="search_category">
                 <option value="" selected hidden>주제</option>
                 <option value="" >전체</option>
-                <option value="10000" >인문</option>
-                <option value="20000" >사회</option>
-                <option value="30000" >교육</option>
-                <option value="40000" >공학</option>
-                <option value="50000" >자연</option>
-                <option value="60000" >의약</option>
-                <option value="70000" >예체능</option>
-                <option value="80000" >융합</option>
+                <option value="10000" class="category">인문</option>
+                <option value="20000" class="category">사회</option>
+                <option value="30000" class="category">교육</option>
+                <option value="40000" class="category">공학</option>
+                <option value="50000" class="category">자연</option>
+                <option value="60000" class="category">의약</option>
+                <option value="70000" class="category">예체능</option>
+                <option value="80000" class="category">융합</option>
             </select>
             <select name="search_category_detail" id="search_category_detail">
                 <option value="" selected hidden>중분류</option>
                 <option value="" >전체</option>
-                <option value="10100" >언어문학</option>
-                <option value="10200" >인문과학</option>
-                <option value="20100" >경영·경제</option>
-                <option value="20200" >법률</option>
-                <option value="20300" >사회과학</option>
-                <option value="30100" >교육일반</option>
-                <option value="30200" >유아교육</option>
-                <option value="30300" >초등교육</option>
-                <option value="30400" >중등교육</option>
-                <option value="30500" >고등교육</option>
-                <option value="40100" >건축</option>
-                <option value="40200" >전기</option>
-                <option value="40300" >전자</option>
-                <option value="40400" >컴퓨터</option>
-                <option value="50100" >농림</option>
-                <option value="50200" >화학</option>
-                <option value="50300" >생명</option>
-                <option value="60100" >의료</option>
-                <option value="60200" >간호</option>
-                <option value="70100" >디자인</option>
-                <option value="70200" >영화</option>
-                <option value="70300" >미술</option>
-                <option value="80100" >융합</option>
+                <option value="10100" class="detail">언어문학</option>
+                <option value="10200" class="detail">인문과학</option>
+                <option value="20100" class="detail">경영·경제</option>
+                <option value="20200" class="detail">법률</option>
+                <option value="20300" class="detail">사회과학</option>
+                <option value="30100" class="detail">교육일반</option>
+                <option value="30200" class="detail">유아교육</option>
+                <option value="30300" class="detail">초등교육</option>
+                <option value="30400" class="detail">중등교육</option>
+                <option value="30500" class="detail">고등교육</option>
+                <option value="40100" class="detail">건축</option>
+                <option value="40200" class="detail">전기</option>
+                <option value="40300" class="detail">전자</option>
+                <option value="40400" class="detail">컴퓨터</option>
+                <option value="50100" class="detail">농림</option>
+                <option value="50200" class="detail">화학</option>
+                <option value="50300" class="detail">생명</option>
+                <option value="60100" class="detail">의료</option>
+                <option value="60200" class="detail">간호</option>
+                <option value="70100" class="detail">디자인</option>
+                <option value="70200" class="detail">영화</option>
+                <option value="70300" class="detail">미술</option>
+                <option value="80100" class="detail">융합</option>
                 
             </select>
             <select name="search_period" id="search_period">
@@ -312,15 +324,18 @@
     		</div>	
     	</div>
     </div>
+    <br/>
     
     </main>
+    <jsp:include page="/footer/footer.jsp"></jsp:include>
 <script>
 	let search_refresh= document.querySelector("#search_refresh");
+	let search_state = document.querySelector("#search_state");
+    let search_categorye = document.querySelector("#search_category");
+    let search_category_detail = document.querySelector("#search_category_detail");
+    let search_period = document.querySelector("#search_period");
 	search_refresh.addEventListener("click", (e) => {
-        let search_state = document.querySelector("#search_state");
-        let search_categorye = document.querySelector("#search_category");
-        let search_category_detail = document.querySelector("#search_category_detail");
-        let search_period = document.querySelector("#search_period");
+        
 
         search_state.options[0].selected = true;
         search_category.options[0].selected = true;
@@ -335,6 +350,28 @@
     	frm.action = "/Project4/lecture/lecture_main.do";
     	frm.submit();
     });
+    
+    let category = document.querySelectorAll(".category");
+    let category_detail = document.querySelectorAll(".detail");
+    
+    console.log(category);
+    console.log(category_detail);
+    search_categorye.addEventListener('click',()=>{
+    	
+        	for(let j =0; j<category_detail.length; j++){
+        		if(category_detail[j].value.substring(0,2) != search_category.value.substring(0,2)){
+        			console.log(category_detail[j].value.substring(0,2) !== search_category.value.substring(0,2));
+        			console.log(search_category.value.substring(0,2));
+        			console.log(search_category.value.substring(0,2));
+        			category_detail[j].hidden = true;
+        		}
+        		else{
+        			category_detail[j].hidden = false;
+        		}
+        	}
+        
+    });
+   
 </script>
 
 </body>

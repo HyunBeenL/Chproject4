@@ -33,7 +33,7 @@ public class MemberDAO extends JDBConnect {
 				dto.setMember_pwd(rs.getString("member_pwd"));
 				dto.setMember_phone(rs.getString("member_phone"));
 				dto.setMember_email(rs.getString("member_email"));
-				if(rs.getString("member_category").equals("01")) {
+				if(rs.getString("member_category").equals("1")) {
 					dto.setMember_category("학생");
 				}
 				else {
@@ -64,6 +64,7 @@ public class MemberDAO extends JDBConnect {
 				if(rs.getString("Member_pwd").equals(pwd) ) {
 					dto.setMember_user_id(rs.getString("Member_user_id"));
 					dto.setMember_name(rs.getString("Member_name"));
+					dto.setMember_category(rs.getString("member_category"));
 				}	
 				
 			}
@@ -232,7 +233,7 @@ public class MemberDAO extends JDBConnect {
 		
 		int i = 0;
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT A.lecture_idx, A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append("SELECT A.lecture_idx, A.lecture_title, B.member_email, B.member_name,lecture_teacher, C.lecture_start_date, C.lecture_end_date,C.lecture_img");
 		sb.append(" FROM kmc_cart AS A");
 		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
 		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
@@ -253,6 +254,7 @@ public class MemberDAO extends JDBConnect {
 					lecdto.setLecture_idx(rs.getInt("A.lecture_idx"));;
 					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
 					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
+					lecdto.setLecture_img(rs.getString("C.lecture_img"));
 					
 					param.put(i+"memdto", memdto);
 					param.put(i+"cartdto", cartdto);
@@ -279,7 +281,7 @@ public class MemberDAO extends JDBConnect {
 		
 		int i = 0;
 		StringBuilder sb = new StringBuilder();
-		sb.append("SELECT A.lecture_idx, A.lecture_title,lecture_teacher, C.lecture_start_date, C.lecture_end_date");
+		sb.append("SELECT A.lecture_idx, A.lecture_title,lecture_teacher, C.lecture_start_date, C.lecture_end_date,C.lecture_img");
 		sb.append(" FROM kmc_heart AS A");
 		sb.append(" INNER JOIN kmc_member AS B ON A.member_user_id = B.member_user_id");
 		sb.append(" INNER JOIN kmc_lecture AS C ON A.lecture_idx = C.lecture_idx");
@@ -297,6 +299,7 @@ public class MemberDAO extends JDBConnect {
 					lecdto.setLecture_idx(rs.getInt("A.lecture_idx"));;
 					lecdto.setLecture_start_date(rs.getDate("C.lecture_start_date"));;
 					lecdto.setLecture_end_date(rs.getDate("C.lecture_end_date"));
+					lecdto.setLecture_img(rs.getString("C.lecture_img"));
 					
 					param.put(i+"cartdto", cartdto);
 					param.put(i+"lecdto", lecdto);
@@ -331,6 +334,22 @@ public class MemberDAO extends JDBConnect {
 			e.printStackTrace();
 		}
 		return rResult;
-	}  
+	}
+	
+	public int DeleteMember(String id) {
+		String sql = "delete from kmc_member where member_user_id = ?";
+		int result = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			result = psmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 	
 }

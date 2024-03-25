@@ -145,6 +145,51 @@
 		    background-color: rgba(140,42,108,0.9);
 		
 		}
+			
+	.pageInfo_wrap {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pageInfo_area {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.pageInfo_btn {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.pageInfo_btn a {
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.pageInfo_btn.active a {
+    background-color: #337ab7;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.pageInfo_btn.previous a,
+.pageInfo_btn.next a {
+    font-weight: bold;
+}
+
+.pageInfo_btn.previous a span,
+.pageInfo_btn.next a span {
+    margin-right: 5px;
+}
+
+	 
+	  .active{
+      background-color: #cdd5ec;
+  }
     </style>
 </head>
 <body>
@@ -155,64 +200,66 @@
 <div class="container">
     <div id="id1">
         <div>
-            <h2>마이페이지</h2>
+            <h2>강사 마이페이지</h2>
         </div>
         <div>
-            <img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
+            <img src="/Project4/img/my_menu_01.png"/><a href="/Project4/kmocMain.do?command=teacherMypage">내 강의실</a>
             <br>
-            <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
+            <img src="/Project4/img/my_menu_02.png"/><a href="/Project4/mypage/mypage_info.do">개인정보관리</a>
         </div>
     </div>
 
     <div id="id2">
         <div id="id2_1">
                 <img id="img1" src="/Project4/img/user_image.png">
-                <span id="sp_user_name">${params.name}</span>님 안녕하세요. <br>
-                <p><span id="sp_user_email">이메일 주소</span>&nbsp;${params.email}</p>
+                <span id="sp_user_name">${lecture_list[0].member_name}</span>강사님 안녕하세요. <br>
+                <p><span id="sp_user_email">전화번호</span>&nbsp;${lecture_list[0].member_phone}</p>
         </div>
         <div id="id2_2">
             <hr>
             <div id="id2_2_1">
-                <button id="classbtn1" class="btn">수강중인 강좌</button>
-                <button id="classbtn2" class="btn">관심 강좌</button>
+                <button id="classbtn1" class="btn">개설 강좌</button>
+ <!--                <button id="classbtn2" class="btn">관심 강좌</button> -->
             </div>
             <div class="class1">
-            <c:if test="${params.titleList.size()-1 >=0 }">
-            <c:forEach var="i" begin="0" end="${params.titleList.size()-1}">
-            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params.idxList.get(i)}">
-            <div class="content">
-                <div class="content_img">
-                    <img src="/Project4${params.imgList.get(i) }" style="background-color: grey; background-size:cover; width:150px; height:120px;"/>
-                </div>
-                <div class="content_card">
-                    <p class="lecture_title">${params.titleList.get(i) }</p>
-                    <span class="lecture_teacher">${params.teacherList.get(i)}</span>
-                    <span class="lecture_date">${params.strdateList.get(i)}~${params.enddateList.get(i)}</span>
-                </div>
-                <fmt:formatDate value="${params.strdateList.get(i)}" pattern="yyyy-MM-dd" var="formattedStartDate" />
-				<fmt:formatDate value="${params.enddateList.get(i)}" pattern="yyyy-MM-dd" var="formattedEndDate" />
-				<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
-                <p class="content_state">
-					<c:choose>
-						<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
-							<small class="end">종료</small> 
-						</c:when>
-							<c:otherwise>
-								<small class="ing">진행중</small> 
-						</c:otherwise>
-					</c:choose>
-				</p>
-                <div class="content_cancel">
-                    <form class="frm3">
-                        <input type="button" id="cancel_lecture${i}" onclick="location.href='/Project4/kmocMain.do?command=cartDelete&idx=${params.idxList.get(i)}'" value="수강취소"/>
-                    </form>
-                </div>
- 
-            </div>
-            </a>
-            </c:forEach>
-            </c:if>
-            <c:if test="${params.titleList.size()-1 < 0 }">
+      
+	         <c:forEach var="list" items="${lecture_list}">
+	            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=">
+	            <div class="content">
+	                <div class="content_img">
+	                    <img src="/Project4${list.lecture_img}" style="background-color: grey; background-size:cover; width:150px; height:120px;"/>
+	                </div>
+	                <div class="content_card">
+	                    <p class="lecture_title">${list.lecture_title}</p>
+	                    <span class="lecture_teacher">${list.member_name}</span>
+	                    <span class="lecture_date">${list.lecture_start_date} ~ ${list.lecture_end_date}</span>
+	                </div>
+	                <fmt:formatDate value="${list.lecture_start_date}" pattern="yyyy-MM-dd" var="formattedStartDate" />
+					<fmt:formatDate value="${list.lecture_end_date}" pattern="yyyy-MM-dd" var="formattedEndDate" />
+					<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
+	                <p class="content_state">
+						<c:choose>
+							<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
+								<small class="end">종료</small> 
+							</c:when>
+								<c:otherwise>
+									<small class="ing">진행중</small> 
+							</c:otherwise>
+						</c:choose>
+					</p>
+	                <div class="content_cancel">
+	                    <form class="frm3">
+<!-- 	                        <input type="button" id="cancel_lecture" onclick="location.href='/Project4/kmocMain.do?command=cartDelete&idx=###'" value="수강취소"/>
+ -->	                    </form>
+	                </div>
+	 
+	            </div>
+	            </a>
+	         </c:forEach>
+         
+            
+            
+            <c:if test="${pageMaker.total eq 0}">
             <div class="content">
             	<h1>등록된 정보가 없습니다.</h1>
             </div>
@@ -220,56 +267,35 @@
             </div>
             
             
-            
-            
+     
             </div>
             
-            <div class="class2" style="display:none;">
-           
-           	<c:if test="${params1.titleList.size()-1 >=0 }">
-            <c:forEach var="i" begin="0" end="${params1.titleList.size()-1}">
-            <a href="/Project4/kmocMain.do?command=lectureDetail&lecture_idx=${params1.idxList.get(i)}"><div class="content">
-                <div class="content_img">
-                    <img src="/Project4${params1.imgList.get(i) }" style="background-color: grey; background-size:cover; width:150px; height:120px;"/>
-                </div>
-                <div class="content_card">
-                    <p class="lecture_title">${params1.titleList.get(i) }</p>
-                    <span class="lecture_teacher">${params1.teacherList.get(i)}</span>
-                    <span class="lecture_date">${params1.strdateList.get(i)}~${params1.enddateList.get(i)}</span>
-                </div>
-                <fmt:formatDate value="${params1.strdateList.get(i)}" pattern="yyyy-MM-dd" var="formattedStartDate" />
-				<fmt:formatDate value="${params1.enddateList.get(i)}" pattern="yyyy-MM-dd" var="formattedEndDate" />
-				<fmt:formatDate value="<%= new Date() %>" pattern="yyyy-MM-dd" var="formatNowDate" />
-                <p class="content_state">
-					<c:choose>
-						<c:when test="${formattedStartDate le formatNowDate && formatNowDate ge formattedEndDate}">
-							<small class="end">종료</small> 
-						</c:when>
-							<c:otherwise>
-								<small class="ing">진행중</small> 
-						</c:otherwise>
-					</c:choose>
-				</p>
-                <div class="content_cancel">
-                    <form class="frm3">
-                        <input type="button" id="cancel_heart${i}" onclick="location.href='/Project4/kmocMain.do?command=heartDelete&idx=${params1.idxList.get(i)}'" value="찜 해제"/>
-                    </form>
-                </div>
-			
-            </div></a>
-            </c:forEach>
-            </c:if>
-            <c:if test="${params1.titleList.size()-1 < 0 }">
-            <h1>등록된 정보가 없습니다.</h1>
-            </c:if>
-            </div>
-        </div>
+          
+			<div class="pageInfo_wrap" >
+			        <div class="pageInfo_area">
+			        		<!-- 이전페이지 버튼 -->
+			                <c:if test="${pageMaker.prev}">
+			                    <li class="pageInfo_btn previous"><a href="/Project4/kmocMain.do?command=teacherMypage&pageNum=${pageMaker.startPage-1}">Previous</a></li>
+			                </c:if>
+			 				
+			                 <!-- 각 번호 페이지 버튼 -->
+			                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+			                    <li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? "active":"" }"><a href="/Project4/kmocMain.do?command=teacherMypage&pageNum=${num}" >${num}</a></li>
+							</c:forEach>
+			                
+			                      <!-- 다음페이지 버튼 -->
+			                <c:if test="${pageMaker.next}">
+			                    <li class="pageInfo_btn next"><a href="/Project4/kmocMain.do?command=teacherMypage&pageNum=${pageMaker.endPage + 1 }">Next</a></li>
+			                </c:if>  
+			        </div>
+			</div>
     </div>
 </div>
 </main>
+
 <script>
 	
-	let classbtn1 = document.querySelector("#classbtn1");
+/* 	let classbtn1 = document.querySelector("#classbtn1");
     let classbtn2 = document.querySelector("#classbtn2");
     
     classbtn1.addEventListener('click',()=>{
@@ -280,7 +306,7 @@
     classbtn2.addEventListener('click',()=>{
     	document.querySelector(".class2").style.display ="block";
     	document.querySelector(".class1").style.display ="none";
-    });
+    }); */
     
 </script>
 </body>

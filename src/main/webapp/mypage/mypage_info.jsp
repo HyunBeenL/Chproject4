@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,8 +115,14 @@
         <div>
             <h2>마이페이지</h2>
         </div>
-        <div>
-            <img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
+        <div><c:choose>
+            	<c:when test="${params.category eq '강사'}">
+            		<img src="/Project4/img/my_menu_01.png"/><a href="/Project4/kmocMain.do?command=teacherMypage">내 강의실</a>
+            	</c:when>
+            	<c:otherwise>
+            		<img src="/Project4/img/my_menu_01.png"/><a href="mypage.do">내 강의실</a>
+            	</c:otherwise>
+            </c:choose>
             <br>
             <img src="/Project4/img/my_menu_02.png"/><a href="mypage_info.do">개인정보관리</a>
         </div>
@@ -172,11 +180,11 @@
 		window.open("mypage_change_password.do?id=${params.id}" , "PopupWin", "width=500,height=600");
 	});
 	document.querySelector("#leave").addEventListener('click', ()=>{
-		console.log("${params.id}");
-		console.log(document.querySelector("#pwd").value);
-		console.log(document.querySelector("#email").value);
-		console.log(document.querySelector("#phone").value);
+		if(confirm("정말 삭제하시겠습니까?")){
+			location.href="/Project4/member/deletecheck.do";
+		}
 	})
+	
     /* let info_save = document.querySelector("#info_save");
 
     info_save.addEventListener("click", function(e) {
