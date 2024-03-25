@@ -120,7 +120,7 @@
         #frm2 input[type=button]:hover {
         	background-color: #007bff;
         }
-        #frm2 input[type=button]:hover {
+        #frm2 input[type=button]:active {
         	color: white;
         }
         #frm2 input[type=submit] {
@@ -324,8 +324,10 @@
     		</div>	
     	</div>
     </div>
+    <br/>
     
     </main>
+    <jsp:include page="/footer/footer.jsp"></jsp:include>
 <script>
 	let search_refresh= document.querySelector("#search_refresh");
 	let search_state = document.querySelector("#search_state");

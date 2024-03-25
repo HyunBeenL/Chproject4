@@ -8,6 +8,7 @@ import action.heartAdd;
 import action.heartDelete;
 import action.idSearch;
 import action.pwdSearch;
+import action.teacherMypage;
 
 public class MainActionFactory {
 
@@ -49,7 +50,9 @@ public class MainActionFactory {
 		else if (command.equals("pwdSearch")) {
 			action = new pwdSearch();
 		}
-		
+		else if (command.equals("teacherMypage")) {
+			action = new teacherMypage();
+		}
 		System.out.println(action);
 		return action;
 	}
