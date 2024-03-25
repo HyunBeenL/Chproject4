@@ -194,7 +194,12 @@
 		<tr>
 			<td>${list.getSaveFile()}</td>
 			<td><a href="./filedown.do?orgFile=${list.getOrgFile()}&saveFile=${list.getSaveFile()}&bbs_idx=${list.getBbs_idx()}">다운로드</a></td>
+			<c:if test="${ user_id eq userId}">
 			<td><a id="filedelete" href="./filedelete.do?orgFile=${list.getOrgFile()}&saveFile=${list.getSaveFile()}&bbs_idx=${list.getBbs_idx()}">삭제</a></td>
+			</c:if>
+			<c:if test="${ user_id != userId}">
+			<td>삭제는 작성자만 가능합니다.</td>
+			</c:if>
 		</tr>
 		</c:forEach>
 	</c:when>
