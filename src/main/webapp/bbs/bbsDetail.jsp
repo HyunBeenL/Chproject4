@@ -14,7 +14,7 @@
         width: 100px;
         font-size: 18px;
         margin-right: 10px;
-        line-height: 50px;
+        line-height: 40px;
     }
     #btn_submit, #btn_cancel, #btn_delete{
         margin-top: 10px;
@@ -24,43 +24,46 @@
 
     }
     .title{
-        font-size: 28px;
-        text-align: center;
+    	font-size: 22px;
         width: 1100px;
+        border-bottom: 1px solid rgb(200, 200, 200);
     }
     .date{
         margin: 20px 0;
-        font-size: 18px;
+        font-size: 14px;
     }
     .content{
         margin: 20px 0;
         font-size: 18px;
     }
-    ul{
+    .ul{
         padding: 0px;
-        height: 80px;
+        height: 40px;
         border-top: 1px silver solid;
         border-bottom: 1px silver solid;
         margin: 0px;
     }
     .moveArticle{
         width: 1100px;
-        height: 50px;
+        height: 20px;
+        line-height: 25px;
     }
     span{
         width: 100px;
-        font-size: 18px;
+        font-size: 14px;
         margin-right: 10px;
-        line-height: 50px;
+        line-height: 40px;
         text-align:center;
-        padding: 10px 0px;
-        height: 60px;
+        padding: 0px;
+        height: 20px;
         display: table-cell;
     }
     .flag{
         width: 100px;
+        height: 20px;
     }
     #title{
+    	font-size: 16px;
         width: 800px;
     }
     .regdate{
@@ -75,6 +78,22 @@
     .comment{
         margin: 10px 0;
     }
+    #commentbtn button {
+    	width: 120px;
+        height: 30px;
+        font-size: 14px;
+        border: 1px solid rgb(200, 200, 200);
+    	
+    	padding-top: 5px;
+    	display: flex;
+    	justify-content: space-around;
+    }
+    #commentbtn button:hover {
+    	background-color: rgb(220, 220, 220);
+    }
+    #commentbtn button b {
+    	padding-top: 1px;
+    }
     #frm_comment{
         border: 1px solid black;
         padding: 10px;
@@ -85,14 +104,44 @@
         font-size: 18px;
         resize: none;
     }
-    #cmt_btn_submit{
+    #cmt_btn_login {
         padding: 5px 10px;
+        border: 1px solid rgb(200, 200, 200);
+    }
+    #cmt_btn_login:active {
+        border: 1px solid rgb(180, 180, 180);
+        background-color: rgb(200, 200, 200);
+    }
+    #cmt_btn_submit {
+        padding: 5px 10px;
+        border: 1px solid rgb(200, 200, 200);
+    }
+    #cmt_btn_submit:active {
+        border: 1px solid rgb(180, 180, 180);
+        background-color: rgb(200, 200, 200);
     }
     .btn{
         display: flex;
         flex-direction: row-reverse;
         margin-top: 10px;
         margin-right: 15px;
+        margin-bottom: 10px;
+    }
+    .btn input[type=button] {
+    	padding: 5px 10px;
+        border: 1px solid rgb(200, 200, 200);
+    }
+    .btn submit {
+    	padding: 5px 10px;
+        border: 1px solid rgb(200, 200, 200);
+    }
+    .btn input[type=button]:active {
+    	border: 1px solid rgb(180, 180, 180);
+        background-color: rgb(200, 200, 200);
+    }
+    .btn submit:active {
+    	border: 1px solid rgb(180, 180, 180);
+        background-color: rgb(200, 200, 200);
     }
     #cmtUserId{
         display: inline;
@@ -104,9 +153,6 @@
         border-top: 1px silver solid;
         border-bottom: 1px silver solid;
     }
-    .btn{
-    	margin-bottom: 10px;
-    }
     .commentView{
     	display:none;
     	border: 1px solid black;
@@ -116,6 +162,7 @@
     	border-collapse: collapse;
     	width: 600px;
     	margin: 10px auto;
+    	margin-bottom: 80px;
     }
     #frm_com_modify, #frm_com_delete{
     	display:inline-block;
@@ -133,7 +180,7 @@
 <div class="main">
     <div class="article">
         <div class="title"><p>${title}</p></div>
-        <div class="date">작성일 ${reg_date} 최종 수정일 ${modify_date}</div>
+        <div class="date"><strong>작성일</strong> ${reg_date} &nbsp; <strong>최종 수정일</strong> ${modify_date} </div>
         <div class="content" id="content">${content}</div>
     <table id="filelist" border="1">
 	<tr>
@@ -158,7 +205,7 @@
 	</c:otherwise>
 	</c:choose>
 	</table>
-        <ul>
+        <ul class="ul">
             <a href="bbsdetail.do?idx=${preidx < 1 ? idx : preidx}" class= "moveArticle" id="preArticle" >
             <span class="flag">↑</span>
             <span class="flag">${preidx  < 1 ? " " : "이전글"}</span>
@@ -166,7 +213,7 @@
             <span class="regdate">${reg_date1}</span>
             </a>
         </ul>
-        <ul>
+        <ul class="ul">
             <a href="bbsdetail.do?idx=${nextidx > lastidx ? idx : nextidx}" class= "moveArticle" id="nextArticle" >
             <span class="flag">↓</span>
             <span class="flag">${nextidx > lastidx ? " " : "다음글"}</span>
@@ -176,7 +223,7 @@
         </ul>
 
     </div>
-    <div class="comment" id="commentbtn"><button>댓글${cmt_total}<b> ▼</b></button></div>
+    <div class="comment" id="commentbtn"><button>댓글 ${cmt_total}<b> ▼</b></button></div>
     <div class="commentView">
     
 	<c:choose>
