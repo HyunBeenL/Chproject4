@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import member.MemberDAO;
 
-@WebServlet("/member/deletecheck.do")
+@WebServlet("/Project4/member/deletecheck.do")
 public class DeleteOkController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class DeleteOkController extends HttpServlet{
 		dao.close();
 		if(result>0) {
 			session.invalidate();
-			req.getRequestDispatcher("/member/deleteOk.jsp").forward(req, resp);
+			req.getRequestDispatcher("/Project4/member/deleteOk.jsp").forward(req, resp);
 		}
 		else {
 			req.setAttribute("errMsg", "오류");
