@@ -110,10 +110,10 @@
                     <fieldset class="contact">
                         <ul>
                             <li>
-                                <input type="checkbox" class="check" id="check1"><label class="terms">이용약관 동의</label><button type="button" onclick="openPop1()" class="agreebtn">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check1"><label class="terms">이용약관 동의<span style="color:red">(필수)</span></label><button type="button" onclick="openPop1()" class="agreebtn">자세히 보기</button>
                             </li>
                             <li>
-                                <input type="checkbox" class="check" id="check2"><label class="terms">개인정보 필수항목 수집 이용 및 동의</label><button type="button" class="agreebtn" onclick="openPop2()">자세히 보기</button>
+                                <input type="checkbox" class="check" id="check2"><label class="terms">개인정보 필수항목 수집 이용 및 동의<span style="color:red">(필수)</span></label><button type="button" class="agreebtn" onclick="openPop2()">자세히 보기</button>
                             </li>
                             
                             <li>

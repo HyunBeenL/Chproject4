@@ -30,7 +30,7 @@ public class idSearch implements Action{
 			request.setAttribute("memberId", "nullId");
 		}
 		
-		String url = "/member/find.jsp?search=1";
+		String url = "/member/find.do?search=1";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

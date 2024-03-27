@@ -82,8 +82,8 @@
 	                <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요.">
 	            </div>
 	        <div class="viewimport">
-	            <a href="find.jsp?search=1">아이디 찾기  |</a>
-	            <a href="find.jsp?search=2">비밀번호 찾기  </a>
+	            <a href="find.do?search=1">아이디 찾기  |</a>
+	            <a href="find.do?search=2">비밀번호 찾기  </a>
 	        </div>
 	            <input type="submit" id="loginbtn" name="loginbtn" value="로그인">
 	            <button id="joinbtn"><a href="/Project4/member/joinchoice.do">회원가입</a></button>

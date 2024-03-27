@@ -32,7 +32,7 @@ public class pwdSearch implements Action {
 			request.setAttribute("pwdChange", "nullPwd");
 		}
 
-		String url = "/member/find.jsp?search=2";
+		String url = "/member/find.do?search=2";
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

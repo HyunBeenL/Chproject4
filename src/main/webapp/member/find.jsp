@@ -60,7 +60,7 @@
         .changebtn tr td{
             list-style-type: none;
             display:inline-block;
-            width:48%;
+            width:49.9%;
             height:100%;
             text-align: center;
         }
@@ -69,6 +69,7 @@
             height: 100%;
             margin: 10px auto;
             display:inline-block;
+            color: black;
         }
         .changebtn{
             margin:20px auto;
@@ -98,20 +99,25 @@
 	        <h1 style="text-align: center; margin-bottom:50px;"> 아이디 / 비밀번호 찾기</h1>
             <table class="changebtn">
                 <tr>
-                    <td id="findid"><a href ="/Project4/member/find.jsp?search=1" id="findid1">아이디 찾기</a></td>
-                    <td id="findpwd"><a href ="/Project4/member/find.jssp?search=2" id="findpwd1">비밀번호 찾기</a></td>
-                </tr>
+                	<c:if test="${param.search eq 1}" >
+               		<td id="findid" style="border-bottom:5px solid blue;"><a href ="/Project4/member/find.do?search=1" id="findid1">아이디 찾기</a></td>
+               		<td id="findpwd" style="border-left:1px solid black; border-bottom:5px solid black;"><a href ="/Project4/member/find.do?search=2" id="findpwd1">비밀번호 찾기</a></td>
+               		</c:if>
+                    <c:if test="${param.search eq 2}" >
+               		<td id="findid" style="border-bottom:5px solid black;"><a href ="/Project4/member/find.do?search=1" id="findid1">아이디 찾기</a></td>
+               		<td id="findpwd" style="border-left:1px solid black; border-bottom:5px solid blue;"><a href ="/Project4/member/find.do?search=2" id="findpwd1">비밀번호 찾기</a></td>
+               		</c:if>
+              	</tr>
             </table>
            <input type="hidden" name="idFind" id="idFind" value="${memberId}">
            <input type="hidden" name="pwdChange" id="pwdChange" value="${pwdChange}">
             <h2 style="text-align: center; margin:50px 0px;"> 회원가입시 기입한 정보를 입력해주세요.</h2>
-	        <div class="border" style="text-align: center;"">
+	        <div class="border" style="text-align: center;">
 		        <c:choose>
 		        	<c:when test="${param.search  eq 1}" >
 		        		<form action="" class="findfrm" id="login0" method="post">
 				            <input type="tel" name="tel" id="tel" maxlength="20" placeholder="- 빼고 전화번호 입력" />
 				            <input type="email" name="email" id="email" placeholder="이메일입력" />
-				                                                      
 				            <input type="hidden" name="id" id="id" placeholder="아이디입력" value="hidden"/>
 				            <input type="hidden" name="search" id="search" value="${param.search}"/>
 				            <div>회원가입 시 기입한 정보를 입력해주세요.</div>
@@ -145,23 +151,13 @@
     	let findpwd = document.querySelector("#findpwd");
     	let findpwd1 = document.querySelector("#findpwd1");
     	
-    	findid.style.backgroundColor="blue";
-    	findid.style.Color="white";
+    	
     	findid1.addEventListener('click',()=>{
     		document.querySelector("#id").display ="none";
-    		
-    		findid.style.backgroundColor="blue";
-         	findid1.style.Color="white";
-        	findpwd.style.backgroundColor="white";
-        	findpwd1.style.Color="black"; 
+    		 
     	});
     	findpwd1.addEventListener('click',()=>{
     		document.querySelector("#id").display ="block";
-    		
-     	findpwd.style.backgroundColor="blue";
-        	findpwd1.style.Color="white";
-        	findid.style.backgroundColor="white";
-        	findid1.style.Color="black"; 
     	});
     	
     	const phone = document.querySelector("#tel");

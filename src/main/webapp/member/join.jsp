@@ -178,8 +178,8 @@
                         </fieldset>
                     </div>
                     <div class="submitbtn">
-                        <button onclick="window.location.href='login.jsp'">취소</button>
-                        <input type="submit" value="다음">
+                        <button type="button" onclick="window.location.href='login.do'">취소</button>
+                        <input class = "submit1" type="submit" value="다음">
                     </div>
                 </form>
         </div>
@@ -228,7 +228,7 @@
 	    
 	    //////////////////////////////////////////////////
 	    
-	    let submit = document.querySelector(".submitbtn");
+	    let submit = document.querySelector(".submit1");
 	
 		
 	    ///////////////중복확인 버튼////////////////////////////
