@@ -312,19 +312,21 @@
         window.location.href="./modifyConn.do?idx=${idx}";
     })
 	}
-	if(document.querySelector("#btn_submit")!=null){
+	if(document.querySelector("#btn_delete")!=null){
     document.querySelector("#btn_delete").addEventListener("click",()=>{
         if(confirm("삭제하시겠습니까?")){
             window.location.href="./delete.do?idx=${idx}";
         }
     })
 	}
+	if(document.querySelector("#btn_cancel")!=null){
     document.querySelector("#btn_cancel").addEventListener("click",()=>{
         if(confirm("이전페이지로 돌아가시겠습니까?")){
             window.location.href="./comu.do";
         }
     })
-    if(document.querySelector("#btn_submit")!=null){
+	}
+    if(document.querySelector("#filedelete")!=null){
     document.querySelector("#filedelete").addEventListener("click",()=>{
         if(confirm("정말 삭제하시겠습니까?")){
         }
