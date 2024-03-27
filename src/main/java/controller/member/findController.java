@@ -16,4 +16,11 @@ public class findController extends HttpServlet {
 		req.setAttribute("search",search);
 		req.getRequestDispatcher("/member/find.jsp").forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String search = (String)req.getParameter("search");
+		req.setAttribute("search",search);
+		req.getRequestDispatcher("/member/find.jsp").forward(req, resp);
+	}
 }
