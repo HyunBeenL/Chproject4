@@ -64,7 +64,7 @@
 ### 시연영상
 
 
-### [▲ 클릭해주세요](https://youtu.be/ylN7Dk0iXWg)
+### [▲ 클릭해주세요](https://www.youtube.com/watch?v=yZLpf4daZLA)
 
 # 자체평가
 
