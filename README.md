@@ -38,30 +38,26 @@
 # 프로젝트 진행 과정
 
 ## 기획서 분석
-
+![image (9)](https://github.com/HyunBeenL/Chproject4/assets/122505474/88f13150-2e93-4ef5-9cdc-c97c398f8093)
 
 ## 개발환경 구축
-
+![image (10)](https://github.com/HyunBeenL/Chproject4/assets/122505474/1227f4af-e2f4-4b88-aa80-dd3a9502df36)
 
 ## DB 설계
 전체적인 DB 설계
-
+![image (11)](https://github.com/HyunBeenL/Chproject4/assets/122505474/43edeee8-d3ee-47e9-ad5c-68a429648e33)
 
 ## 개발 진행
 >FRONT/BACK 별, 메뉴 별 세부 업무 분장 진행
+>
 >전 메뉴 퍼블리싱
+>
 >메뉴 별 기능 개발
+>
+>프로젝트 진행 결과 발표
 
 
-## 완료
-
-
-
-## 발표
-프로젝트 진행 결과 발표
-
-
-
+![image (12)](https://github.com/HyunBeenL/Chproject4/assets/122505474/d6dad381-0bdb-4ea4-afd3-b35fab33dc84)
 
 # 프로젝트 결과
 
