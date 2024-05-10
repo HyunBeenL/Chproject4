@@ -1,6 +1,7 @@
 
 ![image (1)](https://github.com/HyunBeenL/Chproject4/assets/122505474/b24f8c0a-280e-4b69-b0c1-b8e10c587e10)
 
+
 # 프로젝트 개요
 ### 프로젝트 주제 : 잘 만들어진 교육 사이트 클론 프로젝트 
 ### 주 기능 
@@ -12,18 +13,14 @@
   4) 수강신청 및 사이트 강좌 통계 처리
 ```
 ### 목표 시스템 구성도
-
+![image (2)](https://github.com/HyunBeenL/Chproject4/assets/122505474/b6f6ef26-b7f9-4a8b-8504-306815b276e2)
 
 ### 프로젝트 기간
 - 2024년 03월 19일 ~ 2024년 3월 22일
 ### 상세 일정표
-
-
+![image (4)](https://github.com/HyunBeenL/Chproject4/assets/122505474/97fece23-38da-4206-8106-e80fe92ee0fa)
 ### 개발환경 및 기술스택
-#### Front & Co-work
-----
-#### Back & Dev-Tools, 외부 API
-----
+![image (3)](https://github.com/HyunBeenL/Chproject4/assets/122505474/ccecf599-e5dc-4366-87b6-cbedde894209)
 
 
 
@@ -70,6 +67,11 @@
 ### [▲ 클릭해주세요](https://youtu.be/ylN7Dk0iXWg)
 
 # 자체평가
+
+![image (5)](https://github.com/HyunBeenL/Chproject4/assets/122505474/19075465-01e8-4e26-8464-caec5f60c5a3)
+![image (6)](https://github.com/HyunBeenL/Chproject4/assets/122505474/8dc24f49-74aa-4468-8c4c-fb3745c959b7)
+![image (7)](https://github.com/HyunBeenL/Chproject4/assets/122505474/2f4d5370-ada4-4600-b741-7d90c6538103)
+![image (8)](https://github.com/HyunBeenL/Chproject4/assets/122505474/9edb3b04-ae47-40bf-bded-8210c34dab75)
 
 
 
