@@ -36,7 +36,8 @@
 
 
 # 프로젝트 진행 과정
-
+<details>
+    <summary>자세히</summary>
 ## 기획서 분석
 ![image (9)](https://github.com/HyunBeenL/Chproject4/assets/122505474/88f13150-2e93-4ef5-9cdc-c97c398f8093)
 
@@ -59,6 +60,7 @@
 
 ![image (12)](https://github.com/HyunBeenL/Chproject4/assets/122505474/d6dad381-0bdb-4ea4-afd3-b35fab33dc84)
 
+</details>
 # 프로젝트 결과
 
 ### 시연영상
