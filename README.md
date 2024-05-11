@@ -67,11 +67,14 @@
 ### [▲ 클릭해주세요](https://www.youtube.com/watch?v=yZLpf4daZLA)
 
 # 자체평가
+<details>
+    <summary>자세히</summary>
 
 ![image (5)](https://github.com/HyunBeenL/Chproject4/assets/122505474/19075465-01e8-4e26-8464-caec5f60c5a3)
 ![image (6)](https://github.com/HyunBeenL/Chproject4/assets/122505474/8dc24f49-74aa-4468-8c4c-fb3745c959b7)
 ![image (7)](https://github.com/HyunBeenL/Chproject4/assets/122505474/2f4d5370-ada4-4600-b741-7d90c6538103)
 ![image (8)](https://github.com/HyunBeenL/Chproject4/assets/122505474/9edb3b04-ae47-40bf-bded-8210c34dab75)
+</details>
 
 
 
